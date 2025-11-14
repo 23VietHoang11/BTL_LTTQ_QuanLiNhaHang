@@ -145,8 +145,8 @@
             // 
             this.btnUpdateUserInfo.BackColor = System.Drawing.Color.Transparent;
             this.btnUpdateUserInfo.FlatAppearance.BorderSize = 0;
-            this.btnUpdateUserInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnUpdateUserInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnUpdateUserInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateUserInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnUpdateUserInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateUserInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnUpdateUserInfo.ForeColor = System.Drawing.Color.White;
@@ -172,8 +172,8 @@
             // 
             this.btnLogOut.BackColor = System.Drawing.Color.Transparent;
             this.btnLogOut.FlatAppearance.BorderSize = 0;
-            this.btnLogOut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnLogOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnLogOut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLogOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLogOut.ForeColor = System.Drawing.Color.White;
@@ -210,8 +210,8 @@
             // 
             this.btnSalesReport.BackColor = System.Drawing.Color.Transparent;
             this.btnSalesReport.FlatAppearance.BorderSize = 0;
-            this.btnSalesReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnSalesReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnSalesReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSalesReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSalesReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnSalesReport.ForeColor = System.Drawing.Color.White;
@@ -248,8 +248,8 @@
             // 
             this.btnHome.BackColor = System.Drawing.Color.Transparent;
             this.btnHome.FlatAppearance.BorderSize = 0;
-            this.btnHome.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnHome.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnHome.ForeColor = System.Drawing.Color.White;

@@ -20,7 +20,7 @@ namespace BTL_QLNH
         {
             InitializeComponent();
             txtPassword.PasswordChar = '●';
-            cbShow.Checked = false; // Đảm bảo checkbox chưa được tích
+            cbShow.Checked = false;
         }
 
         public frmLogin(frmSignUp f3)
