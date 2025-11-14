@@ -40,6 +40,7 @@
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnExcel = new ReaLTaiizor.Controls.CyberButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -92,7 +93,7 @@
             this.btnGenerate.Lighting = false;
             this.btnGenerate.LinearGradient_Background = false;
             this.btnGenerate.LinearGradientPen = false;
-            this.btnGenerate.Location = new System.Drawing.Point(1878, 740);
+            this.btnGenerate.Location = new System.Drawing.Point(1548, 752);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.PenWidth = 15;
             this.btnGenerate.Rounding = true;
@@ -133,7 +134,7 @@
             this.btnClear.Lighting = false;
             this.btnClear.LinearGradient_Background = false;
             this.btnClear.LinearGradientPen = false;
-            this.btnClear.Location = new System.Drawing.Point(1249, 740);
+            this.btnClear.Location = new System.Drawing.Point(1120, 752);
             this.btnClear.Name = "btnClear";
             this.btnClear.PenWidth = 15;
             this.btnClear.Rounding = true;
@@ -231,11 +232,53 @@
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Alpha = 20;
+            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcel.Background = true;
+            this.btnExcel.Background_WidthPen = 4F;
+            this.btnExcel.BackgroundPen = true;
+            this.btnExcel.ColorBackground = System.Drawing.Color.Black;
+            this.btnExcel.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnExcel.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnExcel.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnExcel.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnExcel.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnExcel.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnExcel.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            this.btnExcel.Effect_1 = true;
+            this.btnExcel.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnExcel.Effect_1_Transparency = 25;
+            this.btnExcel.Effect_2 = true;
+            this.btnExcel.Effect_2_ColorBackground = System.Drawing.Color.White;
+            this.btnExcel.Effect_2_Transparency = 20;
+            this.btnExcel.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnExcel.Lighting = false;
+            this.btnExcel.LinearGradient_Background = false;
+            this.btnExcel.LinearGradientPen = false;
+            this.btnExcel.Location = new System.Drawing.Point(1882, 752);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.PenWidth = 15;
+            this.btnExcel.Rounding = true;
+            this.btnExcel.RoundingInt = 70;
+            this.btnExcel.Size = new System.Drawing.Size(303, 74);
+            this.btnExcel.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnExcel.TabIndex = 86;
+            this.btnExcel.Tag = "Cyber";
+            this.btnExcel.TextButton = "Xuất ra Excel";
+            this.btnExcel.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnExcel.Timer_Effect_1 = 5;
+            this.btnExcel.Timer_RGB = 300;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // frmUcSalesReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.lblEndDate);
@@ -271,5 +314,6 @@
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
+        private ReaLTaiizor.Controls.CyberButton btnExcel;
     }
 }

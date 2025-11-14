@@ -19,6 +19,15 @@ namespace BTL_QLNH
             InitializeComponent();
             this.Da = new DataAccess();
             this.PopulateGridView();
+
+            cmbCategory.Items.Add("Burger");
+            cmbCategory.Items.Add("Beverage");
+            cmbCategory.Items.Add("Dessert");
+            cmbCategory.Items.Add("Coffee");
+            cmbCategory.Items.Add("Pizza");
+            cmbCategory.Items.Add("Pasta");
+
+            cmbCategory.SelectedIndex = 0;
         }
         private void PopulateGridView(string sql = "select FoodDetails.FoodId,FoodDetails.FoodName,FoodPrices.Category,FoodPrices.Price from FoodDetails,FoodPrices where FoodDetails.FoodId = FoodPrices.FoodId;")
         {
@@ -122,6 +131,9 @@ namespace BTL_QLNH
             }
         }
 
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

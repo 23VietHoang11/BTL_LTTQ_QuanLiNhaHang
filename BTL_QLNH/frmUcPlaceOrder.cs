@@ -123,6 +123,8 @@ namespace BTL_QLNH
             this.listBox1.Items.Clear();
             this.dgvPlaceOrder.Rows.Clear();
 
+            this.lblTK.Text = "0.0"; 
+            this.total = 0.0f;
 
             this.AutoIdGenerate();
         }
@@ -134,13 +136,23 @@ namespace BTL_QLNH
 
         private void PrintPDF()
         {
+            // 1. Tạo tài liệu
             PrintDocument printDocument = new PrintDocument();
 
+            // 2. Gán sự kiện "vẽ" tài liệu
             printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 
-            printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+            // 3. Tạo cửa sổ XEM TRƯỚC
+            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+            previewDialog.Document = printDocument;
 
-            printDocument.Print();
+            // 4. (Tùy chọn) Chỉnh kích thước cửa sổ xem trước
+            previewDialog.Text = "Xem trước Hóa đơn";
+            previewDialog.Width = 600;
+            previewDialog.Height = 800;
+
+            // 5. Hiển thị cửa sổ
+            previewDialog.ShowDialog();
         }
 
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
@@ -149,27 +161,29 @@ namespace BTL_QLNH
 
             float y = 50;
 
-            e.Graphics.DrawString("Date & time: " + dtpOrderDate.Value, font, Brushes.Black, new PointF(50, y));
+            e.Graphics.DrawString("Date & time: " + dtpOrderDate.Value.ToString(), font, Brushes.Black, new PointF(50, y));
             y += 20;
 
             e.Graphics.DrawString("Customer Name: " + txtCustomerName.Text, font, Brushes.Black, new PointF(50, y));
             y += 20;
 
-            int i = 0;
-            while (i < dgvPlaceOrder.Rows.Count)
+            // --- SỬA LẠI VÒNG LẶP ---
+            foreach (DataGridViewRow row in dgvPlaceOrder.Rows)
             {
-                string itemName = dgvPlaceOrder.Rows[i].Cells[0].Value.ToString();
-                string quantity = dgvPlaceOrder.Rows[i].Cells[2].Value.ToString();
-                string price = dgvPlaceOrder.Rows[i].Cells[1].Value.ToString();
-                string total = dgvPlaceOrder.Rows[i].Cells[3].Value.ToString();
+                // Bỏ qua hàng trống (hàng mới) ở cuối
+                if (row.IsNewRow) continue;
+
+                // Dùng ?.ToString() ?? "" để tránh lỗi nếu ô bị null
+                string itemName = row.Cells[0].Value?.ToString() ?? "";
+                string quantity = row.Cells[2].Value?.ToString() ?? "";
+                string price = row.Cells[1].Value?.ToString() ?? "";
+                string total = row.Cells[3].Value?.ToString() ?? "";
 
                 string orderItem = string.Format("{0} x {1} (Price: {2}, Total: {3})", quantity, itemName, price, total);
                 e.Graphics.DrawString(orderItem, font, Brushes.Black, new PointF(50, y));
                 y += 20;
-
-                i++;
             }
-
+            // --- KẾT THÚC SỬA ---
 
             string totalAmount = "Total Amount: " + lblTK.Text;
             e.Graphics.DrawString(totalAmount, font, Brushes.Black, new PointF(50, y));

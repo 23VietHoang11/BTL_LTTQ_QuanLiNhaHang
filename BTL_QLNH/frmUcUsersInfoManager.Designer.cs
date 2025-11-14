@@ -101,7 +101,7 @@
             // 
             this.lblUpdateUser.AutoSize = true;
             this.lblUpdateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateUser.Location = new System.Drawing.Point(1138, 182);
+            this.lblUpdateUser.Location = new System.Drawing.Point(970, 46);
             this.lblUpdateUser.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblUpdateUser.Name = "lblUpdateUser";
             this.lblUpdateUser.Size = new System.Drawing.Size(684, 89);
