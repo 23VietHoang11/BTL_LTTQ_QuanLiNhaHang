@@ -1,0 +1,355 @@
+﻿namespace BTL_QLNH
+{
+    partial class frmUcUpdate
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtFoodName = new System.Windows.Forms.TextBox();
+            this.txtFoodId = new System.Windows.Forms.TextBox();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.lblFoodName = new System.Windows.Forms.Label();
+            this.lblFoodId = new System.Windows.Forms.Label();
+            this.btnUpdate = new ReaLTaiizor.Controls.CyberButton();
+            this.btnShow = new ReaLTaiizor.Controls.CyberButton();
+            this.btnClear = new ReaLTaiizor.Controls.CyberButton();
+            this.lblAddFood = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.dgvUpdate = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(1092, 447);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(360, 37);
+            this.cmbCategory.TabIndex = 80;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cmbCategory);
+            this.panel1.Controls.Add(this.txtPrice);
+            this.panel1.Controls.Add(this.txtFoodName);
+            this.panel1.Controls.Add(this.txtFoodId);
+            this.panel1.Controls.Add(this.lblPrice);
+            this.panel1.Controls.Add(this.lblCategory);
+            this.panel1.Controls.Add(this.lblFoodName);
+            this.panel1.Controls.Add(this.lblFoodId);
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.btnShow);
+            this.panel1.Controls.Add(this.btnClear);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.lblAddFood);
+            this.panel1.Controls.Add(this.txtSearch);
+            this.panel1.Controls.Add(this.dgvUpdate);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(2398, 1364);
+            this.panel1.TabIndex = 1;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtPrice.Location = new System.Drawing.Point(1538, 433);
+            this.txtPrice.Multiline = true;
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(339, 61);
+            this.txtPrice.TabIndex = 79;
+            // 
+            // txtFoodName
+            // 
+            this.txtFoodName.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtFoodName.Location = new System.Drawing.Point(1538, 264);
+            this.txtFoodName.Multiline = true;
+            this.txtFoodName.Name = "txtFoodName";
+            this.txtFoodName.Size = new System.Drawing.Size(339, 61);
+            this.txtFoodName.TabIndex = 78;
+            // 
+            // txtFoodId
+            // 
+            this.txtFoodId.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtFoodId.Location = new System.Drawing.Point(1092, 264);
+            this.txtFoodId.Multiline = true;
+            this.txtFoodId.Name = "txtFoodId";
+            this.txtFoodId.Size = new System.Drawing.Size(360, 61);
+            this.txtFoodId.TabIndex = 77;
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(1532, 367);
+            this.lblPrice.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(72, 35);
+            this.lblPrice.TabIndex = 76;
+            this.lblPrice.Text = "Giá:";
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(1086, 367);
+            this.lblCategory.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(82, 35);
+            this.lblCategory.TabIndex = 75;
+            this.lblCategory.Text = "Loại:";
+            // 
+            // lblFoodName
+            // 
+            this.lblFoodName.AutoSize = true;
+            this.lblFoodName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFoodName.Location = new System.Drawing.Point(1532, 209);
+            this.lblFoodName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFoodName.Name = "lblFoodName";
+            this.lblFoodName.Size = new System.Drawing.Size(144, 35);
+            this.lblFoodName.TabIndex = 74;
+            this.lblFoodName.Text = "Tên món:";
+            // 
+            // lblFoodId
+            // 
+            this.lblFoodId.AutoSize = true;
+            this.lblFoodId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFoodId.Location = new System.Drawing.Point(1086, 209);
+            this.lblFoodId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFoodId.Name = "lblFoodId";
+            this.lblFoodId.Size = new System.Drawing.Size(40, 35);
+            this.lblFoodId.TabIndex = 73;
+            this.lblFoodId.Text = "Id";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Alpha = 20;
+            this.btnUpdate.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpdate.Background = true;
+            this.btnUpdate.Background_WidthPen = 4F;
+            this.btnUpdate.BackgroundPen = true;
+            this.btnUpdate.ColorBackground = System.Drawing.Color.Black;
+            this.btnUpdate.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnUpdate.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnUpdate.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnUpdate.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnUpdate.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnUpdate.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnUpdate.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            this.btnUpdate.Effect_1 = true;
+            this.btnUpdate.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnUpdate.Effect_1_Transparency = 25;
+            this.btnUpdate.Effect_2 = true;
+            this.btnUpdate.Effect_2_ColorBackground = System.Drawing.Color.White;
+            this.btnUpdate.Effect_2_Transparency = 20;
+            this.btnUpdate.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnUpdate.Lighting = false;
+            this.btnUpdate.LinearGradient_Background = false;
+            this.btnUpdate.LinearGradientPen = false;
+            this.btnUpdate.Location = new System.Drawing.Point(2009, 410);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.PenWidth = 15;
+            this.btnUpdate.Rounding = true;
+            this.btnUpdate.RoundingInt = 70;
+            this.btnUpdate.Size = new System.Drawing.Size(221, 74);
+            this.btnUpdate.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnUpdate.TabIndex = 72;
+            this.btnUpdate.Tag = "Cyber";
+            this.btnUpdate.TextButton = "Cập nhật";
+            this.btnUpdate.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnUpdate.Timer_Effect_1 = 5;
+            this.btnUpdate.Timer_RGB = 300;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnShow
+            // 
+            this.btnShow.Alpha = 20;
+            this.btnShow.BackColor = System.Drawing.Color.Transparent;
+            this.btnShow.Background = true;
+            this.btnShow.Background_WidthPen = 4F;
+            this.btnShow.BackgroundPen = true;
+            this.btnShow.ColorBackground = System.Drawing.Color.Black;
+            this.btnShow.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnShow.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnShow.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnShow.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnShow.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnShow.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnShow.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            this.btnShow.Effect_1 = true;
+            this.btnShow.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnShow.Effect_1_Transparency = 25;
+            this.btnShow.Effect_2 = true;
+            this.btnShow.Effect_2_ColorBackground = System.Drawing.Color.White;
+            this.btnShow.Effect_2_Transparency = 20;
+            this.btnShow.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnShow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnShow.Lighting = false;
+            this.btnShow.LinearGradient_Background = false;
+            this.btnShow.LinearGradientPen = false;
+            this.btnShow.Location = new System.Drawing.Point(2009, 717);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.PenWidth = 15;
+            this.btnShow.Rounding = true;
+            this.btnShow.RoundingInt = 70;
+            this.btnShow.Size = new System.Drawing.Size(221, 54);
+            this.btnShow.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnShow.TabIndex = 71;
+            this.btnShow.Tag = "Cyber";
+            this.btnShow.TextButton = "Tải lại";
+            this.btnShow.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnShow.Timer_Effect_1 = 5;
+            this.btnShow.Timer_RGB = 300;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Alpha = 20;
+            this.btnClear.BackColor = System.Drawing.Color.Transparent;
+            this.btnClear.Background = true;
+            this.btnClear.Background_WidthPen = 4F;
+            this.btnClear.BackgroundPen = true;
+            this.btnClear.ColorBackground = System.Drawing.Color.Black;
+            this.btnClear.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnClear.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnClear.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnClear.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnClear.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnClear.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnClear.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            this.btnClear.Effect_1 = true;
+            this.btnClear.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnClear.Effect_1_Transparency = 25;
+            this.btnClear.Effect_2 = true;
+            this.btnClear.Effect_2_ColorBackground = System.Drawing.Color.White;
+            this.btnClear.Effect_2_Transparency = 20;
+            this.btnClear.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnClear.Lighting = false;
+            this.btnClear.LinearGradient_Background = false;
+            this.btnClear.LinearGradientPen = false;
+            this.btnClear.Location = new System.Drawing.Point(2009, 251);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.PenWidth = 15;
+            this.btnClear.Rounding = true;
+            this.btnClear.RoundingInt = 70;
+            this.btnClear.Size = new System.Drawing.Size(221, 74);
+            this.btnClear.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnClear.TabIndex = 70;
+            this.btnClear.Tag = "Cyber";
+            this.btnClear.TextButton = "Clear";
+            this.btnClear.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnClear.Timer_Effect_1 = 5;
+            this.btnClear.Timer_RGB = 300;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // lblAddFood
+            // 
+            this.lblAddFood.AutoSize = true;
+            this.lblAddFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddFood.Location = new System.Drawing.Point(1099, 27);
+            this.lblAddFood.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblAddFood.Name = "lblAddFood";
+            this.lblAddFood.Size = new System.Drawing.Size(497, 89);
+            this.lblAddFood.TabIndex = 68;
+            this.lblAddFood.Text = "Update Food";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtSearch.Location = new System.Drawing.Point(198, 717);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(413, 61);
+            this.txtSearch.TabIndex = 67;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // dgvUpdate
+            // 
+            this.dgvUpdate.BackgroundColor = System.Drawing.Color.White;
+            this.dgvUpdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUpdate.Location = new System.Drawing.Point(198, 809);
+            this.dgvUpdate.Name = "dgvUpdate";
+            this.dgvUpdate.RowHeadersWidth = 92;
+            this.dgvUpdate.RowTemplate.Height = 37;
+            this.dgvUpdate.Size = new System.Drawing.Size(2032, 515);
+            this.dgvUpdate.TabIndex = 66;
+            this.dgvUpdate.SelectionChanged += new System.EventHandler(this.dgvUpdate_SelectionChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.fast_food_illustration_512x368_owd7wme9;
+            this.pictureBox1.Location = new System.Drawing.Point(198, 133);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(583, 477);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 69;
+            this.pictureBox1.TabStop = false;
+            // 
+            // frmUcUpdate
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
+            this.Name = "frmUcUpdate";
+            this.Size = new System.Drawing.Size(2398, 1364);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtFoodName;
+        private System.Windows.Forms.TextBox txtFoodId;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.Label lblFoodName;
+        private System.Windows.Forms.Label lblFoodId;
+        private ReaLTaiizor.Controls.CyberButton btnUpdate;
+        private ReaLTaiizor.Controls.CyberButton btnShow;
+        private ReaLTaiizor.Controls.CyberButton btnClear;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblAddFood;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.DataGridView dgvUpdate;
+    }
+}
