@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using OfficeOpenXml;
 
 namespace BTL_QLNH
 {
@@ -15,6 +17,7 @@ namespace BTL_QLNH
     {
 
         private DataAccess Da { get; set; }
+        private DataTable dtReport;
         public frmUcSalesReport()
         {
             InitializeComponent();
@@ -29,9 +32,19 @@ namespace BTL_QLNH
 
         private void PopulateGridView(string sql = "select OrdersInfo.OrderID,OrdersInfo.CustomerName,OrdersInfo.OrderDate,OrdersInfo.Total,OrdersItems.Item,OrdersItems.Quantity from OrdersInfo,OrdersItems where OrdersInfo.OrderID=OrdersItems.OrderID;\r\n")
         {
-            this.Da.ExecuteQueryTable(sql);
-            this.dgvSales.DataSource = Da.Ds.Tables[0];
+        try
+    {
+        // 1. Lấy dữ liệu và LƯU VÀO dtReport
+        this.dtReport = this.Da.ExecuteQueryTable(sql); 
+        
+        // 2. Gán dữ liệu cho DataGridView
+        this.dgvSales.DataSource = this.dtReport;
+    }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+       }
 
 
         private void ClearContent()
@@ -40,31 +53,57 @@ namespace BTL_QLNH
             dtpStartDate.Value = DateTime.Now;
             lblTK.Text = "0.0";
 
-            this.dgvSales.ClearSelection();
-            PopulateGridView();
+            dgvSales.DataSource = null;
+            dgvSales.Rows.Clear();
+            this.dtReport = null;
         }
 
         private void btnGenerate_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Generating the sales report from " + dtpStartDate.Value + " to " + dtpEndDate.Value + " !");
-            decimal totalSale = 0; 
+            string dateStart = dtpStartDate.Value.ToString("yyyy-MM-dd");
+            string dateEnd = dtpEndDate.Value.ToString("yyyy-MM-dd");
 
-            string query = "SELECT * FROM OrdersInfo WHERE OrderDate >= '" + dtpStartDate.Value + "' AND OrderDate <= '" + dtpEndDate.Value + "';";
+            string query = @"
+                SELECT 
+                    OrderDate AS [Ngày], 
+                    SUM(CAST(Total AS float)) AS [Tổng doanh thu]
+                FROM 
+                    OrdersInfo
+                WHERE 
+                    OrderDate BETWEEN '" + dateStart + "' AND '" + dateEnd + @"'
+                GROUP BY 
+                    OrderDate
+                ORDER BY
+                    OrderDate ASC;";
 
+            // Hàm này bây giờ sẽ tự động lưu kết quả vào dtReport
             PopulateGridView(query);
 
-            foreach (DataGridViewRow row in dgvSales.Rows)
+            decimal totalSale = 0;
+            // Tính tổng tiền từ DataTable (chính xác hơn là từ DataGridView)
+            if (this.dtReport != null)
             {
-                decimal sale = Convert.ToDecimal(row.Cells["Total"].Value);
-                totalSale += sale;
+                foreach (DataRow row in this.dtReport.Rows)
+                {
+                    // Lấy từ cột "Tổng doanh thu"
+                    totalSale += Convert.ToDecimal(row[1]);
+                }
             }
 
-            lblTK.Text = totalSale.ToString();
+            lblTK.Text = totalSale.ToString("N0");
         }
 
         private void btnClear_Click_1(object sender, EventArgs e)
         {
             this.ClearContent();
         }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+                   
+                
+            
+        }
     }
-}
+ }
+

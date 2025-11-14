@@ -40,13 +40,13 @@
             this.btnUpdate = new ReaLTaiizor.Controls.CyberButton();
             this.btnShow = new ReaLTaiizor.Controls.CyberButton();
             this.btnClear = new ReaLTaiizor.Controls.CyberButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblAddFood = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvUpdate = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbCategory
@@ -56,6 +56,7 @@
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(360, 37);
             this.cmbCategory.TabIndex = 80;
+            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -275,6 +276,16 @@
             this.btnClear.Timer_RGB = 300;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.fast_food_illustration_512x368_owd7wme9;
+            this.pictureBox1.Location = new System.Drawing.Point(198, 133);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(583, 477);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 69;
+            this.pictureBox1.TabStop = false;
+            // 
             // lblAddFood
             // 
             this.lblAddFood.AutoSize = true;
@@ -308,16 +319,6 @@
             this.dgvUpdate.TabIndex = 66;
             this.dgvUpdate.SelectionChanged += new System.EventHandler(this.dgvUpdate_SelectionChanged);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.fast_food_illustration_512x368_owd7wme9;
-            this.pictureBox1.Location = new System.Drawing.Point(198, 133);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(583, 477);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 69;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmUcUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
@@ -327,8 +328,8 @@
             this.Size = new System.Drawing.Size(2398, 1364);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).EndInit();
             this.ResumeLayout(false);
 
         }
