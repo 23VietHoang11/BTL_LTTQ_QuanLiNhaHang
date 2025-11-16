@@ -133,15 +133,60 @@ namespace BTL_QLNH
             this.ClearContent();
         }
 
-        private void btnShow_Click_1(object sender, EventArgs e)
-        {
-            this.PopulateGridView();
-        }
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string sql = "select * from UserInfo where FullName like '%" + this.txtSearch.Text + "%';";
             this.PopulateGridView(sql);
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (this.dgvUpdate.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Vui lòng chọn một người dùng để xoá.", "Chưa chọn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                string username = dgvUpdate.CurrentRow.Cells[0].Value.ToString();
+                string fullName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
+
+                DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xoá người dùng '{fullName}' ({username}) không?\n\nHÀNH ĐỘNG NÀY SẼ XOÁ CẢ TÀI KHOẢN ĐĂNG NHẬP VÀ KHÔNG THỂ HOÀN TÁC!",
+                                                    "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (dr == DialogResult.No)
+                {
+                    return;
+                }
+
+                string query = $@"
+            BEGIN TRANSACTION;
+                -- Xoá tài khoản đăng nhập
+                DELETE FROM LoginInfo WHERE Username = '{username}';
+                
+                -- Xoá thông tin người dùng
+                DELETE FROM UserInfo WHERE Username = '{username}';
+            COMMIT TRANSACTION;
+        ";
+
+                int rowsAffected = this.Da.ExecuteDMLQuery(query);
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Đã xoá người dùng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.PopulateGridView();
+                    this.ClearContent();  
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy người dùng để xoá (có thể đã bị xoá trước đó).");
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Có lỗi xảy ra khi xoá: " + exc.Message);
+            }
         }
     }
 }
