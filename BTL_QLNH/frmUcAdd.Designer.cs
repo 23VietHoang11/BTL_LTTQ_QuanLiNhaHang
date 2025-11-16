@@ -267,9 +267,9 @@
             this.lblAddFood.Location = new System.Drawing.Point(1129, 72);
             this.lblAddFood.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAddFood.Name = "lblAddFood";
-            this.lblAddFood.Size = new System.Drawing.Size(382, 89);
+            this.lblAddFood.Size = new System.Drawing.Size(527, 89);
             this.lblAddFood.TabIndex = 83;
-            this.lblAddFood.Text = "Add Food";
+            this.lblAddFood.Text = "Thêm món ăn";
             // 
             // txtSearch
             // 

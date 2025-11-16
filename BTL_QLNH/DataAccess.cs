@@ -38,8 +38,6 @@ namespace BTL_QLNH
             set { this.ds = value; }
         }
 
-        //internal DataTable dt;
-
         public DataAccess()
         {
             string connectionString = @"Data Source=(local);Initial Catalog=RestaurantManagement;Persist Security Info=True;User ID=sa;Password=123;TrustServerCertificate=True";
@@ -54,7 +52,7 @@ namespace BTL_QLNH
 
         public DataSet ExecuteQuery(string sql)
         {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);//this.QueryText(sql);
+            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
             this.Sda = new SqlDataAdapter(this.Sqlcom);
             this.Ds = new DataSet();
             this.Sda.Fill(this.Ds);
@@ -63,7 +61,7 @@ namespace BTL_QLNH
 
         public DataTable ExecuteQueryTable(string sql)
         {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);//this.QueryText(sql);
+            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
             this.Sda = new SqlDataAdapter(this.Sqlcom);
             this.Ds = new DataSet();
             this.Sda.Fill(this.Ds);
@@ -72,7 +70,7 @@ namespace BTL_QLNH
 
         public int ExecuteDMLQuery(string sql)
         {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);//this.QueryText(sql);
+            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
             int u = this.Sqlcom.ExecuteNonQuery();
             return u;
         }

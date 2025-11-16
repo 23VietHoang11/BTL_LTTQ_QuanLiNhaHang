@@ -53,12 +53,12 @@
             this.lblOnlyAdmin.BackColor = System.Drawing.Color.Black;
             this.lblOnlyAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOnlyAdmin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblOnlyAdmin.Location = new System.Drawing.Point(205, 1017);
+            this.lblOnlyAdmin.Location = new System.Drawing.Point(288, 1003);
             this.lblOnlyAdmin.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblOnlyAdmin.Name = "lblOnlyAdmin";
-            this.lblOnlyAdmin.Size = new System.Drawing.Size(755, 40);
+            this.lblOnlyAdmin.Size = new System.Drawing.Size(553, 40);
             this.lblOnlyAdmin.TabIndex = 26;
-            this.lblOnlyAdmin.Text = "Only admin can create account for other users";
+            this.lblOnlyAdmin.Text = "Chỉ Admin mới lập được tài khoản";
             // 
             // lblLogIn
             // 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCategory = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtFoodName = new System.Windows.Forms.TextBox();
             this.txtFoodId = new System.Windows.Forms.TextBox();
@@ -39,14 +40,13 @@
             this.btnDelete = new ReaLTaiizor.Controls.CyberButton();
             this.btnShow = new ReaLTaiizor.Controls.CyberButton();
             this.btnClear = new ReaLTaiizor.Controls.CyberButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblAddFood = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvDelete = new System.Windows.Forms.DataGridView();
-            this.txtCategory = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -71,6 +71,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(2419, 1350);
             this.panel1.TabIndex = 1;
+            // 
+            // txtCategory
+            // 
+            this.txtCategory.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtCategory.Location = new System.Drawing.Point(1092, 433);
+            this.txtCategory.Multiline = true;
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(360, 61);
+            this.txtCategory.TabIndex = 80;
             // 
             // txtPrice
             // 
@@ -266,16 +275,27 @@
             this.btnClear.Timer_RGB = 300;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.fast_food_illustration_512x368_owd7wme9;
+            this.pictureBox1.Location = new System.Drawing.Point(198, 133);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(583, 477);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 69;
+            this.pictureBox1.TabStop = false;
+            // 
             // lblAddFood
             // 
             this.lblAddFood.AutoSize = true;
             this.lblAddFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddFood.Location = new System.Drawing.Point(1099, 27);
+            this.lblAddFood.Location = new System.Drawing.Point(1099, 47);
             this.lblAddFood.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAddFood.Name = "lblAddFood";
-            this.lblAddFood.Size = new System.Drawing.Size(471, 89);
+            this.lblAddFood.Size = new System.Drawing.Size(465, 89);
             this.lblAddFood.TabIndex = 68;
-            this.lblAddFood.Text = "Delete Food";
+            this.lblAddFood.Text = "Xoá món ăn";
+            this.lblAddFood.Click += new System.EventHandler(this.lblAddFood_Click);
             // 
             // txtSearch
             // 
@@ -299,25 +319,6 @@
             this.dgvDelete.TabIndex = 66;
             this.dgvDelete.SelectionChanged += new System.EventHandler(this.dgvDelete_SelectionChanged);
             // 
-            // txtCategory
-            // 
-            this.txtCategory.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtCategory.Location = new System.Drawing.Point(1092, 433);
-            this.txtCategory.Multiline = true;
-            this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Size = new System.Drawing.Size(360, 61);
-            this.txtCategory.TabIndex = 80;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.fast_food_illustration_512x368_owd7wme9;
-            this.pictureBox1.Location = new System.Drawing.Point(198, 133);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(583, 477);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 69;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmUcDelete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
@@ -328,8 +329,8 @@
             this.Size = new System.Drawing.Size(2419, 1350);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDelete)).EndInit();
             this.ResumeLayout(false);
 
         }

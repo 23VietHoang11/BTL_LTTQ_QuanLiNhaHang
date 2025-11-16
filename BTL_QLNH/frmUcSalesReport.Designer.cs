@@ -49,7 +49,7 @@
             // 
             this.lblSalesReport.AutoSize = true;
             this.lblSalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalesReport.Location = new System.Drawing.Point(873, 46);
+            this.lblSalesReport.Location = new System.Drawing.Point(919, 46);
             this.lblSalesReport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSalesReport.Name = "lblSalesReport";
             this.lblSalesReport.Size = new System.Drawing.Size(498, 89);

@@ -94,12 +94,12 @@
             this.lblSpashScreen.BackColor = System.Drawing.Color.Transparent;
             this.lblSpashScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpashScreen.ForeColor = System.Drawing.Color.Black;
-            this.lblSpashScreen.Location = new System.Drawing.Point(816, 92);
+            this.lblSpashScreen.Location = new System.Drawing.Point(901, 82);
             this.lblSpashScreen.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSpashScreen.Name = "lblSpashScreen";
-            this.lblSpashScreen.Size = new System.Drawing.Size(930, 69);
+            this.lblSpashScreen.Size = new System.Drawing.Size(766, 69);
             this.lblSpashScreen.TabIndex = 50;
-            this.lblSpashScreen.Text = "Restaurant Management System";
+            this.lblSpashScreen.Text = "Hệ thống quản lý nhà hàng";
             // 
             // frmUcManagerHome
             // 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvPlaceOrder = new System.Windows.Forms.DataGridView();
@@ -120,14 +120,14 @@
             this.dgvPlaceOrder.EnableHeadersVisualStyles = false;
             this.dgvPlaceOrder.Location = new System.Drawing.Point(292, 855);
             this.dgvPlaceOrder.Name = "dgvPlaceOrder";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPlaceOrder.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPlaceOrder.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPlaceOrder.RowHeadersVisible = false;
             this.dgvPlaceOrder.RowHeadersWidth = 92;
             this.dgvPlaceOrder.RowTemplate.Height = 37;
@@ -466,9 +466,9 @@
             this.lblOrderId.Location = new System.Drawing.Point(286, 67);
             this.lblOrderId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblOrderId.Name = "lblOrderId";
-            this.lblOrderId.Size = new System.Drawing.Size(131, 35);
+            this.lblOrderId.Size = new System.Drawing.Size(45, 35);
             this.lblOrderId.TabIndex = 36;
-            this.lblOrderId.Text = "Order ID";
+            this.lblOrderId.Text = "ID";
             // 
             // lblItemName
             // 
@@ -579,9 +579,9 @@
             this.lblPlaceOrder.Location = new System.Drawing.Point(157, 97);
             this.lblPlaceOrder.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPlaceOrder.Name = "lblPlaceOrder";
-            this.lblPlaceOrder.Size = new System.Drawing.Size(463, 89);
+            this.lblPlaceOrder.Size = new System.Drawing.Size(338, 89);
             this.lblPlaceOrder.TabIndex = 29;
-            this.lblPlaceOrder.Text = "Place Order";
+            this.lblPlaceOrder.Text = "Đặt món";
             // 
             // Column1
             // 

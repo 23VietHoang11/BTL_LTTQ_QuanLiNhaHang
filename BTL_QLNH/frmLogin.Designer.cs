@@ -153,9 +153,9 @@
             this.lblSignUpNow.Location = new System.Drawing.Point(1916, 969);
             this.lblSignUpNow.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSignUpNow.Name = "lblSignUpNow";
-            this.lblSignUpNow.Size = new System.Drawing.Size(114, 34);
+            this.lblSignUpNow.Size = new System.Drawing.Size(116, 34);
             this.lblSignUpNow.TabIndex = 22;
-            this.lblSignUpNow.Text = "Sign Up";
+            this.lblSignUpNow.Text = "Đăng Kí";
             this.lblSignUpNow.Click += new System.EventHandler(this.lblSignUpNow_Click);
             // 
             // lblDonotHaveAccount
@@ -166,9 +166,9 @@
             this.lblDonotHaveAccount.Location = new System.Drawing.Point(1598, 969);
             this.lblDonotHaveAccount.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDonotHaveAccount.Name = "lblDonotHaveAccount";
-            this.lblDonotHaveAccount.Size = new System.Drawing.Size(310, 34);
+            this.lblDonotHaveAccount.Size = new System.Drawing.Size(280, 34);
             this.lblDonotHaveAccount.TabIndex = 21;
-            this.lblDonotHaveAccount.Text = "Don\'t have an account?";
+            this.lblDonotHaveAccount.Text = "Không có tài khoản ?";
             // 
             // btnSignIn
             // 
