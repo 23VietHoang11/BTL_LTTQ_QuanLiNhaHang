@@ -21,11 +21,11 @@ namespace BTL_QLNH
             this.PopulateGridView();
 
             cmbCategory.Items.Add("Burger");
-            cmbCategory.Items.Add("Beverage");
-            cmbCategory.Items.Add("Dessert");
-            cmbCategory.Items.Add("Coffee");
+            cmbCategory.Items.Add("Đồ Uống");
+            cmbCategory.Items.Add("Tráng Miệng");
+            cmbCategory.Items.Add("Cà Phê");
             cmbCategory.Items.Add("Pizza");
-            cmbCategory.Items.Add("Pasta");
+            cmbCategory.Items.Add("Mì Ý");
 
             cmbCategory.SelectedIndex = 0;
         }
@@ -37,7 +37,6 @@ namespace BTL_QLNH
             this.dgvUpdate.DataSource = Da.Ds.Tables[0];
         }
 
-
         private void ClearContent()
         {
             this.txtFoodId.Clear();
@@ -45,9 +44,7 @@ namespace BTL_QLNH
             this.txtPrice.Clear();
             this.cmbCategory.Text = null;
 
-
             this.txtSearch.Clear();
-
 
             this.dgvUpdate.ClearSelection();
             //this.AutoIdGenerate();
@@ -56,16 +53,16 @@ namespace BTL_QLNH
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(this.txtFoodId.Text) || String.IsNullOrEmpty(this.txtFoodName.Text) ||
-    String.IsNullOrEmpty(this.txtPrice.Text) || String.IsNullOrEmpty(this.cmbCategory.Text))
+                String.IsNullOrEmpty(this.txtPrice.Text) || String.IsNullOrEmpty(this.cmbCategory.Text))
             {
-                MessageBox.Show("Fields are blank!  Plaese select a Row first to Update");
+                MessageBox.Show("Vui lòng chọn một hàng và điền đầy đủ thông tin.");
             }
-
             else
             {
                 if (this.dgvUpdate.SelectedRows.Count < 1)
                 {
-                    MessageBox.Show("Plaese select a Row first to Update", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                    MessageBox.Show("Vui lòng chọn một hàng để cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -74,10 +71,10 @@ namespace BTL_QLNH
                     var FoodId = this.dgvUpdate.CurrentRow.Cells[0].Value.ToString();
                     var FoodName = this.dgvUpdate.CurrentRow.Cells[1].Value.ToString();
 
-                    DialogResult dr = MessageBox.Show("Are you sure you want to change?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                  
+                    DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn thay đổi không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dr == DialogResult.No)
                     {
-                        //MessageBox.Show("No delete");
                         return;
                     }
 
@@ -85,16 +82,16 @@ namespace BTL_QLNH
                     var count = this.Da.ExecuteDMLQuery(query);
 
                     // if (count == 1)
-                    MessageBox.Show(txtFoodName.Text + " has been updated!");
+                    MessageBox.Show(txtFoodName.Text + " đã được cập nhật!");
                     // else
-                    //     MessageBox.Show("Data upgradation failed");
+                    //     MessageBox.Show("Cập nhật dữ liệu thất bại");
 
                     this.PopulateGridView();
                     this.ClearContent();
                 }
                 catch (Exception exc)
                 {
-                    MessageBox.Show("An error has occured: " + exc.Message);
+                    MessageBox.Show("Đã có lỗi xảy ra: " + exc.Message);
                 }
             }
         }
@@ -109,15 +106,38 @@ namespace BTL_QLNH
             this.PopulateGridView();
         }
 
+        // --- Đã cập nhật hàm tìm kiếm cho nhất quán với các form khác ---
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string sql = "select FoodDetails.FoodId,FoodDetails.FoodName,FoodPrices.Category,FoodPrices.Price from FoodDetails,FoodPrices where FoodDetails.FoodId=FoodPrices.FoodId and FoodDetails.FoodName like '" + this.txtSearch.Text + "%';";
-            this.PopulateGridView(sql);
+            try
+            {
+                // 1. Nếu ô tìm kiếm trống -> Load lại toàn bộ danh sách
+                if (string.IsNullOrWhiteSpace(this.txtSearch.Text))
+                {
+                    this.PopulateGridView();
+                    return;
+                }
+
+                // 2. Tìm kiếm theo từ khóa (giống hệt frmUcAdd/frmUcDelete)
+                string keyword = this.txtSearch.Text.Trim();
+                string sql = @"SELECT FoodDetails.FoodId, FoodDetails.FoodName, FoodPrices.Category, FoodPrices.Price 
+                                FROM FoodDetails, FoodPrices 
+                                WHERE FoodDetails.FoodId = FoodPrices.FoodId 
+                                AND (FoodDetails.FoodName LIKE N'%" + keyword + "%' OR FoodPrices.Category LIKE N'%" + keyword + "%');";
+
+                this.PopulateGridView(sql);
+            }
+            catch (Exception ex)
+            {
+              
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
         }
 
         private void dgvUpdate_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvUpdate.SelectedRows != null && dgvUpdate.SelectedRows.Count > 0)
+            // Thêm kiểm tra dgvUpdate.CurrentRow != null
+            if (dgvUpdate.SelectedRows != null && dgvUpdate.SelectedRows.Count > 0 && dgvUpdate.CurrentRow != null)
             {
                 string FoodId = dgvUpdate.CurrentRow.Cells[0].Value.ToString();
                 string FoodName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
@@ -133,7 +153,6 @@ namespace BTL_QLNH
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

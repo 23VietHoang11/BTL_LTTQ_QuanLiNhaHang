@@ -49,16 +49,22 @@ namespace BTL_QLNH
             this.dgvPlaceOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dtpOrderDate.Value = DateTime.Now;
+
+            // --- Đã Sửa Định Dạng Ngày Theo Yêu Cầu ---
+            dtpOrderDate.Format = DateTimePickerFormat.Custom;
+            dtpOrderDate.CustomFormat = "dddd, dd/MM/yyyy";
+            // ------------------------------------------
+
             // 1. Xóa các mục cũ (nếu có) để tránh trùng lặp
             cmbCategory.Items.Clear();
 
             // 2. Thêm từng mục vào danh sách
             cmbCategory.Items.Add("Burger");
-            cmbCategory.Items.Add("Beverage");
-            cmbCategory.Items.Add("Dessert");
-            cmbCategory.Items.Add("Coffee");
+            cmbCategory.Items.Add("Đồ Uống");
+            cmbCategory.Items.Add("Tráng Miệng");
+            cmbCategory.Items.Add("Cà Phê");
             cmbCategory.Items.Add("Pizza");
-            cmbCategory.Items.Add("Pasta");
+            cmbCategory.Items.Add("Mì Ý");
 
             // 3. Chọn mặc định mục đầu tiên (để ô không bị trống)
             cmbCategory.SelectedIndex = 0;
@@ -67,10 +73,10 @@ namespace BTL_QLNH
         private void frmUcPlaceOrder_Load(object sender, EventArgs e)
         {
             // Tạo cột giả lập để xem thử (Nếu bạn chưa kết nối CSDL)
-            dgvPlaceOrder.Columns.Add("colName", "Item's Name");
-            dgvPlaceOrder.Columns.Add("colUnitPrice", "Unit Price");
-            dgvPlaceOrder.Columns.Add("colQty", "Quantity");
-            dgvPlaceOrder.Columns.Add("colPrice", "Price");
+            dgvPlaceOrder.Columns.Add("colName", "Tên Món");
+            dgvPlaceOrder.Columns.Add("colUnitPrice", "Đơn Giá");
+            dgvPlaceOrder.Columns.Add("colQty", "Số Lượng");
+            dgvPlaceOrder.Columns.Add("colPrice", "Thành Tiền");
 
             // Áp dụng giao diện
             StyleDataGridView(dgvPlaceOrder);
@@ -123,7 +129,7 @@ namespace BTL_QLNH
             this.listBox1.Items.Clear();
             this.dgvPlaceOrder.Rows.Clear();
 
-            this.lblTK.Text = "0.0"; 
+            this.lblTK.Text = "0.0";
             this.total = 0.0f;
 
             this.AutoIdGenerate();
@@ -161,10 +167,10 @@ namespace BTL_QLNH
 
             float y = 50;
 
-            e.Graphics.DrawString("Date & time: " + dtpOrderDate.Value.ToString(), font, Brushes.Black, new PointF(50, y));
+            e.Graphics.DrawString("Ngày giờ: " + dtpOrderDate.Value.ToString(), font, Brushes.Black, new PointF(50, y));
             y += 20;
 
-            e.Graphics.DrawString("Customer Name: " + txtCustomerName.Text, font, Brushes.Black, new PointF(50, y));
+            e.Graphics.DrawString("Tên khách hàng: " + txtCustomerName.Text, font, Brushes.Black, new PointF(50, y));
             y += 20;
 
             // --- SỬA LẠI VÒNG LẶP ---
@@ -179,13 +185,13 @@ namespace BTL_QLNH
                 string price = row.Cells[1].Value?.ToString() ?? "";
                 string total = row.Cells[3].Value?.ToString() ?? "";
 
-                string orderItem = string.Format("{0} x {1} (Price: {2}, Total: {3})", quantity, itemName, price, total);
+                string orderItem = string.Format("{0} x {1} (Giá: {2}, Tổng: {3})", quantity, itemName, price, total);
                 e.Graphics.DrawString(orderItem, font, Brushes.Black, new PointF(50, y));
                 y += 20;
             }
             // --- KẾT THÚC SỬA ---
 
-            string totalAmount = "Total Amount: " + lblTK.Text;
+            string totalAmount = "Tổng cộng: " + lblTK.Text;
             e.Graphics.DrawString(totalAmount, font, Brushes.Black, new PointF(50, y));
         }
 
@@ -214,10 +220,9 @@ namespace BTL_QLNH
                     }
                 }
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while retrieving food names: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi lấy tên món ăn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -233,7 +238,7 @@ namespace BTL_QLNH
                 if (String.IsNullOrEmpty(this.txtItemName.Text) || String.IsNullOrEmpty(this.txtPrice.Text) ||
                 String.IsNullOrEmpty(this.nudQuantity.Text) || String.IsNullOrEmpty(this.txtTotal.Text))
                 {
-                    MessageBox.Show("Fields are blank!");
+                    MessageBox.Show("Vui lòng điền đầy đủ các trường!");
                 }
                 else
                 {
@@ -250,13 +255,13 @@ namespace BTL_QLNH
                     }
                     else
                     {
-                        MessageBox.Show("Minimum quantity need to be 1!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Số lượng tối thiểu phải là 1!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occurred: " + ex.Message);
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
 
@@ -264,11 +269,11 @@ namespace BTL_QLNH
         {
             if (String.IsNullOrEmpty(this.txtOrderId.Text) || String.IsNullOrEmpty(this.txtCustomerName.Text))
             {
-                MessageBox.Show("Fields are blank!");
-                return; 
+                MessageBox.Show("Vui lòng điền đầy đủ các trường!");
+                return;
             }
 
-            DialogResult d = MessageBox.Show("Are you sure want to confirm?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult d = MessageBox.Show("Bạn có chắc chắn muốn xác nhận?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (d == DialogResult.No)
                 return;
@@ -286,15 +291,15 @@ namespace BTL_QLNH
                     string quantity = row.Cells[2].Value.ToString();
 
                     string sql2 = "INSERT INTO OrdersItems (OrderID, Item, Quantity) VALUES ('" + txtOrderId.Text + "', '" + itemName + "','" + quantity + "')";
-                    Da.ExecuteDMLQuery(sql2); 
+                    Da.ExecuteDMLQuery(sql2);
                 }
 
-                MessageBox.Show("Successfully added!");
+                MessageBox.Show("Thêm thành công!");
                 this.ClearContent();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occured!", ex.Message);
+                MessageBox.Show("Đã có lỗi xảy ra!", ex.Message);
             }
         }
 
@@ -302,7 +307,6 @@ namespace BTL_QLNH
         {
             txtTotal.Clear();
             nudQuantity.Text = "0";
-
 
             string text = listBox1.GetItemText(listBox1.SelectedItem);
             txtItemName.Text = text;
@@ -316,7 +320,7 @@ namespace BTL_QLNH
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occurred: " + ex.Message);
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
 
@@ -324,11 +328,9 @@ namespace BTL_QLNH
         {
             if (dgvPlaceOrder.SelectedRows.Count > 0)
             {
-
                 DataGridViewRow selectedRow = dgvPlaceOrder.SelectedRows[0];
 
                 int totalValue = int.Parse(selectedRow.Cells[3].Value.ToString());
-
 
                 dgvPlaceOrder.Rows.Remove(selectedRow);
 
@@ -337,7 +339,7 @@ namespace BTL_QLNH
             }
             else
             {
-                MessageBox.Show("Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn một hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -358,8 +360,8 @@ namespace BTL_QLNH
                     connection.Open();
 
                     string query = "SELECT FoodDetails.FoodName FROM FoodDetails " +
-                                   "INNER JOIN FoodPrices ON FoodDetails.FoodId = FoodPrices.FoodId " +
-                                   "WHERE FoodPrices.Category = @Category";
+                                  "INNER JOIN FoodPrices ON FoodDetails.FoodId = FoodPrices.FoodId " +
+                                  "WHERE FoodPrices.Category = @Category";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Category", selectedCategory);
 
@@ -373,10 +375,9 @@ namespace BTL_QLNH
                     }
                 }
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while retrieving food names: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi lấy tên món ăn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -388,7 +389,7 @@ namespace BTL_QLNH
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occurred: " + ex.Message);
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
 
@@ -406,11 +407,8 @@ namespace BTL_QLNH
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occurred: " + ex.Message);
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
     }
 }
-
-    
-

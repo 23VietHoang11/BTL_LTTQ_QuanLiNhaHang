@@ -49,22 +49,22 @@
             // 
             this.lblSalesReport.AutoSize = true;
             this.lblSalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalesReport.Location = new System.Drawing.Point(873, 46);
-            this.lblSalesReport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblSalesReport.Location = new System.Drawing.Point(561, 32);
             this.lblSalesReport.Name = "lblSalesReport";
-            this.lblSalesReport.Size = new System.Drawing.Size(498, 89);
+            this.lblSalesReport.Size = new System.Drawing.Size(490, 59);
             this.lblSalesReport.TabIndex = 35;
-            this.lblSalesReport.Text = "Sales Report";
+            this.lblSalesReport.Text = "Báo Cáo Bán Hàng";
             // 
             // dgvSales
             // 
             this.dgvSales.BackgroundColor = System.Drawing.Color.White;
             this.dgvSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSales.Location = new System.Drawing.Point(153, 853);
+            this.dgvSales.Location = new System.Drawing.Point(98, 588);
+            this.dgvSales.Margin = new System.Windows.Forms.Padding(2);
             this.dgvSales.Name = "dgvSales";
             this.dgvSales.RowHeadersWidth = 92;
             this.dgvSales.RowTemplate.Height = 37;
-            this.dgvSales.Size = new System.Drawing.Size(2032, 515);
+            this.dgvSales.Size = new System.Drawing.Size(1306, 355);
             this.dgvSales.TabIndex = 52;
             // 
             // btnGenerate
@@ -93,12 +93,13 @@
             this.btnGenerate.Lighting = false;
             this.btnGenerate.LinearGradient_Background = false;
             this.btnGenerate.LinearGradientPen = false;
-            this.btnGenerate.Location = new System.Drawing.Point(1548, 752);
+            this.btnGenerate.Location = new System.Drawing.Point(995, 519);
+            this.btnGenerate.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.PenWidth = 15;
             this.btnGenerate.Rounding = true;
             this.btnGenerate.RoundingInt = 70;
-            this.btnGenerate.Size = new System.Drawing.Size(221, 74);
+            this.btnGenerate.Size = new System.Drawing.Size(142, 51);
             this.btnGenerate.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnGenerate.TabIndex = 74;
             this.btnGenerate.Tag = "Cyber";
@@ -134,16 +135,17 @@
             this.btnClear.Lighting = false;
             this.btnClear.LinearGradient_Background = false;
             this.btnClear.LinearGradientPen = false;
-            this.btnClear.Location = new System.Drawing.Point(1120, 752);
+            this.btnClear.Location = new System.Drawing.Point(720, 519);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.PenWidth = 15;
             this.btnClear.Rounding = true;
             this.btnClear.RoundingInt = 70;
-            this.btnClear.Size = new System.Drawing.Size(221, 74);
+            this.btnClear.Size = new System.Drawing.Size(142, 51);
             this.btnClear.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnClear.TabIndex = 73;
             this.btnClear.Tag = "Cyber";
-            this.btnClear.TextButton = "Clear";
+            this.btnClear.TextButton = "Dọn";
             this.btnClear.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.btnClear.Timer_Effect_1 = 5;
             this.btnClear.Timer_RGB = 300;
@@ -155,10 +157,9 @@
             this.lblMoney.BackColor = System.Drawing.Color.Black;
             this.lblMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMoney.ForeColor = System.Drawing.Color.White;
-            this.lblMoney.Location = new System.Drawing.Point(1985, 1467);
-            this.lblMoney.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMoney.Location = new System.Drawing.Point(1276, 1012);
             this.lblMoney.Name = "lblMoney";
-            this.lblMoney.Size = new System.Drawing.Size(93, 40);
+            this.lblMoney.Size = new System.Drawing.Size(63, 29);
             this.lblMoney.TabIndex = 77;
             this.lblMoney.Text = "VND";
             // 
@@ -166,12 +167,11 @@
             // 
             this.lblTotalSales.AutoSize = true;
             this.lblTotalSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblTotalSales.Location = new System.Drawing.Point(1968, 1385);
-            this.lblTotalSales.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblTotalSales.Location = new System.Drawing.Point(1243, 960);
             this.lblTotalSales.Name = "lblTotalSales";
-            this.lblTotalSales.Size = new System.Drawing.Size(179, 35);
+            this.lblTotalSales.Size = new System.Drawing.Size(162, 25);
             this.lblTotalSales.TabIndex = 76;
-            this.lblTotalSales.Text = "Total Sales:";
+            this.lblTotalSales.Text = "Tổng Bán Hàng";
             // 
             // lblTK
             // 
@@ -179,10 +179,9 @@
             this.lblTK.BackColor = System.Drawing.Color.Black;
             this.lblTK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTK.ForeColor = System.Drawing.Color.White;
-            this.lblTK.Location = new System.Drawing.Point(2076, 1467);
-            this.lblTK.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblTK.Location = new System.Drawing.Point(1335, 1012);
             this.lblTK.Name = "lblTK";
-            this.lblTK.Size = new System.Drawing.Size(67, 40);
+            this.lblTK.Size = new System.Drawing.Size(45, 29);
             this.lblTK.TabIndex = 75;
             this.lblTK.Text = "0.0";
             // 
@@ -190,44 +189,45 @@
             // 
             this.lblEndDate.AutoSize = true;
             this.lblEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblEndDate.Location = new System.Drawing.Point(1779, 365);
-            this.lblEndDate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblEndDate.Location = new System.Drawing.Point(1144, 252);
             this.lblEndDate.Name = "lblEndDate";
-            this.lblEndDate.Size = new System.Drawing.Size(152, 35);
+            this.lblEndDate.Size = new System.Drawing.Size(154, 25);
             this.lblEndDate.TabIndex = 79;
-            this.lblEndDate.Text = "End Date:";
+            this.lblEndDate.Text = "Ngày Kết Thúc";
             // 
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblStartDate.Location = new System.Drawing.Point(1164, 365);
-            this.lblStartDate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblStartDate.Location = new System.Drawing.Point(748, 252);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(163, 35);
+            this.lblStartDate.Size = new System.Drawing.Size(145, 25);
             this.lblStartDate.TabIndex = 78;
-            this.lblStartDate.Text = "Start Date:";
+            this.lblStartDate.Text = "Ngày Bắt Đầu";
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(1170, 476);
+            this.dtpStartDate.Location = new System.Drawing.Point(752, 328);
+            this.dtpStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(443, 35);
+            this.dtpStartDate.Size = new System.Drawing.Size(286, 26);
             this.dtpStartDate.TabIndex = 84;
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(1785, 476);
+            this.dtpEndDate.Location = new System.Drawing.Point(1148, 328);
+            this.dtpEndDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(435, 35);
+            this.dtpEndDate.Size = new System.Drawing.Size(281, 26);
             this.dtpEndDate.TabIndex = 85;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.Sales_Report_Vector_Illustration_;
-            this.pictureBox1.Location = new System.Drawing.Point(82, 178);
+            this.pictureBox1.Location = new System.Drawing.Point(53, 123);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(912, 548);
+            this.pictureBox1.Size = new System.Drawing.Size(586, 378);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
@@ -258,12 +258,13 @@
             this.btnExcel.Lighting = false;
             this.btnExcel.LinearGradient_Background = false;
             this.btnExcel.LinearGradientPen = false;
-            this.btnExcel.Location = new System.Drawing.Point(1882, 752);
+            this.btnExcel.Location = new System.Drawing.Point(1210, 519);
+            this.btnExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.PenWidth = 15;
             this.btnExcel.Rounding = true;
             this.btnExcel.RoundingInt = 70;
-            this.btnExcel.Size = new System.Drawing.Size(303, 74);
+            this.btnExcel.Size = new System.Drawing.Size(195, 51);
             this.btnExcel.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnExcel.TabIndex = 86;
             this.btnExcel.Tag = "Cyber";
@@ -275,7 +276,7 @@
             // 
             // frmUcSalesReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnExcel);
@@ -291,8 +292,9 @@
             this.Controls.Add(this.dgvSales);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblSalesReport);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmUcSalesReport";
-            this.Size = new System.Drawing.Size(2409, 1617);
+            this.Size = new System.Drawing.Size(1549, 1115);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

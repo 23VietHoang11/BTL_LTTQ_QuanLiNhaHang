@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnXoa = new ReaLTaiizor.Controls.CyberButton();
             this.btnUpdate = new ReaLTaiizor.Controls.CyberButton();
             this.btnClear = new ReaLTaiizor.Controls.CyberButton();
             this.dtpDOB = new System.Windows.Forms.DateTimePicker();
@@ -47,7 +48,6 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvUpdate = new System.Windows.Forms.DataGridView();
             this.lblUpdateUser = new System.Windows.Forms.Label();
-            this.btnXoa = new ReaLTaiizor.Controls.CyberButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).BeginInit();
@@ -76,9 +76,52 @@
             this.panel1.Controls.Add(this.lblUpdateUser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2526, 1478);
+            this.panel1.Size = new System.Drawing.Size(1624, 1019);
             this.panel1.TabIndex = 29;
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Alpha = 20;
+            this.btnXoa.BackColor = System.Drawing.Color.Transparent;
+            this.btnXoa.Background = true;
+            this.btnXoa.Background_WidthPen = 4F;
+            this.btnXoa.BackgroundPen = true;
+            this.btnXoa.ColorBackground = System.Drawing.Color.Black;
+            this.btnXoa.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnXoa.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnXoa.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnXoa.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnXoa.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnXoa.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnXoa.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            this.btnXoa.Effect_1 = true;
+            this.btnXoa.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnXoa.Effect_1_Transparency = 25;
+            this.btnXoa.Effect_2 = true;
+            this.btnXoa.Effect_2_ColorBackground = System.Drawing.Color.White;
+            this.btnXoa.Effect_2_Transparency = 20;
+            this.btnXoa.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnXoa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnXoa.Lighting = false;
+            this.btnXoa.LinearGradient_Background = false;
+            this.btnXoa.LinearGradientPen = false;
+            this.btnXoa.Location = new System.Drawing.Point(1394, 423);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.PenWidth = 15;
+            this.btnXoa.Rounding = true;
+            this.btnXoa.RoundingInt = 70;
+            this.btnXoa.Size = new System.Drawing.Size(142, 51);
+            this.btnXoa.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnXoa.TabIndex = 87;
+            this.btnXoa.Tag = "Cyber";
+            this.btnXoa.TextButton = "Xoá";
+            this.btnXoa.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnXoa.Timer_Effect_1 = 5;
+            this.btnXoa.Timer_RGB = 300;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnUpdate
             // 
@@ -106,12 +149,13 @@
             this.btnUpdate.Lighting = false;
             this.btnUpdate.LinearGradient_Background = false;
             this.btnUpdate.LinearGradientPen = false;
-            this.btnUpdate.Location = new System.Drawing.Point(2168, 467);
+            this.btnUpdate.Location = new System.Drawing.Point(1394, 322);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.PenWidth = 15;
             this.btnUpdate.Rounding = true;
             this.btnUpdate.RoundingInt = 70;
-            this.btnUpdate.Size = new System.Drawing.Size(221, 74);
+            this.btnUpdate.Size = new System.Drawing.Size(142, 51);
             this.btnUpdate.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnUpdate.TabIndex = 86;
             this.btnUpdate.Tag = "Cyber";
@@ -147,16 +191,17 @@
             this.btnClear.Lighting = false;
             this.btnClear.LinearGradient_Background = false;
             this.btnClear.LinearGradientPen = false;
-            this.btnClear.Location = new System.Drawing.Point(2168, 308);
+            this.btnClear.Location = new System.Drawing.Point(1394, 212);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClear.Name = "btnClear";
             this.btnClear.PenWidth = 15;
             this.btnClear.Rounding = true;
             this.btnClear.RoundingInt = 70;
-            this.btnClear.Size = new System.Drawing.Size(221, 74);
+            this.btnClear.Size = new System.Drawing.Size(142, 51);
             this.btnClear.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnClear.TabIndex = 84;
             this.btnClear.Tag = "Cyber";
-            this.btnClear.TextButton = "Clear";
+            this.btnClear.TextButton = "Dọn";
             this.btnClear.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.btnClear.Timer_Effect_1 = 5;
             this.btnClear.Timer_RGB = 300;
@@ -164,84 +209,87 @@
             // 
             // dtpDOB
             // 
-            this.dtpDOB.Location = new System.Drawing.Point(1689, 653);
+            this.dtpDOB.Location = new System.Drawing.Point(1086, 450);
+            this.dtpDOB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(435, 35);
+            this.dtpDOB.Size = new System.Drawing.Size(281, 26);
             this.dtpDOB.TabIndex = 83;
             // 
             // cmbRole
             // 
             this.cmbRole.FormattingEnabled = true;
-            this.cmbRole.Location = new System.Drawing.Point(1175, 651);
+            this.cmbRole.Location = new System.Drawing.Point(755, 449);
+            this.cmbRole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbRole.Name = "cmbRole";
-            this.cmbRole.Size = new System.Drawing.Size(360, 37);
+            this.cmbRole.Size = new System.Drawing.Size(233, 28);
             this.cmbRole.TabIndex = 82;
             // 
             // cmbGender
             // 
             this.cmbGender.FormattingEnabled = true;
-            this.cmbGender.Location = new System.Drawing.Point(1175, 485);
+            this.cmbGender.Location = new System.Drawing.Point(755, 334);
+            this.cmbGender.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbGender.Name = "cmbGender";
-            this.cmbGender.Size = new System.Drawing.Size(360, 37);
+            this.cmbGender.Size = new System.Drawing.Size(233, 28);
             this.cmbGender.TabIndex = 81;
             // 
             // txtEmail
             // 
             this.txtEmail.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtEmail.Location = new System.Drawing.Point(1689, 474);
+            this.txtEmail.Location = new System.Drawing.Point(1086, 327);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(360, 61);
+            this.txtEmail.Size = new System.Drawing.Size(233, 43);
             this.txtEmail.TabIndex = 80;
             // 
             // txtFullName
             // 
             this.txtFullName.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtFullName.Location = new System.Drawing.Point(1689, 321);
+            this.txtFullName.Location = new System.Drawing.Point(1086, 221);
+            this.txtFullName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFullName.Multiline = true;
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(360, 61);
+            this.txtFullName.Size = new System.Drawing.Size(233, 43);
             this.txtFullName.TabIndex = 79;
             // 
             // txtUserName
             // 
             this.txtUserName.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtUserName.Location = new System.Drawing.Point(1175, 321);
+            this.txtUserName.Location = new System.Drawing.Point(755, 221);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(360, 61);
+            this.txtUserName.Size = new System.Drawing.Size(233, 43);
             this.txtUserName.TabIndex = 78;
             // 
             // lblDOB
             // 
             this.lblDOB.AutoSize = true;
             this.lblDOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblDOB.Location = new System.Drawing.Point(1683, 558);
-            this.lblDOB.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDOB.Location = new System.Drawing.Point(1082, 385);
             this.lblDOB.Name = "lblDOB";
-            this.lblDOB.Size = new System.Drawing.Size(195, 35);
+            this.lblDOB.Size = new System.Drawing.Size(117, 25);
             this.lblDOB.TabIndex = 76;
-            this.lblDOB.Text = "Date of Birth:";
+            this.lblDOB.Text = "Ngày Sinh:";
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblRole.Location = new System.Drawing.Point(1169, 558);
-            this.lblRole.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRole.Location = new System.Drawing.Point(752, 385);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(87, 35);
+            this.lblRole.Size = new System.Drawing.Size(87, 25);
             this.lblRole.TabIndex = 75;
-            this.lblRole.Text = "Role:";
+            this.lblRole.Text = "Vai Trò:";
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblEmail.Location = new System.Drawing.Point(1683, 409);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblEmail.Location = new System.Drawing.Point(1082, 282);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(101, 35);
+            this.lblEmail.Size = new System.Drawing.Size(71, 25);
             this.lblEmail.TabIndex = 74;
             this.lblEmail.Text = "Email:";
             // 
@@ -249,41 +297,39 @@
             // 
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblGender.Location = new System.Drawing.Point(1169, 409);
-            this.lblGender.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblGender.Location = new System.Drawing.Point(752, 282);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(126, 35);
+            this.lblGender.Size = new System.Drawing.Size(104, 25);
             this.lblGender.TabIndex = 73;
-            this.lblGender.Text = "Gender:";
+            this.lblGender.Text = "Giới Tính:";
             // 
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
             this.lblFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblFullName.Location = new System.Drawing.Point(1683, 255);
-            this.lblFullName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFullName.Location = new System.Drawing.Point(1082, 176);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(163, 35);
+            this.lblFullName.Size = new System.Drawing.Size(120, 25);
             this.lblFullName.TabIndex = 72;
-            this.lblFullName.Text = "Full Name:";
+            this.lblFullName.Text = "Họ Và Tên:";
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblUserName.Location = new System.Drawing.Point(1169, 255);
-            this.lblUserName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUserName.Location = new System.Drawing.Point(750, 176);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(165, 35);
+            this.lblUserName.Size = new System.Drawing.Size(174, 25);
             this.lblUserName.TabIndex = 71;
-            this.lblUserName.Text = "Username:";
+            this.lblUserName.Text = "Tên Người Dùng:";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.usersUpdate;
-            this.pictureBox1.Location = new System.Drawing.Point(226, 170);
+            this.pictureBox1.Location = new System.Drawing.Point(145, 117);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(662, 590);
+            this.pictureBox1.Size = new System.Drawing.Size(426, 407);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 70;
             this.pictureBox1.TabStop = false;
@@ -291,10 +337,11 @@
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtSearch.Location = new System.Drawing.Point(226, 844);
+            this.txtSearch.Location = new System.Drawing.Point(145, 582);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(413, 61);
+            this.txtSearch.Size = new System.Drawing.Size(267, 43);
             this.txtSearch.TabIndex = 69;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -302,11 +349,12 @@
             // 
             this.dgvUpdate.BackgroundColor = System.Drawing.Color.White;
             this.dgvUpdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUpdate.Location = new System.Drawing.Point(226, 936);
+            this.dgvUpdate.Location = new System.Drawing.Point(145, 646);
+            this.dgvUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvUpdate.Name = "dgvUpdate";
             this.dgvUpdate.RowHeadersWidth = 92;
             this.dgvUpdate.RowTemplate.Height = 37;
-            this.dgvUpdate.Size = new System.Drawing.Size(2032, 515);
+            this.dgvUpdate.Size = new System.Drawing.Size(1306, 355);
             this.dgvUpdate.TabIndex = 68;
             this.dgvUpdate.SelectionChanged += new System.EventHandler(this.dgvUpdate_SelectionChanged_1);
             // 
@@ -314,62 +362,21 @@
             // 
             this.lblUpdateUser.AutoSize = true;
             this.lblUpdateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateUser.Location = new System.Drawing.Point(821, 28);
-            this.lblUpdateUser.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUpdateUser.Location = new System.Drawing.Point(528, 19);
             this.lblUpdateUser.Name = "lblUpdateUser";
-            this.lblUpdateUser.Size = new System.Drawing.Size(962, 89);
+            this.lblUpdateUser.Size = new System.Drawing.Size(811, 59);
             this.lblUpdateUser.TabIndex = 29;
-            this.lblUpdateUser.Text = "Update User\'s Information";
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Alpha = 20;
-            this.btnXoa.BackColor = System.Drawing.Color.Transparent;
-            this.btnXoa.Background = true;
-            this.btnXoa.Background_WidthPen = 4F;
-            this.btnXoa.BackgroundPen = true;
-            this.btnXoa.ColorBackground = System.Drawing.Color.Black;
-            this.btnXoa.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
-            this.btnXoa.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnXoa.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
-            this.btnXoa.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
-            this.btnXoa.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
-            this.btnXoa.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnXoa.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.btnXoa.Effect_1 = true;
-            this.btnXoa.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
-            this.btnXoa.Effect_1_Transparency = 25;
-            this.btnXoa.Effect_2 = true;
-            this.btnXoa.Effect_2_ColorBackground = System.Drawing.Color.White;
-            this.btnXoa.Effect_2_Transparency = 20;
-            this.btnXoa.Font = new System.Drawing.Font("Arial", 11F);
-            this.btnXoa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnXoa.Lighting = false;
-            this.btnXoa.LinearGradient_Background = false;
-            this.btnXoa.LinearGradientPen = false;
-            this.btnXoa.Location = new System.Drawing.Point(2168, 614);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.PenWidth = 15;
-            this.btnXoa.Rounding = true;
-            this.btnXoa.RoundingInt = 70;
-            this.btnXoa.Size = new System.Drawing.Size(221, 74);
-            this.btnXoa.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.btnXoa.TabIndex = 87;
-            this.btnXoa.Tag = "Cyber";
-            this.btnXoa.TextButton = "Xoá";
-            this.btnXoa.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.btnXoa.Timer_Effect_1 = 5;
-            this.btnXoa.Timer_RGB = 300;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            this.lblUpdateUser.Text = "Cập Nhật Thông Tin Người Dùng";
             // 
             // frmUcUpdateUsers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmUcUpdateUsers";
-            this.Size = new System.Drawing.Size(2526, 1478);
+            this.Size = new System.Drawing.Size(1624, 1019);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

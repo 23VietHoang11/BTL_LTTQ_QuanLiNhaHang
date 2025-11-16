@@ -10,10 +10,9 @@ using System.Windows.Forms;
 
 namespace BTL_QLNH
 {
-
     public partial class frmUcAdd : UserControl
     {
-    private DataAccess Da { get; set; }
+        private DataAccess Da { get; set; }
         public frmUcAdd()
         {
             InitializeComponent();
@@ -24,13 +23,13 @@ namespace BTL_QLNH
             // 1. Xóa các mục cũ (nếu có) để tránh trùng lặp
             cmbCategory.Items.Clear();
 
-            // 2. Thêm từng mục vào danh sách
+            // 2. Thêm từng mục vào danh sách (Đã dịch)
             cmbCategory.Items.Add("Burger");
-            cmbCategory.Items.Add("Beverage");
-            cmbCategory.Items.Add("Dessert");
-            cmbCategory.Items.Add("Coffee");
+            cmbCategory.Items.Add("Đồ Uống");
+            cmbCategory.Items.Add("Tráng Miệng");
+            cmbCategory.Items.Add("Cà Phê");
             cmbCategory.Items.Add("Pizza");
-            cmbCategory.Items.Add("Pasta");
+            cmbCategory.Items.Add("Mì Ý"); 
 
             // 3. Chọn mặc định mục đầu tiên (để ô không bị trống)
             cmbCategory.SelectedIndex = 0;
@@ -49,14 +48,11 @@ namespace BTL_QLNH
             this.txtPrice.Clear();
             this.cmbCategory.Text = null;
 
-
             this.txtSearch.Clear();
-
 
             this.dgvAdd.ClearSelection();
             this.AutoIdGenerate();
         }
-
 
         private void AutoIdGenerate()
         {
@@ -85,17 +81,15 @@ namespace BTL_QLNH
         private void btnClear_Click_1(object sender, EventArgs e)
         {
             this.ClearContent();
-
         }
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(this.txtFoodId.Text) || String.IsNullOrEmpty(this.txtFoodName.Text) ||
-    String.IsNullOrEmpty(this.txtPrice.Text) || String.IsNullOrEmpty(this.cmbCategory.Text))
+                String.IsNullOrEmpty(this.txtPrice.Text) || String.IsNullOrEmpty(this.cmbCategory.Text))
             {
-                MessageBox.Show("Fields are blank!");
+                MessageBox.Show("Vui lòng điền đầy đủ các trường!");
             }
-
             else
             {
                 try
@@ -104,46 +98,43 @@ namespace BTL_QLNH
 
                     Da.ExecuteQueryTable(sqlSelect);
 
-
                     if (Da.Ds.Tables[0].Rows.Count > 0)
                     {
-                        MessageBox.Show("Item already exists");
+                     
+                        MessageBox.Show("Món ăn đã tồn tại");
                     }
-
-
                     else
                     {
                         string sql1 = "INSERT INTO FoodDetails (FoodId, FoodName) VALUES ('" + txtFoodId.Text + "', '" + txtFoodName.Text + "');";
                         string sql2 = "INSERT INTO FoodPrices (FoodId, Category, Price) VALUES ('" + txtFoodId.Text + "', '" + cmbCategory.Text + "', '" + txtPrice.Text + "');";
 
-                        DialogResult d = MessageBox.Show("Are you sure want to add food?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    
+                        DialogResult d = MessageBox.Show("Bạn có chắc chắn muốn thêm món ăn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                         if (d == DialogResult.No)
                             return;
 
-
                         int a = Da.ExecuteDMLQuery(sql1);
                         int b = Da.ExecuteDMLQuery(sql2);
 
-
-
                         if (a > 0 && b > 0)
                         {
-                            MessageBox.Show(txtFoodName.Text + " has been added successfully!");
+                          
+                            MessageBox.Show(txtFoodName.Text + " đã được thêm thành công!");
                             this.PopulateGridView();
                             this.ClearContent();
-
                         }
                         else
                         {
-                            MessageBox.Show("Failed to add");
+                        
+                            MessageBox.Show("Thêm món ăn thất bại");
                         }
                     }
-
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error has occured!", ex.Message);
+                    
+                    MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
                 }
             }
         }
@@ -171,22 +162,21 @@ namespace BTL_QLNH
                 string keyword = txtSearch.Text.Trim();
 
                 string sql = @"SELECT FoodDetails.FoodId, FoodDetails.FoodName, FoodPrices.Category, FoodPrices.Price 
-                       FROM FoodDetails, FoodPrices 
-                       WHERE FoodDetails.FoodId = FoodPrices.FoodId 
-                       AND (FoodDetails.FoodName LIKE N'%" + keyword + "%' OR FoodPrices.Category LIKE N'%" + keyword + "%');";
+                                FROM FoodDetails, FoodPrices 
+                                WHERE FoodDetails.FoodId = FoodPrices.FoodId 
+                                AND (FoodDetails.FoodName LIKE N'%" + keyword + "%' OR FoodPrices.Category LIKE N'%" + keyword + "%');";
 
                 this.PopulateGridView(sql);
             }
             catch (Exception ex)
             {
-                // Tránh crash phần mềm nếu gõ ký tự đặc biệt gây lỗi SQL
+                
                 MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
             }
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -22,13 +22,15 @@ namespace BTL_QLNH
         }
         private void frmSignUp_Load(object sender, EventArgs e)
         {
+            dtpDOB.Format = DateTimePickerFormat.Custom;
+            dtpDOB.CustomFormat = "dd/MM/yyyy";
 
-            cbGender.Items.Add("Male");
-            cbGender.Items.Add("Female");
+            cbGender.Items.Add("Nam");
+            cbGender.Items.Add("Nữ");
 
-            cbRole.Items.Add("Admin");
-            cbRole.Items.Add("Staff");
-            cbRole.Items.Add("Manager");
+            cbRole.Items.Add("Quản Trị Viên");
+            cbRole.Items.Add("Nhân Viên");
+            cbRole.Items.Add("Quản Lý");
         }
         
 
@@ -56,24 +58,22 @@ namespace BTL_QLNH
                 if (string.IsNullOrEmpty(txtUserName.TextButton) || string.IsNullOrEmpty(txtConfirmPassword.TextButton) || string.IsNullOrEmpty(txtFullName.TextButton) || string.IsNullOrEmpty(txtEmail.TextButton)
                     || string.IsNullOrEmpty(cbRole.Text) || string.IsNullOrEmpty(txtSetPassword.TextButton) || string.IsNullOrEmpty(txtConfirmPassword.TextButton))
                 {
-                    MessageBox.Show("Please fill in all required fields");
+                 
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc");
                 }
                 else
                 {
                     DataAccess d = new DataAccess();
 
-
                     string sqlSelect = "SELECT * FROM LoginInfo WHERE Username = '" + txtUserName.TextButton + "';";
 
                     d.ExecuteQueryTable(sqlSelect);
 
-
                     if (d.Ds.Tables[0].Rows.Count > 0)
                     {
-                        MessageBox.Show("Username already taken");
+                        
+                        MessageBox.Show("Tên đăng nhập đã tồn tại");
                     }
-
-
                     else
                     {
                         if (txtSetPassword.TextButton == txtConfirmPassword.TextButton)
@@ -82,40 +82,36 @@ namespace BTL_QLNH
                             string sql = "INSERT INTO LoginInfo (Username, Password) VALUES ('" + txtUserName.TextButton + "', '" + txtConfirmPassword.TextButton + "');";
                             string sql2 = "INSERT INTO UserInfo (Username, FullName, DOB, Gender, Role, Email) VALUES ('" + txtUserName.TextButton + "', '" + txtFullName.TextButton + "', '" + dtpDOB.Value + "', '" + cbGender.Text + "', '" + cbRole.Text + "', '" + txtEmail.TextButton + "');";
 
-
-
                             int a = d.ExecuteDMLQuery(sql);
                             int b = d.ExecuteDMLQuery(sql2);
 
-
-
                             if (a > 0 && b > 0)
                             {
-                                MessageBox.Show("User account created successfully");
+                              
+                                MessageBox.Show("Tạo tài khoản người dùng thành công");
 
                                 frmLogin f = new frmLogin(this);
                                 f.Visible = true;
                                 this.Hide();
-
                             }
                             else
                             {
-                                MessageBox.Show("Failed to create user account");
+                                
+                                MessageBox.Show("Tạo tài khoản người dùng thất bại");
                             }
                         }
-
                         else if (txtSetPassword.TextButton != txtConfirmPassword.TextButton)
                         {
-                            MessageBox.Show("Password not matched.");
+                           
+                            MessageBox.Show("Mật khẩu không khớp.");
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occured: " + ex.Message);
-
+                // Đã dịch
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
 
@@ -155,6 +151,9 @@ namespace BTL_QLNH
             }
         }
 
+        private void dtpDOB_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }
