@@ -58,9 +58,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.create_account;
-            this.pictureBox1.Location = new System.Drawing.Point(1356, 102);
+            this.pictureBox1.Location = new System.Drawing.Point(872, 70);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(879, 882);
+            this.pictureBox1.Size = new System.Drawing.Size(565, 608);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
@@ -69,10 +70,9 @@
             // 
             this.lblCreateAccount.AutoSize = true;
             this.lblCreateAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreateAccount.Location = new System.Drawing.Point(420, 54);
-            this.lblCreateAccount.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCreateAccount.Location = new System.Drawing.Point(270, 37);
             this.lblCreateAccount.Name = "lblCreateAccount";
-            this.lblCreateAccount.Size = new System.Drawing.Size(403, 69);
+            this.lblCreateAccount.Size = new System.Drawing.Size(275, 46);
             this.lblCreateAccount.TabIndex = 42;
             this.lblCreateAccount.Text = "Tạo tài khoản";
             this.lblCreateAccount.Click += new System.EventHandler(this.lblCreateAccount_Click);
@@ -82,10 +82,9 @@
             this.lblFullName.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblFullName.AutoSize = true;
             this.lblFullName.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFullName.Location = new System.Drawing.Point(93, 204);
-            this.lblFullName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFullName.Location = new System.Drawing.Point(60, 141);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(196, 46);
+            this.lblFullName.Size = new System.Drawing.Size(125, 31);
             this.lblFullName.TabIndex = 43;
             this.lblFullName.Text = "Họ và tên";
             // 
@@ -94,10 +93,9 @@
             this.lblGender.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(100, 415);
-            this.lblGender.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblGender.Location = new System.Drawing.Point(64, 286);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(173, 46);
+            this.lblGender.Size = new System.Drawing.Size(110, 31);
             this.lblGender.TabIndex = 44;
             this.lblGender.Text = "Giới tính";
             // 
@@ -106,10 +104,9 @@
             this.lblUsername.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(644, 204);
-            this.lblUsername.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUsername.Location = new System.Drawing.Point(414, 141);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(297, 46);
+            this.lblUsername.Size = new System.Drawing.Size(188, 31);
             this.lblUsername.TabIndex = 45;
             this.lblUsername.Text = "Tên đăng nhập";
             this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
@@ -119,10 +116,9 @@
             this.lblDOB.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblDOB.AutoSize = true;
             this.lblDOB.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDOB.Location = new System.Drawing.Point(644, 415);
-            this.lblDOB.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDOB.Location = new System.Drawing.Point(414, 286);
             this.lblDOB.Name = "lblDOB";
-            this.lblDOB.Size = new System.Drawing.Size(193, 46);
+            this.lblDOB.Size = new System.Drawing.Size(129, 31);
             this.lblDOB.TabIndex = 46;
             this.lblDOB.Text = "Ngày sinh";
             // 
@@ -131,10 +127,9 @@
             this.lblRole.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(100, 612);
-            this.lblRole.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRole.Location = new System.Drawing.Point(64, 422);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(172, 46);
+            this.lblRole.Size = new System.Drawing.Size(105, 31);
             this.lblRole.TabIndex = 47;
             this.lblRole.Text = "Chức vụ";
             // 
@@ -143,10 +138,9 @@
             this.lblPassword.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(93, 845);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPassword.Location = new System.Drawing.Point(60, 583);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(264, 46);
+            this.lblPassword.Size = new System.Drawing.Size(171, 31);
             this.lblPassword.TabIndex = 48;
             this.lblPassword.Text = "Đặt mật khẩu";
             // 
@@ -155,10 +149,9 @@
             this.lblEmail.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(644, 612);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblEmail.Location = new System.Drawing.Point(414, 422);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(123, 46);
+            this.lblEmail.Size = new System.Drawing.Size(80, 31);
             this.lblEmail.TabIndex = 49;
             this.lblEmail.Text = "Email:";
             // 
@@ -167,10 +160,9 @@
             this.lblConfirmPassword.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.lblConfirmPassword.AutoSize = true;
             this.lblConfirmPassword.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfirmPassword.Location = new System.Drawing.Point(653, 838);
-            this.lblConfirmPassword.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(420, 578);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
-            this.lblConfirmPassword.Size = new System.Drawing.Size(374, 46);
+            this.lblConfirmPassword.Size = new System.Drawing.Size(236, 31);
             this.lblConfirmPassword.TabIndex = 50;
             this.lblConfirmPassword.Text = "Xác nhận mật khẩu";
             // 
@@ -200,12 +192,13 @@
             this.btnConfirm.Lighting = false;
             this.btnConfirm.LinearGradient_Background = false;
             this.btnConfirm.LinearGradientPen = false;
-            this.btnConfirm.Location = new System.Drawing.Point(811, 1103);
+            this.btnConfirm.Location = new System.Drawing.Point(521, 761);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.PenWidth = 15;
             this.btnConfirm.Rounding = true;
             this.btnConfirm.RoundingInt = 70;
-            this.btnConfirm.Size = new System.Drawing.Size(221, 90);
+            this.btnConfirm.Size = new System.Drawing.Size(142, 62);
             this.btnConfirm.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnConfirm.TabIndex = 51;
             this.btnConfirm.Tag = "Cyber";
@@ -241,16 +234,17 @@
             this.btnClear.Lighting = false;
             this.btnClear.LinearGradient_Background = false;
             this.btnClear.LinearGradientPen = false;
-            this.btnClear.Location = new System.Drawing.Point(439, 1103);
+            this.btnClear.Location = new System.Drawing.Point(282, 761);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClear.Name = "btnClear";
             this.btnClear.PenWidth = 15;
             this.btnClear.Rounding = true;
             this.btnClear.RoundingInt = 70;
-            this.btnClear.Size = new System.Drawing.Size(229, 90);
+            this.btnClear.Size = new System.Drawing.Size(147, 62);
             this.btnClear.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnClear.TabIndex = 52;
             this.btnClear.Tag = "Cyber";
-            this.btnClear.TextButton = "Clear";
+            this.btnClear.TextButton = "Dọn";
             this.btnClear.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.btnClear.Timer_Effect_1 = 5;
             this.btnClear.Timer_RGB = 300;
@@ -282,12 +276,13 @@
             this.btnBack.Lighting = false;
             this.btnBack.LinearGradient_Background = false;
             this.btnBack.LinearGradientPen = false;
-            this.btnBack.Location = new System.Drawing.Point(108, 1103);
+            this.btnBack.Location = new System.Drawing.Point(69, 761);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBack.Name = "btnBack";
             this.btnBack.PenWidth = 15;
             this.btnBack.Rounding = true;
             this.btnBack.RoundingInt = 70;
-            this.btnBack.Size = new System.Drawing.Size(221, 90);
+            this.btnBack.Size = new System.Drawing.Size(142, 62);
             this.btnBack.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnBack.TabIndex = 53;
             this.btnBack.Tag = "Cyber";
@@ -299,10 +294,12 @@
             // 
             // dtpDOB
             // 
-            this.dtpDOB.Location = new System.Drawing.Point(661, 476);
+            this.dtpDOB.Location = new System.Drawing.Point(425, 328);
+            this.dtpDOB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(402, 35);
+            this.dtpDOB.Size = new System.Drawing.Size(260, 26);
             this.dtpDOB.TabIndex = 54;
+            this.dtpDOB.ValueChanged += new System.EventHandler(this.dtpDOB_ValueChanged);
             // 
             // txtFullName
             // 
@@ -316,17 +313,18 @@
             this.txtFullName.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
             this.txtFullName.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
             this.txtFullName.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.txtFullName.Font = new System.Drawing.Font("Arial", 19F);
+            this.txtFullName.Font = new System.Drawing.Font("Arial", 13F);
             this.txtFullName.ForeColor = System.Drawing.Color.Black;
             this.txtFullName.Lighting = false;
             this.txtFullName.LinearGradientPen = false;
-            this.txtFullName.Location = new System.Drawing.Point(101, 268);
+            this.txtFullName.Location = new System.Drawing.Point(65, 185);
+            this.txtFullName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.PenWidth = 15;
             this.txtFullName.RGB = false;
             this.txtFullName.Rounding = true;
             this.txtFullName.RoundingInt = 60;
-            this.txtFullName.Size = new System.Drawing.Size(459, 79);
+            this.txtFullName.Size = new System.Drawing.Size(295, 54);
             this.txtFullName.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.txtFullName.TabIndex = 55;
             this.txtFullName.Tag = "Cyber";
@@ -346,17 +344,18 @@
             this.txtUserName.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
             this.txtUserName.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
             this.txtUserName.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.txtUserName.Font = new System.Drawing.Font("Arial", 19F);
+            this.txtUserName.Font = new System.Drawing.Font("Arial", 13F);
             this.txtUserName.ForeColor = System.Drawing.Color.Black;
             this.txtUserName.Lighting = false;
             this.txtUserName.LinearGradientPen = false;
-            this.txtUserName.Location = new System.Drawing.Point(652, 268);
+            this.txtUserName.Location = new System.Drawing.Point(419, 185);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.PenWidth = 15;
             this.txtUserName.RGB = false;
             this.txtUserName.Rounding = true;
             this.txtUserName.RoundingInt = 60;
-            this.txtUserName.Size = new System.Drawing.Size(459, 79);
+            this.txtUserName.Size = new System.Drawing.Size(295, 54);
             this.txtUserName.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.txtUserName.TabIndex = 56;
             this.txtUserName.Tag = "Cyber";
@@ -376,18 +375,19 @@
             this.txtSetPassword.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
             this.txtSetPassword.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
             this.txtSetPassword.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.txtSetPassword.Font = new System.Drawing.Font("Arial", 19F);
+            this.txtSetPassword.Font = new System.Drawing.Font("Arial", 13F);
             this.txtSetPassword.ForeColor = System.Drawing.Color.Black;
             this.txtSetPassword.Lighting = false;
             this.txtSetPassword.LinearGradientPen = false;
-            this.txtSetPassword.Location = new System.Drawing.Point(101, 925);
+            this.txtSetPassword.Location = new System.Drawing.Point(65, 638);
+            this.txtSetPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSetPassword.Name = "txtSetPassword";
             this.txtSetPassword.Password = true;
             this.txtSetPassword.PenWidth = 15;
             this.txtSetPassword.RGB = false;
             this.txtSetPassword.Rounding = true;
             this.txtSetPassword.RoundingInt = 60;
-            this.txtSetPassword.Size = new System.Drawing.Size(459, 79);
+            this.txtSetPassword.Size = new System.Drawing.Size(295, 54);
             this.txtSetPassword.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.txtSetPassword.TabIndex = 57;
             this.txtSetPassword.Tag = "Cyber";
@@ -407,18 +407,19 @@
             this.txtConfirmPassword.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
             this.txtConfirmPassword.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
             this.txtConfirmPassword.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.txtConfirmPassword.Font = new System.Drawing.Font("Arial", 19F);
+            this.txtConfirmPassword.Font = new System.Drawing.Font("Arial", 13F);
             this.txtConfirmPassword.ForeColor = System.Drawing.Color.Black;
             this.txtConfirmPassword.Lighting = false;
             this.txtConfirmPassword.LinearGradientPen = false;
-            this.txtConfirmPassword.Location = new System.Drawing.Point(652, 925);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(419, 638);
+            this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Password = true;
             this.txtConfirmPassword.PenWidth = 15;
             this.txtConfirmPassword.RGB = false;
             this.txtConfirmPassword.Rounding = true;
             this.txtConfirmPassword.RoundingInt = 60;
-            this.txtConfirmPassword.Size = new System.Drawing.Size(459, 79);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(295, 54);
             this.txtConfirmPassword.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.txtConfirmPassword.TabIndex = 58;
             this.txtConfirmPassword.Tag = "Cyber";
@@ -438,17 +439,18 @@
             this.txtEmail.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
             this.txtEmail.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
             this.txtEmail.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.txtEmail.Font = new System.Drawing.Font("Arial", 17F);
+            this.txtEmail.Font = new System.Drawing.Font("Arial", 12F);
             this.txtEmail.ForeColor = System.Drawing.Color.Black;
             this.txtEmail.Lighting = false;
             this.txtEmail.LinearGradientPen = false;
-            this.txtEmail.Location = new System.Drawing.Point(652, 680);
+            this.txtEmail.Location = new System.Drawing.Point(419, 469);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.PenWidth = 15;
             this.txtEmail.RGB = false;
             this.txtEmail.Rounding = true;
             this.txtEmail.RoundingInt = 60;
-            this.txtEmail.Size = new System.Drawing.Size(459, 69);
+            this.txtEmail.Size = new System.Drawing.Size(295, 48);
             this.txtEmail.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.txtEmail.TabIndex = 59;
             this.txtEmail.Tag = "Cyber";
@@ -459,10 +461,9 @@
             // cbShow
             // 
             this.cbShow.AutoSize = true;
-            this.cbShow.Location = new System.Drawing.Point(986, 1036);
-            this.cbShow.Margin = new System.Windows.Forms.Padding(5);
+            this.cbShow.Location = new System.Drawing.Point(634, 714);
             this.cbShow.Name = "cbShow";
-            this.cbShow.Size = new System.Drawing.Size(95, 33);
+            this.cbShow.Size = new System.Drawing.Size(68, 24);
             this.cbShow.TabIndex = 62;
             this.cbShow.Text = "Hiện";
             this.cbShow.UseVisualStyleBackColor = true;
@@ -492,34 +493,38 @@
             this.panel1.Controls.Add(this.lblFullName);
             this.panel1.Controls.Add(this.lblCreateAccount);
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1326, 1273);
+            this.panel1.Size = new System.Drawing.Size(852, 878);
             this.panel1.TabIndex = 24;
             // 
             // cbRole
             // 
             this.cbRole.FormattingEnabled = true;
-            this.cbRole.Location = new System.Drawing.Point(108, 712);
+            this.cbRole.Location = new System.Drawing.Point(69, 491);
+            this.cbRole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbRole.Name = "cbRole";
-            this.cbRole.Size = new System.Drawing.Size(360, 37);
+            this.cbRole.Size = new System.Drawing.Size(233, 28);
             this.cbRole.TabIndex = 84;
             // 
             // cbGender
             // 
             this.cbGender.FormattingEnabled = true;
-            this.cbGender.Location = new System.Drawing.Point(108, 478);
+            this.cbGender.Location = new System.Drawing.Point(69, 330);
+            this.cbGender.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(360, 37);
+            this.cbGender.Size = new System.Drawing.Size(233, 28);
             this.cbGender.TabIndex = 83;
             // 
             // frmSignUp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(2308, 1285);
+            this.ClientSize = new System.Drawing.Size(1484, 884);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmSignUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSignUp";

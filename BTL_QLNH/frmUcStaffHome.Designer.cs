@@ -41,10 +41,11 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(197, 762);
+            this.txtSearch.Location = new System.Drawing.Point(127, 526);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(413, 61);
+            this.txtSearch.Size = new System.Drawing.Size(267, 43);
             this.txtSearch.TabIndex = 55;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -52,18 +53,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(275, 443);
+            this.label1.Location = new System.Drawing.Point(155, 302);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 40);
+            this.label1.Size = new System.Drawing.Size(145, 29);
             this.label1.TabIndex = 54;
-            this.label1.Text = "Welcome";
+            this.label1.Text = "Chào Mừng";
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::BTL_QLNH.Properties.Resources._80_800194_transparent_users_icon_png_flat_user_icon_png;
-            this.pictureBox2.Location = new System.Drawing.Point(170, 98);
+            this.pictureBox2.Location = new System.Drawing.Point(109, 68);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(388, 316);
+            this.pictureBox2.Size = new System.Drawing.Size(249, 218);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 53;
             this.pictureBox2.TabStop = false;
@@ -71,9 +74,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.menu_creation;
-            this.pictureBox1.Location = new System.Drawing.Point(875, 206);
+            this.pictureBox1.Location = new System.Drawing.Point(562, 142);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(776, 493);
+            this.pictureBox1.Size = new System.Drawing.Size(499, 340);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 52;
             this.pictureBox1.TabStop = false;
@@ -82,11 +86,12 @@
             // 
             this.dgvMenu.BackgroundColor = System.Drawing.Color.White;
             this.dgvMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMenu.Location = new System.Drawing.Point(197, 849);
+            this.dgvMenu.Location = new System.Drawing.Point(127, 586);
+            this.dgvMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvMenu.Name = "dgvMenu";
             this.dgvMenu.RowHeadersWidth = 92;
             this.dgvMenu.RowTemplate.Height = 37;
-            this.dgvMenu.Size = new System.Drawing.Size(2032, 515);
+            this.dgvMenu.Size = new System.Drawing.Size(1306, 355);
             this.dgvMenu.TabIndex = 51;
             // 
             // lblSpashScreen
@@ -95,16 +100,15 @@
             this.lblSpashScreen.BackColor = System.Drawing.Color.Transparent;
             this.lblSpashScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpashScreen.ForeColor = System.Drawing.Color.Black;
-            this.lblSpashScreen.Location = new System.Drawing.Point(800, 108);
-            this.lblSpashScreen.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblSpashScreen.Location = new System.Drawing.Point(439, 68);
             this.lblSpashScreen.Name = "lblSpashScreen";
-            this.lblSpashScreen.Size = new System.Drawing.Size(930, 69);
+            this.lblSpashScreen.Size = new System.Drawing.Size(834, 46);
             this.lblSpashScreen.TabIndex = 50;
-            this.lblSpashScreen.Text = "Restaurant Management System";
+            this.lblSpashScreen.Text = "Hệ Thống Quản Lý Cửa Hàng Đồ Ăn Nhanh";
             // 
             // frmUcStaffHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.txtSearch);
@@ -113,8 +117,9 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dgvMenu);
             this.Controls.Add(this.lblSpashScreen);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmUcStaffHome";
-            this.Size = new System.Drawing.Size(2399, 1463);
+            this.Size = new System.Drawing.Size(1542, 1009);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenu)).EndInit();

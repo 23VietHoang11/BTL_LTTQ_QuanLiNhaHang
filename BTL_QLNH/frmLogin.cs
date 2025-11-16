@@ -52,15 +52,13 @@ namespace BTL_QLNH
             {
                 string sql = "SELECT * FROM LoginInfo WHERE Username='" + this.txtUsername.TextButton + "' and Password='" + this.txtPassword.TextButton + "';";
 
-
-
                 DataAccess d = new DataAccess();
                 d.ExecuteQueryTable(sql);
 
-
                 if (d.Ds.Tables[0].Rows.Count == 1)
                 {
-                    MessageBox.Show("Successful Login.\nWelcome, " + txtUsername.TextButton);
+                   
+                    MessageBox.Show("Đăng nhập thành công.\nChào mừng, " + txtUsername.TextButton);
 
                     string sqlDashboard = "select * from UserInfo where Role ='Admin' and Username='" + txtUsername.TextButton + "';";
                     d.ExecuteQueryTable(sqlDashboard);
@@ -70,6 +68,7 @@ namespace BTL_QLNH
                         admin.Show();
                         this.Hide();
                     }
+
 
                     string sqlDashboard2 = "select * from UserInfo where Role ='Staff' and Username='" + txtUsername.TextButton + "';";
                     d.ExecuteQueryTable(sqlDashboard2);
@@ -94,13 +93,13 @@ namespace BTL_QLNH
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Login.\nPlease Try Again");
+                    MessageBox.Show("Đăng nhập không hợp lệ.\nVui lòng thử lại");
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
 

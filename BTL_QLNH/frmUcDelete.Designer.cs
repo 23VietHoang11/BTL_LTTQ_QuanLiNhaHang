@@ -68,54 +68,59 @@
             this.panel1.Controls.Add(this.dgvDelete);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2419, 1350);
+            this.panel1.Size = new System.Drawing.Size(1555, 931);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // txtCategory
             // 
             this.txtCategory.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtCategory.Location = new System.Drawing.Point(1092, 433);
+            this.txtCategory.Location = new System.Drawing.Point(702, 299);
+            this.txtCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCategory.Multiline = true;
             this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Size = new System.Drawing.Size(360, 61);
+            this.txtCategory.Size = new System.Drawing.Size(233, 43);
             this.txtCategory.TabIndex = 80;
             // 
             // txtPrice
             // 
             this.txtPrice.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtPrice.Location = new System.Drawing.Point(1538, 433);
+            this.txtPrice.Location = new System.Drawing.Point(989, 299);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPrice.Multiline = true;
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(339, 61);
+            this.txtPrice.Size = new System.Drawing.Size(219, 43);
             this.txtPrice.TabIndex = 79;
             // 
             // txtFoodName
             // 
             this.txtFoodName.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtFoodName.Location = new System.Drawing.Point(1538, 264);
+            this.txtFoodName.Location = new System.Drawing.Point(989, 182);
+            this.txtFoodName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFoodName.Multiline = true;
             this.txtFoodName.Name = "txtFoodName";
-            this.txtFoodName.Size = new System.Drawing.Size(339, 61);
+            this.txtFoodName.Size = new System.Drawing.Size(219, 43);
             this.txtFoodName.TabIndex = 78;
             // 
             // txtFoodId
             // 
             this.txtFoodId.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtFoodId.Location = new System.Drawing.Point(1092, 264);
+            this.txtFoodId.Location = new System.Drawing.Point(702, 182);
+            this.txtFoodId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFoodId.Multiline = true;
             this.txtFoodId.Name = "txtFoodId";
-            this.txtFoodId.Size = new System.Drawing.Size(360, 61);
+            this.txtFoodId.Size = new System.Drawing.Size(233, 43);
             this.txtFoodId.TabIndex = 77;
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(1532, 367);
-            this.lblPrice.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPrice.Location = new System.Drawing.Point(985, 253);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(72, 35);
+            this.lblPrice.Size = new System.Drawing.Size(51, 25);
             this.lblPrice.TabIndex = 76;
             this.lblPrice.Text = "Giá:";
             // 
@@ -123,10 +128,9 @@
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategory.Location = new System.Drawing.Point(1086, 367);
-            this.lblCategory.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCategory.Location = new System.Drawing.Point(698, 253);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(82, 35);
+            this.lblCategory.Size = new System.Drawing.Size(59, 25);
             this.lblCategory.TabIndex = 75;
             this.lblCategory.Text = "Loại:";
             // 
@@ -134,10 +138,9 @@
             // 
             this.lblFoodName.AutoSize = true;
             this.lblFoodName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoodName.Location = new System.Drawing.Point(1532, 209);
-            this.lblFoodName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFoodName.Location = new System.Drawing.Point(985, 144);
             this.lblFoodName.Name = "lblFoodName";
-            this.lblFoodName.Size = new System.Drawing.Size(144, 35);
+            this.lblFoodName.Size = new System.Drawing.Size(102, 25);
             this.lblFoodName.TabIndex = 74;
             this.lblFoodName.Text = "Tên món:";
             // 
@@ -145,10 +148,9 @@
             // 
             this.lblFoodId.AutoSize = true;
             this.lblFoodId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoodId.Location = new System.Drawing.Point(1086, 209);
-            this.lblFoodId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFoodId.Location = new System.Drawing.Point(698, 144);
             this.lblFoodId.Name = "lblFoodId";
-            this.lblFoodId.Size = new System.Drawing.Size(40, 35);
+            this.lblFoodId.Size = new System.Drawing.Size(29, 25);
             this.lblFoodId.TabIndex = 73;
             this.lblFoodId.Text = "Id";
             // 
@@ -178,12 +180,13 @@
             this.btnDelete.Lighting = false;
             this.btnDelete.LinearGradient_Background = false;
             this.btnDelete.LinearGradientPen = false;
-            this.btnDelete.Location = new System.Drawing.Point(2009, 410);
+            this.btnDelete.Location = new System.Drawing.Point(1292, 283);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.PenWidth = 15;
             this.btnDelete.Rounding = true;
             this.btnDelete.RoundingInt = 70;
-            this.btnDelete.Size = new System.Drawing.Size(221, 74);
+            this.btnDelete.Size = new System.Drawing.Size(142, 51);
             this.btnDelete.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnDelete.TabIndex = 72;
             this.btnDelete.Tag = "Cyber";
@@ -219,12 +222,13 @@
             this.btnShow.Lighting = false;
             this.btnShow.LinearGradient_Background = false;
             this.btnShow.LinearGradientPen = false;
-            this.btnShow.Location = new System.Drawing.Point(2009, 717);
+            this.btnShow.Location = new System.Drawing.Point(1292, 494);
+            this.btnShow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnShow.Name = "btnShow";
             this.btnShow.PenWidth = 15;
             this.btnShow.Rounding = true;
             this.btnShow.RoundingInt = 70;
-            this.btnShow.Size = new System.Drawing.Size(221, 54);
+            this.btnShow.Size = new System.Drawing.Size(142, 37);
             this.btnShow.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnShow.TabIndex = 71;
             this.btnShow.Tag = "Cyber";
@@ -260,16 +264,17 @@
             this.btnClear.Lighting = false;
             this.btnClear.LinearGradient_Background = false;
             this.btnClear.LinearGradientPen = false;
-            this.btnClear.Location = new System.Drawing.Point(2009, 251);
+            this.btnClear.Location = new System.Drawing.Point(1292, 173);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClear.Name = "btnClear";
             this.btnClear.PenWidth = 15;
             this.btnClear.Rounding = true;
             this.btnClear.RoundingInt = 70;
-            this.btnClear.Size = new System.Drawing.Size(221, 74);
+            this.btnClear.Size = new System.Drawing.Size(142, 51);
             this.btnClear.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnClear.TabIndex = 70;
             this.btnClear.Tag = "Cyber";
-            this.btnClear.TextButton = "Clear";
+            this.btnClear.TextButton = "Dọn";
             this.btnClear.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.btnClear.Timer_Effect_1 = 5;
             this.btnClear.Timer_RGB = 300;
@@ -278,9 +283,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.fast_food_illustration_512x368_owd7wme9;
-            this.pictureBox1.Location = new System.Drawing.Point(198, 133);
+            this.pictureBox1.Location = new System.Drawing.Point(127, 92);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(583, 477);
+            this.pictureBox1.Size = new System.Drawing.Size(375, 329);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 69;
             this.pictureBox1.TabStop = false;
@@ -289,21 +295,20 @@
             // 
             this.lblAddFood.AutoSize = true;
             this.lblAddFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddFood.Location = new System.Drawing.Point(1099, 47);
-            this.lblAddFood.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblAddFood.Location = new System.Drawing.Point(706, 19);
             this.lblAddFood.Name = "lblAddFood";
-            this.lblAddFood.Size = new System.Drawing.Size(465, 89);
+            this.lblAddFood.Size = new System.Drawing.Size(321, 59);
             this.lblAddFood.TabIndex = 68;
-            this.lblAddFood.Text = "Xoá món ăn";
-            this.lblAddFood.Click += new System.EventHandler(this.lblAddFood_Click);
+            this.lblAddFood.Text = "Xoá Món Ăn";
             // 
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtSearch.Location = new System.Drawing.Point(198, 717);
+            this.txtSearch.Location = new System.Drawing.Point(127, 494);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(413, 61);
+            this.txtSearch.Size = new System.Drawing.Size(267, 43);
             this.txtSearch.TabIndex = 67;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -311,22 +316,24 @@
             // 
             this.dgvDelete.BackgroundColor = System.Drawing.Color.White;
             this.dgvDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDelete.Location = new System.Drawing.Point(198, 809);
+            this.dgvDelete.Location = new System.Drawing.Point(127, 558);
+            this.dgvDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvDelete.Name = "dgvDelete";
             this.dgvDelete.RowHeadersWidth = 92;
             this.dgvDelete.RowTemplate.Height = 37;
-            this.dgvDelete.Size = new System.Drawing.Size(2032, 515);
+            this.dgvDelete.Size = new System.Drawing.Size(1306, 355);
             this.dgvDelete.TabIndex = 66;
             this.dgvDelete.SelectionChanged += new System.EventHandler(this.dgvDelete_SelectionChanged);
             // 
             // frmUcDelete
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmUcDelete";
-            this.Size = new System.Drawing.Size(2419, 1350);
+            this.Size = new System.Drawing.Size(1555, 931);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

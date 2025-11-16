@@ -51,10 +51,11 @@
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtSearch.Location = new System.Drawing.Point(196, 834);
+            this.txtSearch.Location = new System.Drawing.Point(126, 575);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(413, 61);
+            this.txtSearch.Size = new System.Drawing.Size(267, 43);
             this.txtSearch.TabIndex = 88;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged_1);
             // 
@@ -62,11 +63,12 @@
             // 
             this.dgvUpdate.BackgroundColor = System.Drawing.Color.White;
             this.dgvUpdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUpdate.Location = new System.Drawing.Point(196, 926);
+            this.dgvUpdate.Location = new System.Drawing.Point(126, 639);
+            this.dgvUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvUpdate.Name = "dgvUpdate";
             this.dgvUpdate.RowHeadersWidth = 92;
             this.dgvUpdate.RowTemplate.Height = 37;
-            this.dgvUpdate.Size = new System.Drawing.Size(2032, 515);
+            this.dgvUpdate.Size = new System.Drawing.Size(1306, 355);
             this.dgvUpdate.TabIndex = 87;
             this.dgvUpdate.SelectionChanged += new System.EventHandler(this.dgvUpdate_SelectionChanged);
             // 
@@ -74,103 +76,106 @@
             // 
             this.lblUpdateUser.AutoSize = true;
             this.lblUpdateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateUser.Location = new System.Drawing.Point(970, 46);
-            this.lblUpdateUser.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUpdateUser.Location = new System.Drawing.Point(624, 32);
             this.lblUpdateUser.Name = "lblUpdateUser";
-            this.lblUpdateUser.Size = new System.Drawing.Size(684, 89);
+            this.lblUpdateUser.Size = new System.Drawing.Size(568, 59);
             this.lblUpdateUser.TabIndex = 86;
-            this.lblUpdateUser.Text = "User\'s Information";
+            this.lblUpdateUser.Text = "Thông Tin Người Dùng";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.usersUpdate;
-            this.pictureBox1.Location = new System.Drawing.Point(196, 160);
+            this.pictureBox1.Location = new System.Drawing.Point(126, 110);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(662, 590);
+            this.pictureBox1.Size = new System.Drawing.Size(426, 407);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 89;
             this.pictureBox1.TabStop = false;
             // 
             // dtpDOB
             // 
-            this.dtpDOB.Location = new System.Drawing.Point(1663, 641);
+            this.dtpDOB.Location = new System.Drawing.Point(1069, 442);
+            this.dtpDOB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(435, 35);
+            this.dtpDOB.Size = new System.Drawing.Size(281, 26);
             this.dtpDOB.TabIndex = 102;
             // 
             // cmbRole
             // 
             this.cmbRole.FormattingEnabled = true;
-            this.cmbRole.Location = new System.Drawing.Point(1149, 639);
+            this.cmbRole.Location = new System.Drawing.Point(739, 441);
+            this.cmbRole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbRole.Name = "cmbRole";
-            this.cmbRole.Size = new System.Drawing.Size(360, 37);
+            this.cmbRole.Size = new System.Drawing.Size(233, 28);
             this.cmbRole.TabIndex = 101;
             // 
             // cmbGender
             // 
             this.cmbGender.FormattingEnabled = true;
-            this.cmbGender.Location = new System.Drawing.Point(1149, 473);
+            this.cmbGender.Location = new System.Drawing.Point(739, 326);
+            this.cmbGender.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbGender.Name = "cmbGender";
-            this.cmbGender.Size = new System.Drawing.Size(360, 37);
+            this.cmbGender.Size = new System.Drawing.Size(233, 28);
             this.cmbGender.TabIndex = 100;
             // 
             // txtEmail
             // 
             this.txtEmail.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtEmail.Location = new System.Drawing.Point(1663, 462);
+            this.txtEmail.Location = new System.Drawing.Point(1069, 319);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(360, 61);
+            this.txtEmail.Size = new System.Drawing.Size(233, 43);
             this.txtEmail.TabIndex = 99;
             // 
             // txtFullName
             // 
             this.txtFullName.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtFullName.Location = new System.Drawing.Point(1663, 309);
+            this.txtFullName.Location = new System.Drawing.Point(1069, 213);
+            this.txtFullName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFullName.Multiline = true;
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(360, 61);
+            this.txtFullName.Size = new System.Drawing.Size(233, 43);
             this.txtFullName.TabIndex = 98;
             // 
             // txtUserName
             // 
             this.txtUserName.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtUserName.Location = new System.Drawing.Point(1149, 309);
+            this.txtUserName.Location = new System.Drawing.Point(739, 213);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(360, 61);
+            this.txtUserName.Size = new System.Drawing.Size(233, 43);
             this.txtUserName.TabIndex = 97;
             // 
             // lblDOB
             // 
             this.lblDOB.AutoSize = true;
             this.lblDOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblDOB.Location = new System.Drawing.Point(1657, 546);
-            this.lblDOB.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDOB.Location = new System.Drawing.Point(1065, 377);
             this.lblDOB.Name = "lblDOB";
-            this.lblDOB.Size = new System.Drawing.Size(195, 35);
+            this.lblDOB.Size = new System.Drawing.Size(117, 25);
             this.lblDOB.TabIndex = 96;
-            this.lblDOB.Text = "Date of Birth:";
+            this.lblDOB.Text = "Ngày Sinh:";
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblRole.Location = new System.Drawing.Point(1143, 546);
-            this.lblRole.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRole.Location = new System.Drawing.Point(735, 377);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(87, 35);
+            this.lblRole.Size = new System.Drawing.Size(87, 25);
             this.lblRole.TabIndex = 95;
-            this.lblRole.Text = "Role:";
+            this.lblRole.Text = "Vai Trò:";
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblEmail.Location = new System.Drawing.Point(1657, 397);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblEmail.Location = new System.Drawing.Point(1065, 274);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(101, 35);
+            this.lblEmail.Size = new System.Drawing.Size(71, 25);
             this.lblEmail.TabIndex = 94;
             this.lblEmail.Text = "Email:";
             // 
@@ -178,38 +183,35 @@
             // 
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblGender.Location = new System.Drawing.Point(1143, 397);
-            this.lblGender.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblGender.Location = new System.Drawing.Point(735, 274);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(126, 35);
+            this.lblGender.Size = new System.Drawing.Size(104, 25);
             this.lblGender.TabIndex = 93;
-            this.lblGender.Text = "Gender:";
+            this.lblGender.Text = "Giới Tính:";
             // 
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
             this.lblFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblFullName.Location = new System.Drawing.Point(1657, 243);
-            this.lblFullName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFullName.Location = new System.Drawing.Point(1065, 168);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(163, 35);
+            this.lblFullName.Size = new System.Drawing.Size(120, 25);
             this.lblFullName.TabIndex = 92;
-            this.lblFullName.Text = "Full Name:";
+            this.lblFullName.Text = "Họ Và Tên:";
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.lblUserName.Location = new System.Drawing.Point(1143, 243);
-            this.lblUserName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUserName.Location = new System.Drawing.Point(735, 168);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(165, 35);
+            this.lblUserName.Size = new System.Drawing.Size(174, 25);
             this.lblUserName.TabIndex = 91;
-            this.lblUserName.Text = "Username:";
+            this.lblUserName.Text = "Tên Người Dùng:";
             // 
             // frmUcUsersInfoManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dtpDOB);
@@ -228,8 +230,9 @@
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dgvUpdate);
             this.Controls.Add(this.lblUpdateUser);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmUcUsersInfoManager";
-            this.Size = new System.Drawing.Size(2424, 1473);
+            this.Size = new System.Drawing.Size(1558, 1016);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

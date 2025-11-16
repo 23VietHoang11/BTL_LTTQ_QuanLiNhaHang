@@ -8,31 +8,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization; // Thêm
+using System.Threading;    // Thêm
 
 namespace BTL_QLNH
 {
     public partial class frmUcUpdateUsers : UserControl
     {
-
         private DataAccess Da { get; set; }
         public frmUcUpdateUsers()
         {
+            // Thêm 2 dòng này đểDateTimePicker hiển thị tiếng Việt
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("vi-VN");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
+
             InitializeComponent();
             this.Da = new DataAccess();
 
             this.dgvUpdate.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvUpdate.MultiSelect = false;
-            this.dgvUpdate.ReadOnly = true; 
+            this.dgvUpdate.ReadOnly = true;
 
             this.PopulateGridView();
 
-            cmbGender.Items.Add("Male");
-            cmbGender.Items.Add("Female");
+            cmbGender.Items.Add("Nam");
+            cmbGender.Items.Add("Nữ");
 
-            cmbRole.Items.Add("Admin");
-            cmbRole.Items.Add("Staff");
-            cmbRole.Items.Add("Manager");
+            // Đã dịch (Lưu ý: Cần đồng bộ với logic lưu trữ trong CSDL)
+            cmbRole.Items.Add("Quản Trị Viên");
+            cmbRole.Items.Add("Nhân Viên");
+            cmbRole.Items.Add("Quản Lý");
 
+            // Thêm định dạng ngày sinh
+            this.dtpDOB.Format = DateTimePickerFormat.Custom;
+            this.dtpDOB.CustomFormat = "dddd, dd/MM/yyyy";
         }
 
         private void PopulateGridView(string sql = "select * from UserInfo where Role = 'Staff' or Role = 'Manager';")
@@ -43,7 +52,6 @@ namespace BTL_QLNH
             this.dgvUpdate.DataSource = Da.Ds.Tables[0];
         }
 
-
         private void ClearContent()
         {
             this.txtUserName.Clear();
@@ -53,9 +61,7 @@ namespace BTL_QLNH
             this.cmbRole.Text = null;
             this.dtpDOB.Value = DateTime.Now;
 
-
             this.txtSearch.Clear();
-
 
             this.dgvUpdate.ClearSelection();
             //this.AutoIdGenerate();
@@ -63,7 +69,7 @@ namespace BTL_QLNH
 
         private void dgvUpdate_SelectionChanged_1(object sender, EventArgs e)
         {
-            if (dgvUpdate.SelectedRows != null && dgvUpdate.SelectedRows.Count > 0)
+            if (dgvUpdate.SelectedRows != null && dgvUpdate.SelectedRows.Count > 0 && dgvUpdate.CurrentRow != null)
             {
                 string userName = dgvUpdate.CurrentRow.Cells[0].Value.ToString();
                 string FullName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
@@ -72,10 +78,17 @@ namespace BTL_QLNH
                 string role = dgvUpdate.CurrentRow.Cells[4].Value.ToString();
                 string Email = dgvUpdate.CurrentRow.Cells[5].Value.ToString();
 
-
                 txtUserName.Text = userName;
                 txtFullName.Text = FullName;
-                dtpDOB.Text = DOB;
+               
+                try
+                {
+                    dtpDOB.Value = Convert.ToDateTime(DOB);
+                }
+                catch
+                {
+                    dtpDOB.Value = DateTime.Now; // Gán ngày hiện tại nếu ngày CSDL bị lỗi
+                }
                 cmbGender.Text = Gender;
                 cmbRole.Text = role;
                 txtEmail.Text = Email;
@@ -85,16 +98,17 @@ namespace BTL_QLNH
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(this.txtFullName.Text) || String.IsNullOrEmpty(this.txtEmail.Text) ||
-               String.IsNullOrEmpty(this.cmbRole.Text) || String.IsNullOrEmpty(this.cmbGender.Text))
+                String.IsNullOrEmpty(this.cmbRole.Text) || String.IsNullOrEmpty(this.cmbGender.Text))
             {
-                MessageBox.Show("Fields are blank!  Plaese select a Row first to Update");
+              
+                MessageBox.Show("Vui lòng chọn một hàng và điền đầy đủ thông tin!");
             }
-
             else
             {
                 if (this.dgvUpdate.SelectedRows.Count < 1)
                 {
-                    MessageBox.Show("Plaese select a Row first to Update", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 
+                    MessageBox.Show("Vui lòng chọn một hàng để cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -103,27 +117,25 @@ namespace BTL_QLNH
                     var Username = this.dgvUpdate.CurrentRow.Cells[0].Value.ToString();
                     var FullName = this.dgvUpdate.CurrentRow.Cells[1].Value.ToString();
 
-                    DialogResult dr = MessageBox.Show("Are you sure you want to change?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn thay đổi không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dr == DialogResult.No)
                     {
-                        //MessageBox.Show("No delete");
                         return;
                     }
 
-                    var query = "UPDATE UserInfo SET FullName = '" + txtFullName.Text + "',DOB = '" + dtpDOB.Value + "',Gender = '" + cmbGender.Text + "',Role ='" + cmbRole.Text + "',Email ='" + txtEmail.Text + "' WHERE Username='" + txtUserName.Text + "';";
+                    var query = "UPDATE UserInfo SET FullName = '" + txtFullName.Text + "',DOB = '" + dtpDOB.Value.ToString("yyyy-MM-dd") + "',Gender = '" + cmbGender.Text + "',Role ='" + cmbRole.Text + "',Email ='" + txtEmail.Text + "' WHERE Username='" + txtUserName.Text + "';";
                     var count = this.Da.ExecuteDMLQuery(query);
 
-                    // if (count == 1)
-                    MessageBox.Show(" Information of " + txtFullName.Text + " has been updated successfully!");
-                    // else
-                    //     MessageBox.Show("Data upgradation failed");
+                 
+                    MessageBox.Show("Thông tin của " + txtFullName.Text + " đã được cập nhật thành công!");
 
                     this.PopulateGridView();
                     this.ClearContent();
                 }
                 catch (Exception exc)
                 {
-                    MessageBox.Show("An error has occured: " + exc.Message);
+                   
+                    MessageBox.Show("Đã có lỗi xảy ra: " + exc.Message);
                 }
             }
         }
@@ -135,8 +147,30 @@ namespace BTL_QLNH
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string sql = "select * from UserInfo where FullName like '%" + this.txtSearch.Text + "%';";
-            this.PopulateGridView(sql);
+            // Cập nhật tìm kiếm cho nhất quán (và sửa lỗi logic)
+            try
+            {
+                string keyword = this.txtSearch.Text.Trim();
+                // Câu truy vấn gốc chỉ tìm Staff/Manager
+                string baseQuery = "(Role = 'Staff' OR Role = 'Manager')";
+
+                string sql;
+                if (string.IsNullOrWhiteSpace(keyword))
+                {
+                    sql = "select * from UserInfo where " + baseQuery + ";";
+                }
+                else
+                {
+                    // Tìm theo Tên, Tên đăng nhập hoặc Vai trò VÀ phải là Staff/Manager
+                    sql = "select * from UserInfo where (FullName LIKE N'%" + keyword + "%' OR Username LIKE N'%" + keyword + "%' OR Role LIKE N'%" + keyword + "%') AND " + baseQuery + ";";
+                }
+
+                this.PopulateGridView(sql);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -153,22 +187,23 @@ namespace BTL_QLNH
                 string fullName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
 
                 DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xoá người dùng '{fullName}' ({username}) không?\n\nHÀNH ĐỘNG NÀY SẼ XOÁ CẢ TÀI KHOẢN ĐĂNG NHẬP VÀ KHÔNG THỂ HOÀN TÁC!",
-                                                    "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                                 "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (dr == DialogResult.No)
                 {
                     return;
                 }
 
+                // (Lưu ý: Đảm bảo class DataAccess của bạn hỗ trợ SQL Injection an toàn)
                 string query = $@"
-            BEGIN TRANSACTION;
-                -- Xoá tài khoản đăng nhập
-                DELETE FROM LoginInfo WHERE Username = '{username}';
-                
-                -- Xoá thông tin người dùng
-                DELETE FROM UserInfo WHERE Username = '{username}';
-            COMMIT TRANSACTION;
-        ";
+                BEGIN TRANSACTION;
+                    -- Xoá tài khoản đăng nhập
+                    DELETE FROM LoginInfo WHERE Username = '{username}';
+                    
+                    -- Xoá thông tin người dùng
+                    DELETE FROM UserInfo WHERE Username = '{username}';
+                COMMIT TRANSACTION;
+                ";
 
                 int rowsAffected = this.Da.ExecuteDMLQuery(query);
 
@@ -176,7 +211,7 @@ namespace BTL_QLNH
                 {
                     MessageBox.Show("Đã xoá người dùng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.PopulateGridView();
-                    this.ClearContent();  
+                    this.ClearContent();
                 }
                 else
                 {

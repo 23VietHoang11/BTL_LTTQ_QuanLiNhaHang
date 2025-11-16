@@ -28,7 +28,6 @@ namespace BTL_QLNH
             this.dgvDelete.DataSource = Da.Ds.Tables[0];
         }
 
-
         private void ClearContent()
         {
             this.txtFoodId.Clear();
@@ -36,7 +35,6 @@ namespace BTL_QLNH
             this.txtPrice.Clear();
             this.txtCategory.Text = null;
             this.txtSearch.Clear();
-
 
             this.dgvDelete.ClearSelection();
             //this.AutoIdGenerate();
@@ -51,7 +49,7 @@ namespace BTL_QLNH
         {
             if (this.dgvDelete.SelectedRows.Count < 1)
             {
-                MessageBox.Show("Plaese select a Row first to Delete", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn một hàng để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -60,10 +58,10 @@ namespace BTL_QLNH
                 var FoodId = this.dgvDelete.CurrentRow.Cells[0].Value.ToString();
                 var FoodName = this.dgvDelete.CurrentRow.Cells[1].Value.ToString();
 
-                DialogResult dr = MessageBox.Show("Are you sure you want to delete", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+              
+                DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dr == DialogResult.No)
                 {
-                    //MessageBox.Show("No delete");
                     return;
                 }
 
@@ -73,16 +71,22 @@ namespace BTL_QLNH
                 var count2 = this.Da.ExecuteDMLQuery(query2);
 
                 if (count == 1 && count2 == 1)
-                    MessageBox.Show(FoodName + " has been removed from the list.");
+                {
+                   
+                    MessageBox.Show(FoodName + " đã được xóa khỏi danh sách.");
+                }
                 else
-                    MessageBox.Show("Data remove failed");
+                {
+                   
+                    MessageBox.Show("Xóa dữ liệu thất bại");
+                }
 
                 this.PopulateGridView();
                 this.ClearContent();
             }
             catch (Exception exc)
             {
-                MessageBox.Show("An error has occured: " + exc.Message);
+                MessageBox.Show("Đã có lỗi xảy ra: " + exc.Message);
             }
         }
 
@@ -91,15 +95,37 @@ namespace BTL_QLNH
             this.PopulateGridView();
         }
 
+        // --- Đã cập nhật hàm tìm kiếm cho nhất quán với frmUcAdd ---
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string sql = "select FoodDetails.FoodId,FoodDetails.FoodName,FoodPrices.Category,FoodPrices.Price from FoodDetails,FoodPrices where FoodDetails.FoodId=FoodPrices.FoodId and FoodDetails.FoodName like '" + this.txtSearch.Text + "%';";
-            this.PopulateGridView(sql);
+            try
+            {
+                // 1. Nếu ô tìm kiếm trống -> Load lại toàn bộ danh sách
+                if (string.IsNullOrWhiteSpace(this.txtSearch.Text))
+                {
+                    this.PopulateGridView();
+                    return;
+                }
+
+                // 2. Tìm kiếm theo từ khóa (giống hệt frmUcAdd)
+                string keyword = this.txtSearch.Text.Trim();
+                string sql = @"SELECT FoodDetails.FoodId, FoodDetails.FoodName, FoodPrices.Category, FoodPrices.Price 
+                                FROM FoodDetails, FoodPrices 
+                                WHERE FoodDetails.FoodId = FoodPrices.FoodId 
+                                AND (FoodDetails.FoodName LIKE N'%" + keyword + "%' OR FoodPrices.Category LIKE N'%" + keyword + "%');";
+
+                this.PopulateGridView(sql);
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
         }
 
         private void dgvDelete_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvDelete.SelectedRows != null && dgvDelete.SelectedRows.Count > 0)
+            if (dgvDelete.SelectedRows != null && dgvDelete.SelectedRows.Count > 0 && dgvDelete.CurrentRow != null)
             {
                 string FoodId = dgvDelete.CurrentRow.Cells[0].Value.ToString();
                 string FoodName = dgvDelete.CurrentRow.Cells[1].Value.ToString();
@@ -113,9 +139,8 @@ namespace BTL_QLNH
             }
         }
 
-        private void lblAddFood_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }

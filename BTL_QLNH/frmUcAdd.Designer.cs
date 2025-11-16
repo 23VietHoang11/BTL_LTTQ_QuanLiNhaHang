@@ -50,47 +50,50 @@
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(1122, 492);
+            this.cmbCategory.Location = new System.Drawing.Point(721, 339);
+            this.cmbCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(360, 37);
+            this.cmbCategory.Size = new System.Drawing.Size(233, 28);
             this.cmbCategory.TabIndex = 95;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // txtPrice
             // 
             this.txtPrice.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtPrice.Location = new System.Drawing.Point(1568, 478);
+            this.txtPrice.Location = new System.Drawing.Point(1008, 330);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPrice.Multiline = true;
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(339, 61);
+            this.txtPrice.Size = new System.Drawing.Size(219, 43);
             this.txtPrice.TabIndex = 94;
             // 
             // txtFoodName
             // 
             this.txtFoodName.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtFoodName.Location = new System.Drawing.Point(1568, 309);
+            this.txtFoodName.Location = new System.Drawing.Point(1008, 213);
+            this.txtFoodName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFoodName.Multiline = true;
             this.txtFoodName.Name = "txtFoodName";
-            this.txtFoodName.Size = new System.Drawing.Size(339, 61);
+            this.txtFoodName.Size = new System.Drawing.Size(219, 43);
             this.txtFoodName.TabIndex = 93;
             // 
             // txtFoodId
             // 
             this.txtFoodId.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtFoodId.Location = new System.Drawing.Point(1122, 309);
+            this.txtFoodId.Location = new System.Drawing.Point(721, 213);
+            this.txtFoodId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFoodId.Multiline = true;
             this.txtFoodId.Name = "txtFoodId";
-            this.txtFoodId.Size = new System.Drawing.Size(360, 61);
+            this.txtFoodId.Size = new System.Drawing.Size(233, 43);
             this.txtFoodId.TabIndex = 92;
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(1562, 412);
-            this.lblPrice.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPrice.Location = new System.Drawing.Point(1004, 284);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(72, 35);
+            this.lblPrice.Size = new System.Drawing.Size(51, 25);
             this.lblPrice.TabIndex = 91;
             this.lblPrice.Text = "Giá:";
             // 
@@ -98,10 +101,9 @@
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategory.Location = new System.Drawing.Point(1116, 412);
-            this.lblCategory.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCategory.Location = new System.Drawing.Point(717, 284);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(82, 35);
+            this.lblCategory.Size = new System.Drawing.Size(59, 25);
             this.lblCategory.TabIndex = 90;
             this.lblCategory.Text = "Loại:";
             // 
@@ -109,10 +111,9 @@
             // 
             this.lblFoodName.AutoSize = true;
             this.lblFoodName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoodName.Location = new System.Drawing.Point(1562, 254);
-            this.lblFoodName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFoodName.Location = new System.Drawing.Point(1004, 175);
             this.lblFoodName.Name = "lblFoodName";
-            this.lblFoodName.Size = new System.Drawing.Size(144, 35);
+            this.lblFoodName.Size = new System.Drawing.Size(102, 25);
             this.lblFoodName.TabIndex = 89;
             this.lblFoodName.Text = "Tên món:";
             // 
@@ -120,10 +121,9 @@
             // 
             this.lblFoodId.AutoSize = true;
             this.lblFoodId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoodId.Location = new System.Drawing.Point(1116, 254);
-            this.lblFoodId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFoodId.Location = new System.Drawing.Point(717, 175);
             this.lblFoodId.Name = "lblFoodId";
-            this.lblFoodId.Size = new System.Drawing.Size(40, 35);
+            this.lblFoodId.Size = new System.Drawing.Size(29, 25);
             this.lblFoodId.TabIndex = 88;
             this.lblFoodId.Text = "Id";
             // 
@@ -153,12 +153,13 @@
             this.btnAdd.Lighting = false;
             this.btnAdd.LinearGradient_Background = false;
             this.btnAdd.LinearGradientPen = false;
-            this.btnAdd.Location = new System.Drawing.Point(2039, 455);
+            this.btnAdd.Location = new System.Drawing.Point(1311, 314);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.PenWidth = 15;
             this.btnAdd.Rounding = true;
             this.btnAdd.RoundingInt = 70;
-            this.btnAdd.Size = new System.Drawing.Size(221, 74);
+            this.btnAdd.Size = new System.Drawing.Size(142, 51);
             this.btnAdd.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnAdd.TabIndex = 87;
             this.btnAdd.Tag = "Cyber";
@@ -194,12 +195,13 @@
             this.btnShow.Lighting = false;
             this.btnShow.LinearGradient_Background = false;
             this.btnShow.LinearGradientPen = false;
-            this.btnShow.Location = new System.Drawing.Point(2039, 762);
+            this.btnShow.Location = new System.Drawing.Point(1311, 526);
+            this.btnShow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnShow.Name = "btnShow";
             this.btnShow.PenWidth = 15;
             this.btnShow.Rounding = true;
             this.btnShow.RoundingInt = 70;
-            this.btnShow.Size = new System.Drawing.Size(221, 54);
+            this.btnShow.Size = new System.Drawing.Size(142, 37);
             this.btnShow.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnShow.TabIndex = 86;
             this.btnShow.Tag = "Cyber";
@@ -235,16 +237,17 @@
             this.btnClear.Lighting = false;
             this.btnClear.LinearGradient_Background = false;
             this.btnClear.LinearGradientPen = false;
-            this.btnClear.Location = new System.Drawing.Point(2039, 296);
+            this.btnClear.Location = new System.Drawing.Point(1311, 204);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClear.Name = "btnClear";
             this.btnClear.PenWidth = 15;
             this.btnClear.Rounding = true;
             this.btnClear.RoundingInt = 70;
-            this.btnClear.Size = new System.Drawing.Size(221, 74);
+            this.btnClear.Size = new System.Drawing.Size(142, 51);
             this.btnClear.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnClear.TabIndex = 85;
             this.btnClear.Tag = "Cyber";
-            this.btnClear.TextButton = "Clear";
+            this.btnClear.TextButton = "Dọn";
             this.btnClear.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.btnClear.Timer_Effect_1 = 5;
             this.btnClear.Timer_RGB = 300;
@@ -253,9 +256,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.fast_food_illustration_512x368_owd7wme9;
-            this.pictureBox1.Location = new System.Drawing.Point(228, 178);
+            this.pictureBox1.Location = new System.Drawing.Point(147, 123);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(583, 477);
+            this.pictureBox1.Size = new System.Drawing.Size(375, 329);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 84;
             this.pictureBox1.TabStop = false;
@@ -264,20 +268,20 @@
             // 
             this.lblAddFood.AutoSize = true;
             this.lblAddFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddFood.Location = new System.Drawing.Point(1129, 72);
-            this.lblAddFood.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblAddFood.Location = new System.Drawing.Point(726, 50);
             this.lblAddFood.Name = "lblAddFood";
-            this.lblAddFood.Size = new System.Drawing.Size(527, 89);
+            this.lblAddFood.Size = new System.Drawing.Size(362, 59);
             this.lblAddFood.TabIndex = 83;
-            this.lblAddFood.Text = "Thêm món ăn";
+            this.lblAddFood.Text = "Thêm Món Ăn";
             // 
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtSearch.Location = new System.Drawing.Point(228, 762);
+            this.txtSearch.Location = new System.Drawing.Point(147, 526);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(413, 61);
+            this.txtSearch.Size = new System.Drawing.Size(267, 43);
             this.txtSearch.TabIndex = 82;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged_1);
             // 
@@ -285,16 +289,17 @@
             // 
             this.dgvAdd.BackgroundColor = System.Drawing.Color.White;
             this.dgvAdd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAdd.Location = new System.Drawing.Point(228, 854);
+            this.dgvAdd.Location = new System.Drawing.Point(147, 589);
+            this.dgvAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvAdd.Name = "dgvAdd";
             this.dgvAdd.RowHeadersWidth = 92;
             this.dgvAdd.RowTemplate.Height = 37;
-            this.dgvAdd.Size = new System.Drawing.Size(2032, 515);
+            this.dgvAdd.Size = new System.Drawing.Size(1306, 355);
             this.dgvAdd.TabIndex = 81;
             // 
             // frmUcAdd
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.cmbCategory);
@@ -312,8 +317,9 @@
             this.Controls.Add(this.lblAddFood);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dgvAdd);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmUcAdd";
-            this.Size = new System.Drawing.Size(2489, 1441);
+            this.Size = new System.Drawing.Size(1600, 994);
             this.Load += new System.EventHandler(this.frmUcAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdd)).EndInit();
