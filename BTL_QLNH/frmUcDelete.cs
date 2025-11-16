@@ -113,6 +113,9 @@ namespace BTL_QLNH
             }
         }
 
+        private void lblAddFood_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

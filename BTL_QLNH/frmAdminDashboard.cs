@@ -12,8 +12,6 @@ namespace BTL_QLNH
 {
     public partial class frmAdminDashboard : Form
     {
-      
-
         private frmLogin F1 { get; set; }
         public frmAdminDashboard()
         {
