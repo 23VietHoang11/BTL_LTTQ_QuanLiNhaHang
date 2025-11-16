@@ -477,7 +477,7 @@
             this.lblOrderId.Name = "lblOrderId";
             this.lblOrderId.Size = new System.Drawing.Size(92, 25);
             this.lblOrderId.TabIndex = 36;
-            this.lblOrderId.Text = "Order ID";
+            this.lblOrderId.Text = "ID";
             // 
             // lblItemName
             // 
