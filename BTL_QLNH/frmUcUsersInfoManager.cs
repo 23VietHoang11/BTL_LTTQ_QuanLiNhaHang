@@ -28,25 +28,32 @@ namespace BTL_QLNH
             this.dgvUpdate.DataSource = Da.Ds.Tables[0];
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+
+        private void txtSearch_TextChanged_1(object sender, EventArgs e)
         {
             string sql = "select * from UserInfo where FullName like '%" + this.txtSearch.Text + "%';";
             this.PopulateGridView(sql);
         }
 
-        private void btnShow_Click(object sender, EventArgs e)
+        private void dgvUpdate_SelectionChanged(object sender, EventArgs e)
         {
-            this.PopulateGridView();
-        }
+            if (dgvUpdate.SelectedRows != null && dgvUpdate.SelectedRows.Count > 0)
+            {
+                string userName = dgvUpdate.CurrentRow.Cells[0].Value.ToString();
+                string FullName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
+                string DOB = dgvUpdate.CurrentRow.Cells[2].Value.ToString();
+                string Gender = dgvUpdate.CurrentRow.Cells[3].Value.ToString();
+                string role = dgvUpdate.CurrentRow.Cells[4].Value.ToString();
+                string Email = dgvUpdate.CurrentRow.Cells[5].Value.ToString();
 
-        private void btnCross_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            dgvUpdate.ClearSelection();
+                txtUserName.Text = userName;
+                txtFullName.Text = FullName;
+                dtpDOB.Text = DOB;
+                cmbGender.Text = Gender;
+                cmbRole.Text = role;
+                txtEmail.Text = Email;
+            }
         }
     }
 }

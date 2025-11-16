@@ -212,14 +212,14 @@
             // 
             this.dtpStartDate.Location = new System.Drawing.Point(1170, 476);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(400, 35);
+            this.dtpStartDate.Size = new System.Drawing.Size(443, 35);
             this.dtpStartDate.TabIndex = 84;
             // 
             // dtpEndDate
             // 
             this.dtpEndDate.Location = new System.Drawing.Point(1785, 476);
             this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(400, 35);
+            this.dtpEndDate.Size = new System.Drawing.Size(435, 35);
             this.dtpEndDate.TabIndex = 85;
             // 
             // pictureBox1

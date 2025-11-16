@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnUpdate = new ReaLTaiizor.Controls.CyberButton();
-            this.btnShow = new ReaLTaiizor.Controls.CyberButton();
             this.btnClear = new ReaLTaiizor.Controls.CyberButton();
             this.dtpDOB = new System.Windows.Forms.DateTimePicker();
             this.cmbRole = new System.Windows.Forms.ComboBox();
@@ -44,19 +43,20 @@
             this.lblGender = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvUpdate = new System.Windows.Forms.DataGridView();
             this.lblUpdateUser = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnXoa = new ReaLTaiizor.Controls.CyberButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnXoa);
             this.panel1.Controls.Add(this.btnUpdate);
-            this.panel1.Controls.Add(this.btnShow);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.dtpDOB);
             this.panel1.Controls.Add(this.cmbRole);
@@ -121,47 +121,6 @@
             this.btnUpdate.Timer_RGB = 300;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click_1);
             // 
-            // btnShow
-            // 
-            this.btnShow.Alpha = 20;
-            this.btnShow.BackColor = System.Drawing.Color.Transparent;
-            this.btnShow.Background = true;
-            this.btnShow.Background_WidthPen = 4F;
-            this.btnShow.BackgroundPen = true;
-            this.btnShow.ColorBackground = System.Drawing.Color.Black;
-            this.btnShow.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
-            this.btnShow.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnShow.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
-            this.btnShow.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
-            this.btnShow.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
-            this.btnShow.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnShow.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.btnShow.Effect_1 = true;
-            this.btnShow.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
-            this.btnShow.Effect_1_Transparency = 25;
-            this.btnShow.Effect_2 = true;
-            this.btnShow.Effect_2_ColorBackground = System.Drawing.Color.White;
-            this.btnShow.Effect_2_Transparency = 20;
-            this.btnShow.Font = new System.Drawing.Font("Arial", 11F);
-            this.btnShow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnShow.Lighting = false;
-            this.btnShow.LinearGradient_Background = false;
-            this.btnShow.LinearGradientPen = false;
-            this.btnShow.Location = new System.Drawing.Point(2026, 844);
-            this.btnShow.Name = "btnShow";
-            this.btnShow.PenWidth = 15;
-            this.btnShow.Rounding = true;
-            this.btnShow.RoundingInt = 70;
-            this.btnShow.Size = new System.Drawing.Size(221, 54);
-            this.btnShow.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.btnShow.TabIndex = 85;
-            this.btnShow.Tag = "Cyber";
-            this.btnShow.TextButton = "Tải lại";
-            this.btnShow.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.btnShow.Timer_Effect_1 = 5;
-            this.btnShow.Timer_RGB = 300;
-            this.btnShow.Click += new System.EventHandler(this.btnShow_Click_1);
-            // 
             // btnClear
             // 
             this.btnClear.Alpha = 20;
@@ -207,7 +166,7 @@
             // 
             this.dtpDOB.Location = new System.Drawing.Point(1689, 653);
             this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(400, 35);
+            this.dtpDOB.Size = new System.Drawing.Size(435, 35);
             this.dtpDOB.TabIndex = 83;
             // 
             // cmbRole
@@ -319,6 +278,16 @@
             this.lblUserName.TabIndex = 71;
             this.lblUserName.Text = "Username:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.usersUpdate;
+            this.pictureBox1.Location = new System.Drawing.Point(226, 170);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(662, 590);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 70;
+            this.pictureBox1.TabStop = false;
+            // 
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.SystemColors.Menu;
@@ -352,15 +321,46 @@
             this.lblUpdateUser.TabIndex = 29;
             this.lblUpdateUser.Text = "Update User\'s Information";
             // 
-            // pictureBox1
+            // btnXoa
             // 
-            this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.usersUpdate;
-            this.pictureBox1.Location = new System.Drawing.Point(226, 170);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(662, 590);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 70;
-            this.pictureBox1.TabStop = false;
+            this.btnXoa.Alpha = 20;
+            this.btnXoa.BackColor = System.Drawing.Color.Transparent;
+            this.btnXoa.Background = true;
+            this.btnXoa.Background_WidthPen = 4F;
+            this.btnXoa.BackgroundPen = true;
+            this.btnXoa.ColorBackground = System.Drawing.Color.Black;
+            this.btnXoa.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnXoa.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnXoa.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnXoa.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnXoa.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnXoa.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnXoa.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            this.btnXoa.Effect_1 = true;
+            this.btnXoa.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnXoa.Effect_1_Transparency = 25;
+            this.btnXoa.Effect_2 = true;
+            this.btnXoa.Effect_2_ColorBackground = System.Drawing.Color.White;
+            this.btnXoa.Effect_2_Transparency = 20;
+            this.btnXoa.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnXoa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnXoa.Lighting = false;
+            this.btnXoa.LinearGradient_Background = false;
+            this.btnXoa.LinearGradientPen = false;
+            this.btnXoa.Location = new System.Drawing.Point(2168, 614);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.PenWidth = 15;
+            this.btnXoa.Rounding = true;
+            this.btnXoa.RoundingInt = 70;
+            this.btnXoa.Size = new System.Drawing.Size(221, 74);
+            this.btnXoa.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnXoa.TabIndex = 87;
+            this.btnXoa.Tag = "Cyber";
+            this.btnXoa.TextButton = "Xoá";
+            this.btnXoa.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnXoa.Timer_Effect_1 = 5;
+            this.btnXoa.Timer_RGB = 300;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // frmUcUpdateUsers
             // 
@@ -372,8 +372,8 @@
             this.Size = new System.Drawing.Size(2526, 1478);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUpdate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -398,7 +398,7 @@
         private System.Windows.Forms.ComboBox cmbGender;
         private System.Windows.Forms.DateTimePicker dtpDOB;
         private ReaLTaiizor.Controls.CyberButton btnUpdate;
-        private ReaLTaiizor.Controls.CyberButton btnShow;
         private ReaLTaiizor.Controls.CyberButton btnClear;
+        private ReaLTaiizor.Controls.CyberButton btnXoa;
     }
 }
