@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,68 +7,60 @@ namespace BTL_QLNH
     public class DataAccess
     {
         private SqlConnection sqlcon;
-        public SqlConnection Sqlcon
-        {
-            get { return this.sqlcon; }
-            set { this.sqlcon = value; }
-        }
-
-        private SqlCommand sqlcom;
-        public SqlCommand Sqlcom
-        {
-            get { return this.sqlcom; }
-            set { this.sqlcom = value; }
-        }
-
-        private SqlDataAdapter sda;
-        public SqlDataAdapter Sda
-        {
-            get { return this.sda; }
-            set { this.sda = value; }
-        }
-
-        private DataSet ds;
-        public DataSet Ds
-        {
-            get { return this.ds; }
-            set { this.ds = value; }
-        }
 
         public DataAccess()
         {
+            // Chuỗi kết nối giữ nguyên theo máy của bạn
             string connectionString = @"Data Source=(local);Initial Catalog=RestaurantManagement;Persist Security Info=True;User ID=sa;Password=123;TrustServerCertificate=True";
-            this.Sqlcon = new SqlConnection(connectionString); 
-            Sqlcon.Open();
+            sqlcon = new SqlConnection(connectionString);
         }
 
-        private void QueryText(string query)
+        // Hàm chạy SP trả về bảng dữ liệu (cho SELECT)
+        public DataTable ExecuteQuery(string spName, SqlParameter[] p = null)
         {
-            this.Sqlcom = new SqlCommand(query, this.Sqlcon);
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(spName, sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (p != null) cmd.Parameters.AddRange(p);
+
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi log hoặc ném lỗi tùy ý
+                throw new Exception("Lỗi Database: " + ex.Message);
+            }
+            return dt;
         }
 
-        public DataSet ExecuteQuery(string sql)
+        // Hàm chạy SP thực thi lệnh (cho INSERT, UPDATE, DELETE)
+        public bool ExecuteNonQuery(string spName, SqlParameter[] p)
         {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
-            this.Sda = new SqlDataAdapter(this.Sqlcom);
-            this.Ds = new DataSet();
-            this.Sda.Fill(this.Ds);
-            return Ds;
-        }
+            try
+            {
+                if (sqlcon.State == ConnectionState.Closed) sqlcon.Open();
+                using (SqlCommand cmd = new SqlCommand(spName, sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (p != null) cmd.Parameters.AddRange(p);
 
-        public DataTable ExecuteQueryTable(string sql)
-        {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
-            this.Sda = new SqlDataAdapter(this.Sqlcom);
-            this.Ds = new DataSet();
-            this.Sda.Fill(this.Ds);
-            return Ds.Tables[0];
-        }
-
-        public int ExecuteDMLQuery(string sql)
-        {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
-            int u = this.Sqlcom.ExecuteNonQuery();
-            return u;
+                    int rows = cmd.ExecuteNonQuery();
+                    return true; // Nếu không văng lỗi nghĩa là Transaction trong SP đã COMMIT
+                }
+            }
+            catch
+            {
+                return false; // Có lỗi xảy ra
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
         }
     }
 }

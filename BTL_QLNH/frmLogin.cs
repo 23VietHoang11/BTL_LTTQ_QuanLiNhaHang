@@ -1,93 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using BTL_QLNH.BUS; // Gọi BUS
 
 namespace BTL_QLNH
 {
     public partial class frmLogin : Form
     {
         private frmSignUp F3 { get; set; }
+        private AccountBUS accountBUS;
 
         public frmLogin()
         {
             InitializeComponent();
+            accountBUS = new AccountBUS();
             txtPassword.PasswordChar = '●';
-            cbShow.Checked = false;
         }
 
         public frmLogin(frmSignUp f3)
         {
             InitializeComponent();
             this.F3 = f3;
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            txtUsername.TextButton = "";
-            txtPassword.TextButton = "";
-        }
-
-        private void cbShow_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbShow.Checked)
-            {
-                txtPassword.PasswordChar = '\0';
-            }
-            else
-            {
-                txtPassword.PasswordChar = '●';
-            }
+            accountBUS = new AccountBUS();
+            txtPassword.PasswordChar = '●';
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             try
             {
-                string sql = "SELECT * FROM LoginInfo WHERE Username='" + this.txtUsername.TextButton + "' and Password='" + this.txtPassword.TextButton + "';";
-
-                DataAccess d = new DataAccess();
-                d.ExecuteQueryTable(sql);
-
-                if (d.Ds.Tables[0].Rows.Count == 1)
+                // GỌI BUS THAY VÌ DATAACCESS CŨ
+                if (accountBUS.CheckLogin(txtUsername.TextButton, txtPassword.TextButton))
                 {
-                   
                     MessageBox.Show("Đăng nhập thành công.\nChào mừng, " + txtUsername.TextButton);
+                    string role = accountBUS.GetUserRole(txtUsername.TextButton);
 
-                    string sqlDashboard = "select * from UserInfo where Role ='Admin' and Username='" + txtUsername.TextButton + "';";
-                    d.ExecuteQueryTable(sqlDashboard);
-                    if (d.Ds.Tables[0].Rows.Count == 1)
+                    if (role == "Admin" || role == "Quản Trị Viên")
                     {
-                        frmAdminDashboard admin = new frmAdminDashboard(this);
-                        admin.Show();
+                        new frmAdminDashboard(this).Show();
                         this.Hide();
                     }
-
-
-                    string sqlDashboard2 = "select * from UserInfo where Role ='Staff' and Username='" + txtUsername.TextButton + "';";
-                    d.ExecuteQueryTable(sqlDashboard2);
-                    if (d.Ds.Tables[0].Rows.Count == 1)
+                    else if (role == "Staff" || role == "Nhân Viên")
                     {
-                        frmStaffDashboard emp = new frmStaffDashboard(this);
-                        emp.Show();
+                        new frmStaffDashboard(this).Show();
                         this.Hide();
                     }
-
-                    string sqlDashboard3 = "select * from UserInfo where Role ='Manager' and Username='" + txtUsername.TextButton + "';";
-                    d.ExecuteQueryTable(sqlDashboard3);
-
-                    if (d.Ds.Tables[0].Rows.Count == 1)
+                    else if (role == "Manager" || role == "Quản Lý")
                     {
-                        frmManagerDashboard man = new frmManagerDashboard(this);
-                        man.Show();
+                        new frmManagerDashboard(this).Show();
                         this.Hide();
                     }
+                    else
+                    {
+                        MessageBox.Show("Tài khoản chưa được phân quyền.");
+                    }
+
+                    // Reset ô nhập
                     txtUsername.TextButton = "";
                     txtPassword.TextButton = "";
                 }
@@ -96,18 +63,12 @@ namespace BTL_QLNH
                     MessageBox.Show("Đăng nhập không hợp lệ.\nVui lòng thử lại");
                 }
             }
-            catch (Exception ex)
-            {
-               
-                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
 
-        private void lblSignUpNow_Click(object sender, EventArgs e)
-        {
-            frmAdminLoginForSignUp f = new frmAdminLoginForSignUp(this);
-            f.Show();
-            this.Hide();
-        }
+        // Các sự kiện giao diện giữ nguyên
+        private void btnClear_Click(object sender, EventArgs e) { txtUsername.TextButton = ""; txtPassword.TextButton = ""; }
+        private void cbShow_CheckedChanged(object sender, EventArgs e) { txtPassword.PasswordChar = cbShow.Checked ? '\0' : '●'; }
+        private void lblSignUpNow_Click(object sender, EventArgs e) { new frmAdminLoginForSignUp(this).Show(); this.Hide(); }
     }
 }

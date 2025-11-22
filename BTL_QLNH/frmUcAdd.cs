@@ -1,76 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BTL_QLNH.BUS; // Gọi BUS
 
 namespace BTL_QLNH
 {
     public partial class frmUcAdd : UserControl
     {
-        private DataAccess Da { get; set; }
+        private FoodBUS bus;
+
         public frmUcAdd()
         {
             InitializeComponent();
-            this.Da = new DataAccess();
-            this.PopulateGridView();
-            this.AutoIdGenerate();
+            bus = new FoodBUS(); // Khởi tạo BUS
 
-            // 1. Xóa các mục cũ (nếu có) để tránh trùng lặp
+            // Setup ComboBox
             cmbCategory.Items.Clear();
-
-            // 2. Thêm từng mục vào danh sách (Đã dịch)
-            cmbCategory.Items.Add("Burger");
-            cmbCategory.Items.Add("Đồ Uống");
-            cmbCategory.Items.Add("Tráng Miệng");
-            cmbCategory.Items.Add("Cà Phê");
-            cmbCategory.Items.Add("Pizza");
-            cmbCategory.Items.Add("Mì Ý"); 
-
-            // 3. Chọn mặc định mục đầu tiên (để ô không bị trống)
+            cmbCategory.Items.AddRange(new string[] { "Burger", "Đồ Uống", "Tráng Miệng", "Cà Phê", "Pizza", "Mì Ý" });
             cmbCategory.SelectedIndex = 0;
+
+            LoadData();
+            RefreshID();
         }
 
-        private void PopulateGridView(string sql = "select FoodDetails.FoodId,FoodDetails.FoodName,FoodPrices.Category,FoodPrices.Price from FoodDetails,FoodPrices where FoodDetails.FoodId = FoodPrices.FoodId;")
+        private void LoadData()
         {
-            this.Da.ExecuteQueryTable(sql);
-            this.dgvAdd.DataSource = Da.Ds.Tables[0];
+            // SỬA LỖI: Gọi GetListFood thay vì GetList
+            dgvAdd.DataSource = bus.GetListFood();
         }
 
-        private void ClearContent()
+        private void RefreshID()
         {
-            this.txtFoodId.Clear();
-            this.txtFoodName.Clear();
-            this.txtPrice.Clear();
-            this.cmbCategory.Text = null;
-
-            this.txtSearch.Clear();
-
-            this.dgvAdd.ClearSelection();
-            this.AutoIdGenerate();
+            txtFoodId.Text = bus.GenerateNewID();
         }
 
-        private void AutoIdGenerate()
+        private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            var q = "select FoodId from FoodDetails order by FoodId desc;";
-            var dt = this.Da.ExecuteQueryTable(q);
+            // Gọi BUS xử lý, Form không cần biết DB là gì
+            string result = bus.AddFood(txtFoodId.Text, txtFoodName.Text, cmbCategory.Text, txtPrice.Text);
 
-            if (dt.Rows.Count > 0)
+            if (result == "Success")
             {
-                var lastId = dt.Rows[0][0].ToString();
-                string[] s = lastId.Split('-');
-                int temp = Convert.ToInt32(s[1]);
-                string newId = "f-" + (++temp).ToString("d2");
-                this.txtFoodId.Text = newId;
+                MessageBox.Show("Thêm món ăn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                ClearFields();
             }
             else
             {
-                this.txtFoodId.Text = "f-01";
+                MessageBox.Show(result, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnClear_Click_1(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            txtFoodName.Clear();
+            txtPrice.Clear();
+            cmbCategory.SelectedIndex = 0;
+            txtSearch.Clear();
+            dgvAdd.ClearSelection();
+            RefreshID(); // Sinh ID mới
+        }
+
+        private void txtSearch_TextChanged_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+                LoadData();
+            else
+                // SỬA LỖI: Gọi SearchFood thay vì Search
+                dgvAdd.DataSource = bus.SearchFood(txtSearch.Text.Trim());
+        }
+
+        private void btnShow_Click_1(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
         private void frmUcAdd_Load(object sender, EventArgs e)
@@ -78,105 +84,7 @@ namespace BTL_QLNH
             dgvAdd.ClearSelection();
         }
 
-        private void btnClear_Click_1(object sender, EventArgs e)
-        {
-            this.ClearContent();
-        }
-
-        private void btnAdd_Click_1(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(this.txtFoodId.Text) || String.IsNullOrEmpty(this.txtFoodName.Text) ||
-                String.IsNullOrEmpty(this.txtPrice.Text) || String.IsNullOrEmpty(this.cmbCategory.Text))
-            {
-                MessageBox.Show("Vui lòng điền đầy đủ các trường!");
-            }
-            else
-            {
-                try
-                {
-                    string sqlSelect = "SELECT * FROM FoodDetails WHERE FoodId = '" + txtFoodId.Text + "'or FoodName='" + txtFoodName.Text + "';";
-
-                    Da.ExecuteQueryTable(sqlSelect);
-
-                    if (Da.Ds.Tables[0].Rows.Count > 0)
-                    {
-                     
-                        MessageBox.Show("Món ăn đã tồn tại");
-                    }
-                    else
-                    {
-                        string sql1 = "INSERT INTO FoodDetails (FoodId, FoodName) VALUES ('" + txtFoodId.Text + "', '" + txtFoodName.Text + "');";
-                        string sql2 = "INSERT INTO FoodPrices (FoodId, Category, Price) VALUES ('" + txtFoodId.Text + "', '" + cmbCategory.Text + "', '" + txtPrice.Text + "');";
-
-                    
-                        DialogResult d = MessageBox.Show("Bạn có chắc chắn muốn thêm món ăn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                        if (d == DialogResult.No)
-                            return;
-
-                        int a = Da.ExecuteDMLQuery(sql1);
-                        int b = Da.ExecuteDMLQuery(sql2);
-
-                        if (a > 0 && b > 0)
-                        {
-                          
-                            MessageBox.Show(txtFoodName.Text + " đã được thêm thành công!");
-                            this.PopulateGridView();
-                            this.ClearContent();
-                        }
-                        else
-                        {
-                        
-                            MessageBox.Show("Thêm món ăn thất bại");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    
-                    MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
-                }
-            }
-        }
-
-        private void btnShow_Click_1(object sender, EventArgs e)
-        {
-            this.PopulateGridView();
-        }
-
-        private void txtSearch_TextChanged_1(object sender, EventArgs e)
-        {
-            try
-            {
-                // 1. Nếu ô tìm kiếm trống -> Load lại toàn bộ danh sách gốc
-                if (string.IsNullOrWhiteSpace(txtSearch.Text))
-                {
-                    this.PopulateGridView();
-                    return;
-                }
-
-                // 2. Tạo câu lệnh tìm kiếm thông minh hơn:
-                // - Dùng '%...%' để tìm kiếm "có chứa" (Contains) thay vì chỉ "bắt đầu bằng"
-                // - Tìm kiếm song song cả Tên món (FoodName) HOẶC Loại món (Category)
-
-                string keyword = txtSearch.Text.Trim();
-
-                string sql = @"SELECT FoodDetails.FoodId, FoodDetails.FoodName, FoodPrices.Category, FoodPrices.Price 
-                                FROM FoodDetails, FoodPrices 
-                                WHERE FoodDetails.FoodId = FoodPrices.FoodId 
-                                AND (FoodDetails.FoodName LIKE N'%" + keyword + "%' OR FoodPrices.Category LIKE N'%" + keyword + "%');";
-
-                this.PopulateGridView(sql);
-            }
-            catch (Exception ex)
-            {
-                
-                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
-            }
-        }
-
-        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
+        // Các hàm event thừa có thể giữ trống
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

@@ -1,80 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BTL_QLNH.BUS;
 
 namespace BTL_QLNH
 {
     public partial class frmAdminLoginForSignUp : Form
     {
         private frmLogin F1 { get; set; }
-
-        public frmAdminLoginForSignUp()
-        {
-            InitializeComponent();
-            this.txtPassword.PasswordChar = '•';
-        }
+        private AccountBUS bus;
 
         public frmAdminLoginForSignUp(frmLogin f1)
         {
             InitializeComponent();
             F1 = f1;
+            bus = new AccountBUS();
+            txtPassword.PasswordChar = '●';
         }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            txtUsername.TextButton = "";
-            txtPassword.TextButton = "";
-        }
-
-        private void cbShow_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbShow.Checked)
-            {
-                this.txtPassword.PasswordChar = '\0';
-            }
-            else
-            {
-                this.txtPassword.PasswordChar = '●';
-            }
-        }
+        // Constructor mặc định
+        public frmAdminLoginForSignUp() { InitializeComponent(); bus = new AccountBUS(); }
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            string sql = "SELECT * FROM LoginInfo WHERE Username='" + this.txtUsername.TextButton + "' and Password='" + this.txtPassword.TextButton + "';";
-
-            DataAccess d = new DataAccess();
-            d.ExecuteQueryTable(sql);
-
-            if (d.Ds.Tables[0].Rows.Count == 1)
+            // Kiểm tra đăng nhập
+            if (bus.CheckLogin(txtUsername.TextButton, txtPassword.TextButton))
             {
-                MessageBox.Show("Đăng nhập thành công"); 
-
-                string sqlDashboard = "select * from UserInfo where Role ='Admin' and Username='" + txtUsername.TextButton + "';";
-                d.ExecuteQueryTable(sqlDashboard);
-
-                if (d.Ds.Tables[0].Rows.Count == 1)
+                // Kiểm tra quyền Admin
+                string role = bus.GetUserRole(txtUsername.TextButton);
+                if (role == "Admin" || role == "Quản Trị Viên")
                 {
-                    frmSignUp admin = new frmSignUp(this);
-                    admin.Show();
+                    MessageBox.Show("Xác thực thành công!");
+                    frmSignUp signUpForm = new frmSignUp(this);
+                    signUpForm.Show();
                     this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Chỉ tài khoản Quản trị viên mới được phép truy cập!");
                 }
             }
             else
             {
-                MessageBox.Show("Đăng nhập không hợp lệ.\nVui lòng thử lại");
+                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu.");
             }
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            F1.Visible = true;
-            this.Hide();
-        }
+        private void btnBack_Click(object sender, EventArgs e) { F1.Visible = true; this.Hide(); }
+        private void btnClear_Click(object sender, EventArgs e) { txtUsername.TextButton = ""; txtPassword.TextButton = ""; }
+        private void cbShow_CheckedChanged(object sender, EventArgs e) { txtPassword.PasswordChar = cbShow.Checked ? '\0' : '●'; }
     }
 }

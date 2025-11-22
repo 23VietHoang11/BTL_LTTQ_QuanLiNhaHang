@@ -1,125 +1,93 @@
-﻿using BTL_QLNH;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 using System.Globalization;
 using System.Threading;
-using Excel = Microsoft.Office.Interop.Excel; // Dùng thư viện Interop (theo file Word)
+using BTL_QLNH.BUS; // Gọi BUS
+using Excel = Microsoft.Office.Interop.Excel; // Thư viện Excel
 
 namespace BTL_QLNH
 {
     public partial class frmUcSalesReport : UserControl
     {
-        private DataAccess Da { get; set; }
-        private DataTable dtReport; // Biến lưu dữ liệu (chi tiết HOẶC tóm tắt)
-
-        private SaveFileDialog saveFileDialog1; // Control để lưu file
+        private ReportBUS bus;
+        private DataTable dtReport; // Biến lưu dữ liệu để xuất Excel
+        private SaveFileDialog saveFileDialog1;
 
         public frmUcSalesReport()
         {
-            // Thêm 2 dòng này đểDateTimePicker hiển thị tiếng Việt
+            // Cài đặt tiếng Việt
             Thread.CurrentThread.CurrentCulture = new CultureInfo("vi-VN");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
 
             InitializeComponent();
 
-            // Khởi tạo saveFileDialog (vì ta không kéo thả vào Designer)
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            bus = new ReportBUS();
+            this.saveFileDialog1 = new SaveFileDialog();
 
-            this.Da = new DataAccess();
-            this.PopulateGridView(); // Tải dữ liệu chi tiết ban đầu
+            // Định dạng ngày tháng
+            dtpStartDate.Format = DateTimePickerFormat.Custom;
+            dtpStartDate.CustomFormat = "dddd, dd/MM/yyyy";
 
-            // Sửa định dạng cho ngày bắt đầu
-            this.dtpStartDate.Value = DateTime.Now;
-            this.dtpStartDate.Format = DateTimePickerFormat.Custom;
-            this.dtpStartDate.CustomFormat = "dddd, dd/MM/yyyy";
+            dtpEndDate.Format = DateTimePickerFormat.Custom;
+            dtpEndDate.CustomFormat = "dddd, dd/MM/yyyy";
 
-            // Sửa định dạng cho ngày kết thúc
-            this.dtpEndDate.Value = DateTime.Now;
-            this.dtpEndDate.Format = DateTimePickerFormat.Custom;
-            this.dtpEndDate.CustomFormat = "dddd, dd/MM/yyyy";
-        }
-
-        // Tải dữ liệu (mặc định là chi tiết)
-        private void PopulateGridView(string sql = "select OrdersInfo.OrderID,OrdersInfo.CustomerName,OrdersInfo.OrderDate,OrdersInfo.Total from OrdersInfo;\r\n")
-        {
-            try
-            {
-                this.dtReport = this.Da.ExecuteQueryTable(sql);
-                this.dgvSales.DataSource = this.dtReport;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ClearContent()
-        {
-            dtpEndDate.Value = DateTime.Now;
+            // Mặc định ngày hiện tại
             dtpStartDate.Value = DateTime.Now;
-            lblTK.Text = "0.0";
-
-            // Tải lại dữ liệu chi tiết gốc
-            this.PopulateGridView();
+            dtpEndDate.Value = DateTime.Now;
         }
 
-        // Nút "Tạo" (Tạo báo cáo tóm tắt)
+        // Nút TẠO BÁO CÁO
         private void btnGenerate_Click_1(object sender, EventArgs e)
         {
-            string dateStart = dtpStartDate.Value.ToString("yyyy-MM-dd");
-            string dateEnd = dtpEndDate.Value.ToString("yyyy-MM-dd");
+            // 1. Gọi BUS lấy dữ liệu
+            this.dtReport = bus.GetRevenueReport(dtpStartDate.Value, dtpEndDate.Value);
 
-            // Câu lệnh này tạo ra 2 cột: "Ngày" và "Tổng doanh thu"
-            string query = @"
-                SELECT 
-                    OrderDate AS [Ngày], 
-                    SUM(CAST(Total AS float)) AS [Tổng doanh thu]
-                FROM 
-                    OrdersInfo
-                WHERE 
-                    OrderDate BETWEEN '" + dateStart + "' AND '" + dateEnd + @"'
-                GROUP BY 
-                    OrderDate
-                ORDER BY
-                    OrderDate ASC;";
-
-            // Tải lại GridView với dữ liệu tóm tắt (dtReport bị thay thế)
-            PopulateGridView(query);
-
-            // Tính tổng (chỉ cho báo cáo tóm tắt)
-            decimal totalSale = 0;
-            if (this.dtReport != null && this.dtReport.Columns.Contains("Tổng doanh thu"))
+            if (this.dtReport != null)
             {
-                foreach (DataRow row in this.dtReport.Rows)
+                this.dgvSales.DataSource = this.dtReport;
+
+                // 2. Tính tổng tiền hiển thị lên Label
+                decimal totalSale = 0;
+                if (this.dtReport.Rows.Count > 0 && this.dtReport.Columns.Contains("Tổng doanh thu"))
                 {
-                    totalSale += Convert.ToDecimal(row["Tổng doanh thu"]);
+                    foreach (DataRow row in this.dtReport.Rows)
+                    {
+                        // Kiểm tra null trước khi cộng
+                        if (row["Tổng doanh thu"] != DBNull.Value)
+                        {
+                            totalSale += Convert.ToDecimal(row["Tổng doanh thu"]);
+                        }
+                    }
                 }
+                lblTK.Text = totalSale.ToString("N0");
             }
-            lblTK.Text = totalSale.ToString("N0");
+            else
+            {
+                MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnClear_Click_1(object sender, EventArgs e)
         {
-            this.ClearContent();
+            dtpStartDate.Value = DateTime.Now;
+            dtpEndDate.Value = DateTime.Now;
+            lblTK.Text = "0.0";
+            dgvSales.DataSource = null;
+            this.dtReport = null;
         }
 
-        // --- CODE XUẤT EXCEL ĐÃ SỬA (ĐỘNG) ---
+        // --- CODE XUẤT EXCEL (ĐÃ KHÔI PHỤC LẠI ĐẦY ĐỦ) ---
         private void btnExcel_Click(object sender, EventArgs e)
         {
             if (this.dtReport == null || this.dtReport.Rows.Count == 0)
             {
-                MessageBox.Show("Không có danh sách để in", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không có dữ liệu để xuất file (Vui lòng nhấn nút 'Tạo' trước)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
+            // Khởi tạo Excel
             Excel.Application exApp = new Excel.Application();
             Excel.Workbook exBook = exApp.Workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
             Excel.Worksheet exSheet = (Excel.Worksheet)exBook.Worksheets[1];
@@ -128,8 +96,8 @@ namespace BTL_QLNH
             {
                 // --- 1. TIÊU ĐỀ CHUNG ---
                 Excel.Range header = (Excel.Range)exSheet.Cells[1, 1];
-                // Sửa get_Range thành Range
                 exSheet.Range[exSheet.Cells[1, 1], exSheet.Cells[1, dtReport.Columns.Count + 1]].Merge(true);
+
                 header.Font.Size = 16;
                 header.Font.Bold = true;
                 header.Font.Color = Color.Red;
@@ -137,39 +105,41 @@ namespace BTL_QLNH
                 header.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
                 // --- 2. TIÊU ĐỀ CỘT (ĐỘNG) ---
-                int headerRow = 3; // Bắt đầu từ dòng 3
+                int headerRow = 3;
 
-                // Thêm cột STT (Cột 1)
+                // Cột STT
                 exSheet.Cells[headerRow, 1] = "STT";
-                // Sửa get_Range thành Range
                 exSheet.Range[exSheet.Cells[headerRow, 1], exSheet.Cells[headerRow, 1]].Font.Bold = true;
+                exSheet.Range[exSheet.Cells[headerRow, 1], exSheet.Cells[headerRow, 1]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
-                // Lặp qua tất cả các cột trong dtReport
+                // Các cột dữ liệu
                 for (int j = 0; j < dtReport.Columns.Count; j++)
                 {
-                    // Dữ liệu bắt đầu từ Cột 2 (vì Cột 1 là STT)
                     exSheet.Cells[headerRow, j + 2] = dtReport.Columns[j].ColumnName;
-                    // Sửa get_Range thành Range
-                    exSheet.Range[exSheet.Cells[headerRow, j + 2], exSheet.Cells[headerRow, j + 2]].Font.Bold = true;
-                    exSheet.Range[exSheet.Cells[headerRow, j + 2], exSheet.Cells[headerRow, j + 2]].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    Excel.Range colHeader = exSheet.Range[exSheet.Cells[headerRow, j + 2], exSheet.Cells[headerRow, j + 2]];
+                    colHeader.Font.Bold = true;
+                    colHeader.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    colHeader.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 }
 
                 // --- 3. DỮ LIỆU (ĐỘNG) ---
-                int dataRowStart = 4; // Dữ liệu bắt đầu từ dòng 4
+                int dataRowStart = 4;
                 for (int i = 0; i < dtReport.Rows.Count; i++)
                 {
                     int currentRow = dataRowStart + i;
 
-                    // Cột 1 là STT
+                    // Điền STT
                     exSheet.Cells[currentRow, 1] = (i + 1).ToString();
+                    exSheet.Range[exSheet.Cells[currentRow, 1], exSheet.Cells[currentRow, 1]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
-                    // Lặp qua tất cả cột
+                    // Điền dữ liệu từng cột
                     for (int j = 0; j < dtReport.Columns.Count; j++)
                     {
                         var value = dtReport.Rows[i][j];
                         string colName = dtReport.Columns[j].ColumnName;
+                        Excel.Range cell = exSheet.Range[exSheet.Cells[currentRow, j + 2], exSheet.Cells[currentRow, j + 2]];
 
-                        // Xử lý định dạng (nếu là ngày hoặc số)
+                        // Định dạng hiển thị
                         if (value is DateTime)
                         {
                             exSheet.Cells[currentRow, j + 2] = ((DateTime)value).ToString("dd/MM/yyyy");
@@ -177,37 +147,37 @@ namespace BTL_QLNH
                         else if (colName == "Total" || colName == "Tổng doanh thu")
                         {
                             exSheet.Cells[currentRow, j + 2] = value;
-                            // Sửa get_Range thành Range
-                            exSheet.Range[exSheet.Cells[currentRow, j + 2], exSheet.Cells[currentRow, j + 2]].NumberFormat = "#,##0";
+                            cell.NumberFormat = "#,##0"; // Định dạng số tiền
                         }
                         else
                         {
                             exSheet.Cells[currentRow, j + 2] = value.ToString();
                         }
+
+                        // Kẻ khung
+                        cell.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     }
                 }
 
-                // Tự động giãn cột
+                // Tự động giãn cột cho đẹp
                 exSheet.Columns.AutoFit();
 
-                // --- 4. THÊM TỔNG CỘNG (NẾU LÀ BÁO CÁO TÓM TẮT) ---
-                if (dtReport.Columns.Contains("Tổng doanh thu"))
-                {
-                    int totalRow = dtReport.Rows.Count + (dataRowStart + 1); // Cách ra 1 dòng
+                // --- 4. THÊM TỔNG CỘNG ---
+                int totalRow = dtReport.Rows.Count + dataRowStart + 1;
+                Excel.Range tongCongLabel = (Excel.Range)exSheet.Cells[totalRow, 2];
+                tongCongLabel.Value = "Tổng cộng:";
+                tongCongLabel.Font.Bold = true;
+                tongCongLabel.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
 
-                    Excel.Range tongCongLabel = (Excel.Range)exSheet.Cells[totalRow, 2];
-                    tongCongLabel.Value = "Tổng cộng:";
-                    tongCongLabel.Font.Bold = true;
-                    tongCongLabel.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                Excel.Range tongCongValue = (Excel.Range)exSheet.Cells[totalRow, 3]; // Giả sử cột tiền là cột 3 (Cột C)
+                // Tốt nhất là tìm đúng cột tiền, nhưng thường báo cáo doanh thu chỉ có 2 cột: Ngày và Tiền
+                // Nếu dtReport có nhiều cột, logic này cần chỉnh lại index cột.
+                // Ở đây ta lấy giá trị từ Label đã tính sẵn cho chính xác:
+                tongCongValue.Value = lblTK.Text;
+                tongCongValue.Font.Bold = true;
+                tongCongValue.NumberFormat = "#,##0";
 
-                    Excel.Range tongCongValue = (Excel.Range)exSheet.Cells[totalRow, 3]; // Cột C
-                    tongCongValue.Value = lblTK.Text;
-                    tongCongValue.Font.Bold = true;
-                    tongCongValue.NumberFormat = "#,##0";
-                }
-
-                // Đặt tên sheet
-                exSheet.Name = "BaoCao";
+                exSheet.Name = "BaoCaoDoanhThu";
                 exBook.Activate();
 
                 // --- 5. LƯU FILE ---
@@ -217,7 +187,7 @@ namespace BTL_QLNH
                 saveFileDialog1.DefaultExt = ".xlsx";
                 saveFileDialog1.FileName = "BaoCao_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
-                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     exBook.SaveAs(saveFileDialog1.FileName.ToString());
                     MessageBox.Show("Xuất file Excel thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -229,16 +199,11 @@ namespace BTL_QLNH
             }
             finally
             {
-                // Thoát khỏi ứng dụng
+                // Dọn dẹp tài nguyên COM để tránh treo Excel
                 exApp.Quit();
-
-                // Giải phóng tài nguyên COM
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(exSheet);
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(exBook);
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(exApp);
-                exSheet = null;
-                exBook = null;
-                exApp = null;
             }
         }
     }

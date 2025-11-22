@@ -1,5 +1,4 @@
-﻿using BTL_QLNH;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,220 +7,192 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization; // Thêm
-using System.Threading;    // Thêm
+using System.Globalization; // Để định dạng ngày tháng VN
+using System.Threading;    // Để xử lý luồng giao diện
+using BTL_QLNH.BUS;        // QUAN TRỌNG: Gọi lớp BUS
 
 namespace BTL_QLNH
 {
     public partial class frmUcUpdateUsers : UserControl
     {
-        private DataAccess Da { get; set; }
+        // Khai báo BUS
+        private UserBUS bus;
+
         public frmUcUpdateUsers()
         {
-            // Thêm 2 dòng này đểDateTimePicker hiển thị tiếng Việt
+            // 1. Cài đặt hiển thị Tiếng Việt cho ngày tháng
             Thread.CurrentThread.CurrentCulture = new CultureInfo("vi-VN");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
 
             InitializeComponent();
-            this.Da = new DataAccess();
 
+            // 2. Khởi tạo BUS
+            bus = new UserBUS();
+
+            // 3. Cài đặt giao diện ban đầu
             this.dgvUpdate.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvUpdate.MultiSelect = false;
             this.dgvUpdate.ReadOnly = true;
 
-            this.PopulateGridView();
+            // Thêm dữ liệu cho ComboBox Giới tính
+            cmbGender.Items.Clear();
+            cmbGender.Items.AddRange(new string[] { "Nam", "Nữ" });
 
-            cmbGender.Items.Add("Nam");
-            cmbGender.Items.Add("Nữ");
+            // Thêm dữ liệu cho ComboBox Vai trò
+            cmbRole.Items.Clear();
+            cmbRole.Items.AddRange(new string[] { "Quản Trị Viên", "Nhân Viên", "Quản Lý" });
 
-            // Đã dịch (Lưu ý: Cần đồng bộ với logic lưu trữ trong CSDL)
-            cmbRole.Items.Add("Quản Trị Viên");
-            cmbRole.Items.Add("Nhân Viên");
-            cmbRole.Items.Add("Quản Lý");
-
-            // Thêm định dạng ngày sinh
+            // Định dạng DateTimePicker
             this.dtpDOB.Format = DateTimePickerFormat.Custom;
             this.dtpDOB.CustomFormat = "dddd, dd/MM/yyyy";
+
+            // 4. Tải dữ liệu lên lưới
+            LoadData();
         }
 
-        private void PopulateGridView(string sql = "select * from UserInfo where Role = 'Staff' or Role = 'Manager';")
+        // Hàm tải dữ liệu từ BUS
+        private void LoadData()
         {
-            this.Da.ExecuteQueryTable(sql);
-
-            //this.dgvAdd.AutoGenerateColumns = false;
-            this.dgvUpdate.DataSource = Da.Ds.Tables[0];
+            // Gọi BUS lấy danh sách thay vì gọi trực tiếp SQL
+            this.dgvUpdate.DataSource = bus.GetList();
         }
 
+        // Hàm làm sạch ô nhập
         private void ClearContent()
         {
             this.txtUserName.Clear();
             this.txtFullName.Clear();
             this.txtEmail.Clear();
-            this.cmbGender.Text = null;
-            this.cmbRole.Text = null;
+            this.cmbGender.SelectedIndex = -1;
+            this.cmbRole.SelectedIndex = -1;
             this.dtpDOB.Value = DateTime.Now;
-
             this.txtSearch.Clear();
-
             this.dgvUpdate.ClearSelection();
-            //this.AutoIdGenerate();
         }
 
+        // Sự kiện chọn dòng trên lưới -> Đổ dữ liệu vào ô nhập
         private void dgvUpdate_SelectionChanged_1(object sender, EventArgs e)
         {
             if (dgvUpdate.SelectedRows != null && dgvUpdate.SelectedRows.Count > 0 && dgvUpdate.CurrentRow != null)
             {
+                // Lấy dữ liệu từ các cột (Cells index phải khớp với Database)
                 string userName = dgvUpdate.CurrentRow.Cells[0].Value.ToString();
-                string FullName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
-                string DOB = dgvUpdate.CurrentRow.Cells[2].Value.ToString();
-                string Gender = dgvUpdate.CurrentRow.Cells[3].Value.ToString();
+                string fullName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
+                string dob = dgvUpdate.CurrentRow.Cells[2].Value.ToString();
+                string gender = dgvUpdate.CurrentRow.Cells[3].Value.ToString();
                 string role = dgvUpdate.CurrentRow.Cells[4].Value.ToString();
-                string Email = dgvUpdate.CurrentRow.Cells[5].Value.ToString();
+                string email = dgvUpdate.CurrentRow.Cells[5].Value.ToString();
 
+                // Gán vào ô nhập
                 txtUserName.Text = userName;
-                txtFullName.Text = FullName;
-               
+                txtFullName.Text = fullName;
+
+                // Xử lý ngày tháng an toàn (tránh lỗi nếu ngày null)
                 try
                 {
-                    dtpDOB.Value = Convert.ToDateTime(DOB);
+                    dtpDOB.Value = Convert.ToDateTime(dob);
                 }
                 catch
                 {
-                    dtpDOB.Value = DateTime.Now; // Gán ngày hiện tại nếu ngày CSDL bị lỗi
+                    dtpDOB.Value = DateTime.Now;
                 }
-                cmbGender.Text = Gender;
+
+                cmbGender.Text = gender;
                 cmbRole.Text = role;
-                txtEmail.Text = Email;
+                txtEmail.Text = email;
             }
         }
 
+        // Nút Cập Nhật (Update)
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.txtFullName.Text) || String.IsNullOrEmpty(this.txtEmail.Text) ||
-                String.IsNullOrEmpty(this.cmbRole.Text) || String.IsNullOrEmpty(this.cmbGender.Text))
+            if (dgvUpdate.SelectedRows.Count < 1)
             {
-              
-                MessageBox.Show("Vui lòng chọn một hàng và điền đầy đủ thông tin!");
-            }
-            else
-            {
-                if (this.dgvUpdate.SelectedRows.Count < 1)
-                {
-                 
-                    MessageBox.Show("Vui lòng chọn một hàng để cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                try
-                {
-                    var Username = this.dgvUpdate.CurrentRow.Cells[0].Value.ToString();
-                    var FullName = this.dgvUpdate.CurrentRow.Cells[1].Value.ToString();
-
-                    DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn thay đổi không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dr == DialogResult.No)
-                    {
-                        return;
-                    }
-
-                    var query = "UPDATE UserInfo SET FullName = '" + txtFullName.Text + "',DOB = '" + dtpDOB.Value.ToString("yyyy-MM-dd") + "',Gender = '" + cmbGender.Text + "',Role ='" + cmbRole.Text + "',Email ='" + txtEmail.Text + "' WHERE Username='" + txtUserName.Text + "';";
-                    var count = this.Da.ExecuteDMLQuery(query);
-
-                 
-                    MessageBox.Show("Thông tin của " + txtFullName.Text + " đã được cập nhật thành công!");
-
-                    this.PopulateGridView();
-                    this.ClearContent();
-                }
-                catch (Exception exc)
-                {
-                   
-                    MessageBox.Show("Đã có lỗi xảy ra: " + exc.Message);
-                }
-            }
-        }
-
-        private void btnClear_Click_1(object sender, EventArgs e)
-        {
-            this.ClearContent();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            // Cập nhật tìm kiếm cho nhất quán (và sửa lỗi logic)
-            try
-            {
-                string keyword = this.txtSearch.Text.Trim();
-                // Câu truy vấn gốc chỉ tìm Staff/Manager
-                string baseQuery = "(Role = 'Staff' OR Role = 'Manager')";
-
-                string sql;
-                if (string.IsNullOrWhiteSpace(keyword))
-                {
-                    sql = "select * from UserInfo where " + baseQuery + ";";
-                }
-                else
-                {
-                    // Tìm theo Tên, Tên đăng nhập hoặc Vai trò VÀ phải là Staff/Manager
-                    sql = "select * from UserInfo where (FullName LIKE N'%" + keyword + "%' OR Username LIKE N'%" + keyword + "%' OR Role LIKE N'%" + keyword + "%') AND " + baseQuery + ";";
-                }
-
-                this.PopulateGridView(sql);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
-            }
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            if (this.dgvUpdate.SelectedRows.Count < 1)
-            {
-                MessageBox.Show("Vui lòng chọn một người dùng để xoá.", "Chưa chọn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn nhân viên cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try
+            DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
             {
-                string username = dgvUpdate.CurrentRow.Cells[0].Value.ToString();
-                string fullName = dgvUpdate.CurrentRow.Cells[1].Value.ToString();
+                // GỌI BUS ĐỂ XỬ LÝ CẬP NHẬT
+                string result = bus.UpdateInfo(
+                    txtUserName.Text,
+                    txtFullName.Text,
+                    dtpDOB.Value,
+                    cmbGender.Text,
+                    cmbRole.Text,
+                    txtEmail.Text
+                );
 
-                DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xoá người dùng '{fullName}' ({username}) không?\n\nHÀNH ĐỘNG NÀY SẼ XOÁ CẢ TÀI KHOẢN ĐĂNG NHẬP VÀ KHÔNG THỂ HOÀN TÁC!",
-                                                 "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (dr == DialogResult.No)
+                if (result == "Success")
                 {
-                    return;
-                }
-
-                // (Lưu ý: Đảm bảo class DataAccess của bạn hỗ trợ SQL Injection an toàn)
-                string query = $@"
-                BEGIN TRANSACTION;
-                    -- Xoá tài khoản đăng nhập
-                    DELETE FROM LoginInfo WHERE Username = '{username}';
-                    
-                    -- Xoá thông tin người dùng
-                    DELETE FROM UserInfo WHERE Username = '{username}';
-                COMMIT TRANSACTION;
-                ";
-
-                int rowsAffected = this.Da.ExecuteDMLQuery(query);
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Đã xoá người dùng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.PopulateGridView();
-                    this.ClearContent();
+                    MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();   // Tải lại danh sách
+                    ClearContent(); // Xóa trắng form
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy người dùng để xoá (có thể đã bị xoá trước đó).");
+                    MessageBox.Show(result, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception exc)
+        }
+
+        // Nút Xóa (Delete)
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (dgvUpdate.SelectedRows.Count < 1)
             {
-                MessageBox.Show("Có lỗi xảy ra khi xoá: " + exc.Message);
+                MessageBox.Show("Vui lòng chọn nhân viên cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string user = txtUserName.Text;
+            string name = txtFullName.Text;
+
+            DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xóa nhân viên '{name}' ({user})?\nHành động này sẽ xóa cả tài khoản đăng nhập và KHÔNG THỂ hoàn tác!",
+                                              "Cảnh báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+            {
+                // GỌI BUS ĐỂ XỬ LÝ XÓA
+                string result = bus.DeleteUser(user);
+
+                if (result == "Success")
+                {
+                    MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    ClearContent();
+                }
+                else
+                {
+                    MessageBox.Show(result, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
+        // Nút Làm mới (Clear)
+        private void btnClear_Click_1(object sender, EventArgs e)
+        {
+            ClearContent();
+        }
+
+        // Tìm kiếm (Search)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                LoadData(); // Nếu ô tìm kiếm trống thì load lại toàn bộ
+            }
+            else
+            {
+                // GỌI BUS TÌM KIẾM
+                this.dgvUpdate.DataSource = bus.Search(keyword);
+            }
+        }
+
     }
 }

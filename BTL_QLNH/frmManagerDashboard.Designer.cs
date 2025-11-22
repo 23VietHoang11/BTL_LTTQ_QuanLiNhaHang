@@ -63,17 +63,19 @@
             this.panelContainer.Controls.Add(this.label1);
             this.panelContainer.Controls.Add(this.lblSpashScreen);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(536, 0);
+            this.panelContainer.Location = new System.Drawing.Point(345, 0);
+            this.panelContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(1862, 1201);
+            this.panelContainer.Size = new System.Drawing.Size(1197, 828);
             this.panelContainer.TabIndex = 10;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BTL_QLNH.Properties.Resources.Get_the_Most;
-            this.pictureBox1.Location = new System.Drawing.Point(187, 188);
+            this.pictureBox1.Location = new System.Drawing.Point(120, 130);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1544, 1017);
+            this.pictureBox1.Size = new System.Drawing.Size(993, 701);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 44;
             this.pictureBox1.TabStop = false;
@@ -84,12 +86,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(656, 99);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(285, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(659, 48);
+            this.label1.Size = new System.Drawing.Size(681, 32);
             this.label1.TabIndex = 43;
-            this.label1.Text = "Welcome to Manager\'s Dashboard";
+            this.label1.Text = "Chào Mừng Đến Bảng Điều Khiển Của Quản Trị Viên";
             // 
             // lblSpashScreen
             // 
@@ -97,10 +98,9 @@
             this.lblSpashScreen.BackColor = System.Drawing.Color.Transparent;
             this.lblSpashScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpashScreen.ForeColor = System.Drawing.Color.Black;
-            this.lblSpashScreen.Location = new System.Drawing.Point(554, 26);
-            this.lblSpashScreen.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblSpashScreen.Location = new System.Drawing.Point(356, 18);
             this.lblSpashScreen.Name = "lblSpashScreen";
-            this.lblSpashScreen.Size = new System.Drawing.Size(823, 69);
+            this.lblSpashScreen.Size = new System.Drawing.Size(560, 46);
             this.lblSpashScreen.TabIndex = 42;
             this.lblSpashScreen.Text = "Hệ Thống Quản Lí Nhà Hàng";
             // 
@@ -115,9 +115,9 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(7);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(536, 1201);
+            this.panel2.Size = new System.Drawing.Size(345, 828);
             this.panel2.TabIndex = 11;
             // 
             // panel1
@@ -125,18 +125,19 @@
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.btnUpdateUserInfo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 545);
-            this.panel1.Margin = new System.Windows.Forms.Padding(7);
+            this.panel1.Location = new System.Drawing.Point(0, 376);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(534, 172);
+            this.panel1.Size = new System.Drawing.Size(343, 119);
             this.panel1.TabIndex = 49;
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = global::BTL_QLNH.Properties.Resources.profile;
-            this.pictureBox5.Location = new System.Drawing.Point(31, 55);
+            this.pictureBox5.Location = new System.Drawing.Point(20, 38);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(59, 57);
+            this.pictureBox5.Size = new System.Drawing.Size(38, 39);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 49;
             this.pictureBox5.TabStop = false;
@@ -150,9 +151,10 @@
             this.btnUpdateUserInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateUserInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnUpdateUserInfo.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateUserInfo.Location = new System.Drawing.Point(31, 26);
+            this.btnUpdateUserInfo.Location = new System.Drawing.Point(20, 18);
+            this.btnUpdateUserInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdateUserInfo.Name = "btnUpdateUserInfo";
-            this.btnUpdateUserInfo.Size = new System.Drawing.Size(476, 120);
+            this.btnUpdateUserInfo.Size = new System.Drawing.Size(306, 83);
             this.btnUpdateUserInfo.TabIndex = 46;
             this.btnUpdateUserInfo.Text = "Thông tin người dùng";
             this.btnUpdateUserInfo.UseVisualStyleBackColor = false;
@@ -161,9 +163,10 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::BTL_QLNH.Properties.Resources.exit;
-            this.pictureBox4.Location = new System.Drawing.Point(47, 992);
+            this.pictureBox4.Location = new System.Drawing.Point(30, 684);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(59, 57);
+            this.pictureBox4.Size = new System.Drawing.Size(38, 39);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 48;
             this.pictureBox4.TabStop = false;
@@ -177,9 +180,10 @@
             this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLogOut.ForeColor = System.Drawing.Color.White;
-            this.btnLogOut.Location = new System.Drawing.Point(31, 947);
+            this.btnLogOut.Location = new System.Drawing.Point(20, 653);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(476, 154);
+            this.btnLogOut.Size = new System.Drawing.Size(306, 106);
             this.btnLogOut.TabIndex = 46;
             this.btnLogOut.Text = "Đăng xuất";
             this.btnLogOut.UseVisualStyleBackColor = false;
@@ -190,18 +194,19 @@
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Controls.Add(this.btnSalesReport);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 373);
-            this.panel4.Margin = new System.Windows.Forms.Padding(7);
+            this.panel4.Location = new System.Drawing.Point(0, 257);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(534, 172);
+            this.panel4.Size = new System.Drawing.Size(343, 119);
             this.panel4.TabIndex = 1;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::BTL_QLNH.Properties.Resources.report;
-            this.pictureBox3.Location = new System.Drawing.Point(31, 55);
+            this.pictureBox3.Location = new System.Drawing.Point(20, 38);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(59, 57);
+            this.pictureBox3.Size = new System.Drawing.Size(38, 39);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 49;
             this.pictureBox3.TabStop = false;
@@ -215,9 +220,10 @@
             this.btnSalesReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnSalesReport.ForeColor = System.Drawing.Color.White;
-            this.btnSalesReport.Location = new System.Drawing.Point(29, 27);
+            this.btnSalesReport.Location = new System.Drawing.Point(19, 19);
+            this.btnSalesReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSalesReport.Name = "btnSalesReport";
-            this.btnSalesReport.Size = new System.Drawing.Size(476, 120);
+            this.btnSalesReport.Size = new System.Drawing.Size(306, 83);
             this.btnSalesReport.TabIndex = 46;
             this.btnSalesReport.Text = "Báo cáo doanh thu";
             this.btnSalesReport.UseVisualStyleBackColor = false;
@@ -229,17 +235,18 @@
             this.panel3.Controls.Add(this.btnHome);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(7);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(534, 373);
+            this.panel3.Size = new System.Drawing.Size(343, 257);
             this.panel3.TabIndex = 0;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::BTL_QLNH.Properties.Resources.home;
-            this.pictureBox2.Location = new System.Drawing.Point(47, 89);
+            this.pictureBox2.Location = new System.Drawing.Point(30, 61);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(59, 57);
+            this.pictureBox2.Size = new System.Drawing.Size(38, 39);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 47;
             this.pictureBox2.TabStop = false;
@@ -253,9 +260,10 @@
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnHome.ForeColor = System.Drawing.Color.White;
-            this.btnHome.Location = new System.Drawing.Point(31, 25);
+            this.btnHome.Location = new System.Drawing.Point(20, 17);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(476, 189);
+            this.btnHome.Size = new System.Drawing.Size(306, 130);
             this.btnHome.TabIndex = 45;
             this.btnHome.Text = "Trang chủ";
             this.btnHome.UseVisualStyleBackColor = false;
@@ -263,11 +271,12 @@
             // 
             // frmManagerDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2398, 1201);
+            this.ClientSize = new System.Drawing.Size(1542, 828);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmManagerDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmManagerDashboard";

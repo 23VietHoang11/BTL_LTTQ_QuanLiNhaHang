@@ -2,124 +2,74 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Printing;
+using System.Drawing.Printing; // Để in hóa đơn
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BTL_QLNH.BUS; // QUAN TRỌNG: Gọi lớp BUS
 
 namespace BTL_QLNH
 {
     public partial class frmUcPlaceOrder : UserControl
     {
-        private DataAccess Da { get; set; }
+        // Khai báo 2 BUS:
+        // 1. OrderBUS: Để lưu đơn hàng
+        // 2. FoodBUS: Để lấy danh sách món ăn và giá tiền
+        private OrderBUS orderBUS;
+        private FoodBUS foodBUS;
 
-        void StyleDataGridView(DataGridView dgv)
-        {
-            // 1. Cài đặt chung cho Bảng
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249); // Màu dòng chẵn
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal; // Chỉ kẻ ngang
-            dgv.DefaultCellStyle.SelectionBackColor = Color.SeaGreen; // Màu khi chọn dòng
-            dgv.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dgv.BackgroundColor = Color.White; // Màu nền bảng
+        protected float total = 0.0f;
+        // Biến amount nếu không dùng có thể xóa, nhưng để lại để tránh lỗi CS0169 warning
+        int amount;
 
-            // 2. Cài đặt cho Tiêu đề (Header) - Giống hình bạn gửi
-            dgv.EnableHeadersVisualStyles = false; // BẮT BUỘC
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None; // Bỏ viền tiêu đề
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(100, 88, 255); // Màu tím xanh (Giống hình)
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White; // Chữ màu trắng
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold); // Font chữ đẹp hơn
-            dgv.ColumnHeadersHeight = 40; // Chiều cao tiêu đề
-
-            // 3. Cài đặt cho các dòng dữ liệu
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgv.RowTemplate.Height = 30; // Chiều cao dòng dữ liệu
-
-            // 4. Căn chỉnh cột (Tự lấp đầy chiều rộng)
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
         public frmUcPlaceOrder()
         {
             InitializeComponent();
-            this.Da = new DataAccess();
-            this.AutoIdGenerate();
+
+            // KHỞI TẠO BUS
+            this.orderBUS = new OrderBUS();
+            this.foodBUS = new FoodBUS(); // Khởi tạo FoodBUS để tra cứu món ăn
+
             this.dgvPlaceOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            // Cài đặt ngày giờ
             dtpOrderDate.Value = DateTime.Now;
-
-            // --- Đã Sửa Định Dạng Ngày Theo Yêu Cầu ---
             dtpOrderDate.Format = DateTimePickerFormat.Custom;
             dtpOrderDate.CustomFormat = "dddd, dd/MM/yyyy";
-            // ------------------------------------------
 
-            // 1. Xóa các mục cũ (nếu có) để tránh trùng lặp
+            // Load danh mục vào ComboBox
             cmbCategory.Items.Clear();
-
-            // 2. Thêm từng mục vào danh sách
-            cmbCategory.Items.Add("Burger");
-            cmbCategory.Items.Add("Đồ Uống");
-            cmbCategory.Items.Add("Tráng Miệng");
-            cmbCategory.Items.Add("Cà Phê");
-            cmbCategory.Items.Add("Pizza");
-            cmbCategory.Items.Add("Mì Ý");
-
-            // 3. Chọn mặc định mục đầu tiên (để ô không bị trống)
+            cmbCategory.Items.AddRange(new string[] { "Burger", "Đồ Uống", "Tráng Miệng", "Cà Phê", "Pizza", "Mì Ý" });
             cmbCategory.SelectedIndex = 0;
+
+            // Sinh mã hóa đơn tự động
+            this.AutoIdGenerate();
         }
 
         private void frmUcPlaceOrder_Load(object sender, EventArgs e)
         {
-            // Tạo cột giả lập để xem thử (Nếu bạn chưa kết nối CSDL)
-            dgvPlaceOrder.Columns.Add("colName", "Tên Món");
-            dgvPlaceOrder.Columns.Add("colUnitPrice", "Đơn Giá");
-            dgvPlaceOrder.Columns.Add("colQty", "Số Lượng");
-            dgvPlaceOrder.Columns.Add("colPrice", "Thành Tiền");
-
-            // Áp dụng giao diện
+            // Tạo cột cho GridView nếu chưa có
+            if (dgvPlaceOrder.Columns.Count == 0)
+            {
+                dgvPlaceOrder.Columns.Add("colName", "Tên Món");
+                dgvPlaceOrder.Columns.Add("colUnitPrice", "Đơn Giá");
+                dgvPlaceOrder.Columns.Add("colQty", "Số Lượng");
+                dgvPlaceOrder.Columns.Add("colPrice", "Thành Tiền");
+            }
             StyleDataGridView(dgvPlaceOrder);
         }
 
         private void AutoIdGenerate()
         {
-            try
-            {
-                var q = "select OrderID from OrdersInfo order by OrderID desc;";
-                var dt = this.Da.ExecuteQueryTable(q);
-
-                // THÊM BƯỚC KIỂM TRA NÀY
-                if (dt.Rows.Count > 0)
-                {
-                    // 1. Nếu bảng ĐÃ CÓ dữ liệu (đã có đơn hàng)
-                    var lastId = dt.Rows[0][0].ToString();
-
-                    // Tách ID cũ (Giả sử ID không có chữ, chỉ có số)
-                    int temp = Convert.ToInt32(lastId);
-
-                    string newId = (++temp).ToString("d3"); // Tạo ID mới dạng "002", "003"
-                    this.txtOrderId.Text = newId;
-                }
-                else
-                {
-                    // 2. Nếu bảng RỖNG (đây là đơn hàng đầu tiên)
-                    // Tự gán ID đầu tiên, ví dụ: "001"
-                    this.txtOrderId.Text = "001";
-                }
-            }
-            catch (Exception ex)
-            {
-                // Hiển thị lỗi nếu có vấn đề gì khác
-                MessageBox.Show("Lỗi khi tạo ID đơn hàng: " + ex.Message);
-            }
+            this.txtOrderId.Text = orderBUS.GenerateOrderID();
         }
 
         private void ClearContent()
         {
             this.txtCustomerName.Clear();
             this.txtItemName.Clear();
-            this.txtOrderId.Clear();
             this.nudQuantity.Value = 0;
             this.dtpOrderDate.Value = DateTime.Now;
             this.txtPrice.Clear();
@@ -128,109 +78,40 @@ namespace BTL_QLNH
             this.txtSearch.Clear();
             this.listBox1.Items.Clear();
             this.dgvPlaceOrder.Rows.Clear();
-
             this.lblTK.Text = "0.0";
             this.total = 0.0f;
-
             this.AutoIdGenerate();
         }
 
-        protected int n;
-        protected float total = 0.0f;
-
-        int amount;
-
-        private void PrintPDF()
+        // --- SỰ KIỆN NÚT THANH TOÁN ---
+        private void btnConfirm_Click_1(object sender, EventArgs e)
         {
-            // 1. Tạo tài liệu
-            PrintDocument printDocument = new PrintDocument();
-
-            // 2. Gán sự kiện "vẽ" tài liệu
-            printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
-
-            // 3. Tạo cửa sổ XEM TRƯỚC
-            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
-            previewDialog.Document = printDocument;
-
-            // 4. (Tùy chọn) Chỉnh kích thước cửa sổ xem trước
-            previewDialog.Text = "Xem trước Hóa đơn";
-            previewDialog.Width = 600;
-            previewDialog.Height = 800;
-
-            // 5. Hiển thị cửa sổ
-            previewDialog.ShowDialog();
-        }
-
-        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            Font font = new Font("Arial", 12);
-
-            float y = 50;
-
-            e.Graphics.DrawString("Ngày giờ: " + dtpOrderDate.Value.ToString(), font, Brushes.Black, new PointF(50, y));
-            y += 20;
-
-            e.Graphics.DrawString("Tên khách hàng: " + txtCustomerName.Text, font, Brushes.Black, new PointF(50, y));
-            y += 20;
-
-            // --- SỬA LẠI VÒNG LẶP ---
-            foreach (DataGridViewRow row in dgvPlaceOrder.Rows)
+            if (dgvPlaceOrder.Rows.Count <= 1) // Chỉ có dòng header hoặc dòng trống
             {
-                // Bỏ qua hàng trống (hàng mới) ở cuối
-                if (row.IsNewRow) continue;
-
-                // Dùng ?.ToString() ?? "" để tránh lỗi nếu ô bị null
-                string itemName = row.Cells[0].Value?.ToString() ?? "";
-                string quantity = row.Cells[2].Value?.ToString() ?? "";
-                string price = row.Cells[1].Value?.ToString() ?? "";
-                string total = row.Cells[3].Value?.ToString() ?? "";
-
-                string orderItem = string.Format("{0} x {1} (Giá: {2}, Tổng: {3})", quantity, itemName, price, total);
-                e.Graphics.DrawString(orderItem, font, Brushes.Black, new PointF(50, y));
-                y += 20;
+                MessageBox.Show("Giỏ hàng đang trống!", "Thông báo");
+                return;
             }
-            // --- KẾT THÚC SỬA ---
 
-            string totalAmount = "Tổng cộng: " + lblTK.Text;
-            e.Graphics.DrawString(totalAmount, font, Brushes.Black, new PointF(50, y));
-        }
+            string result = orderBUS.SaveOrder(
+                txtOrderId.Text,
+                txtCustomerName.Text,
+                dtpOrderDate.Value,
+                lblTK.Text,
+                dgvPlaceOrder.Rows
+            );
 
-        private void txtSearch_TextChanged_1(object sender, EventArgs e)
-        {
-            string selectedCategory = cmbCategory.SelectedItem.ToString();
-
-            try
+            if (result == "Success")
             {
-                string connectionString = @"Data Source=(local);Initial Catalog=RestaurantManagement;User ID=sa;Password=123;Encrypt=True;TrustServerCertificate=True";
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    string query = "select FoodDetails.FoodName from FoodDetails,FoodPrices where FoodDetails.FoodId=FoodPrices.FoodId and FoodPrices.Category=@Category and FoodDetails.FoodName like '%" + this.txtSearch.Text + "%';";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Category", selectedCategory);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        listBox1.Items.Clear();
-                        while (reader.Read())
-                        {
-                            listBox1.Items.Add(reader["FoodName"].ToString());
-                        }
-                    }
-                }
+                MessageBox.Show("Đã đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearContent();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Đã xảy ra lỗi khi lấy tên món ăn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnClear_Click_1(object sender, EventArgs e)
-        {
-            this.ClearContent();
-        }
-
+        // --- NÚT THÊM VÀO GIỎ ---
         private void btnAddToCart_Click_1(object sender, EventArgs e)
         {
             try
@@ -238,109 +119,146 @@ namespace BTL_QLNH
                 if (String.IsNullOrEmpty(this.txtItemName.Text) || String.IsNullOrEmpty(this.txtPrice.Text) ||
                 String.IsNullOrEmpty(this.nudQuantity.Text) || String.IsNullOrEmpty(this.txtTotal.Text))
                 {
-                    MessageBox.Show("Vui lòng điền đầy đủ các trường!");
+                    MessageBox.Show("Vui lòng chọn món và nhập số lượng!");
+                    return;
+                }
+
+                if (nudQuantity.Value > 0)
+                {
+                    int n = dgvPlaceOrder.Rows.Add();
+                    dgvPlaceOrder.Rows[n].Cells[0].Value = txtItemName.Text;
+                    dgvPlaceOrder.Rows[n].Cells[1].Value = txtPrice.Text;
+                    dgvPlaceOrder.Rows[n].Cells[2].Value = nudQuantity.Value.ToString();
+                    dgvPlaceOrder.Rows[n].Cells[3].Value = txtTotal.Text;
+
+                    total += float.Parse(txtTotal.Text);
+                    lblTK.Text = total.ToString();
                 }
                 else
                 {
-                    if (nudQuantity.Text != "0" && txtTotal.Text != null)
-                    {
-                        n = dgvPlaceOrder.Rows.Add();
-                        dgvPlaceOrder.Rows[n].Cells[0].Value = txtItemName.Text;
-                        dgvPlaceOrder.Rows[n].Cells[1].Value = txtPrice.Text;
-                        dgvPlaceOrder.Rows[n].Cells[2].Value = nudQuantity.Text;
-                        dgvPlaceOrder.Rows[n].Cells[3].Value = txtTotal.Text;
-
-                        total += int.Parse(txtTotal.Text);
-                        lblTK.Text = total.ToString();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Số lượng tối thiểu phải là 1!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    MessageBox.Show("Số lượng phải lớn hơn 0!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
-        private void btnConfirm_Click_1(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(this.txtOrderId.Text) || String.IsNullOrEmpty(this.txtCustomerName.Text))
-            {
-                MessageBox.Show("Vui lòng điền đầy đủ các trường!");
-                return;
-            }
-
-            DialogResult d = MessageBox.Show("Bạn có chắc chắn muốn xác nhận?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (d == DialogResult.No)
-                return;
-
-            try
-            {
-                string sql1 = "INSERT INTO OrdersInfo (OrderID,CustomerName,OrderDate,Total) VALUES ('" + txtOrderId.Text + "', '" + txtCustomerName.Text + "','" + dtpOrderDate.Value.ToString("yyyy-MM-dd") + "','" + lblTK.Text + "');";
-                Da.ExecuteDMLQuery(sql1);
-
-                foreach (DataGridViewRow row in dgvPlaceOrder.Rows)
-                {
-                    if (row.IsNewRow) continue;
-
-                    string itemName = row.Cells[0].Value.ToString();
-                    string quantity = row.Cells[2].Value.ToString();
-
-                    string sql2 = "INSERT INTO OrdersItems (OrderID, Item, Quantity) VALUES ('" + txtOrderId.Text + "', '" + itemName + "','" + quantity + "')";
-                    Da.ExecuteDMLQuery(sql2);
-                }
-
-                MessageBox.Show("Thêm thành công!");
-                this.ClearContent();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã có lỗi xảy ra!", ex.Message);
-            }
-        }
-
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            txtTotal.Clear();
-            nudQuantity.Text = "0";
-
-            string text = listBox1.GetItemText(listBox1.SelectedItem);
-            txtItemName.Text = text;
-
-            string query = "select FoodPrices.Price from FoodPrices inner join FoodDetails on FoodDetails.FoodId=FoodPrices.FoodId and FoodDetails.FoodName='" + txtItemName.Text + "';";
-            Da.ExecuteQueryTable(query);
-
-            try
-            {
-                txtPrice.Text = Da.Ds.Tables[0].Rows[0][0].ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
-            }
-        }
-
+        // --- NÚT XÓA KHỎI GIỎ ---
         private void btnRemove_Click_1(object sender, EventArgs e)
         {
             if (dgvPlaceOrder.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgvPlaceOrder.SelectedRows[0];
+                if (selectedRow.IsNewRow) return;
 
-                int totalValue = int.Parse(selectedRow.Cells[3].Value.ToString());
-
+                float totalValue = float.Parse(selectedRow.Cells[3].Value.ToString());
                 dgvPlaceOrder.Rows.Remove(selectedRow);
-
                 total -= totalValue;
                 lblTK.Text = total.ToString();
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn món cần xóa.");
             }
+        }
+
+        // --- CÁC LOGIC UI ĐÃ ĐƯỢC KHÔI PHỤC (DÙNG BUS) ---
+
+        // 1. Khi chọn Danh mục -> Load món ăn vào ListBox
+        private void cmbCategory_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cmbCategory.SelectedItem == null) return;
+
+            string category = cmbCategory.SelectedItem.ToString();
+            listBox1.Items.Clear();
+
+            // Lấy toàn bộ danh sách món từ BUS
+            DataTable dt = foodBUS.GetListFood();
+
+            // Lọc thủ công (Vì ta chưa viết hàm GetFoodByCategory trong BUS để tiết kiệm thời gian)
+            // Cách này vẫn đảm bảo 3 lớp vì dữ liệu lấy từ BUS
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row["Category"].ToString() == category)
+                {
+                    listBox1.Items.Add(row["FoodName"].ToString());
+                }
+            }
+        }
+
+        // 2. Khi tìm kiếm -> Lọc món trong ListBox
+        private void txtSearch_TextChanged_1(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.Trim().ToLower();
+            string category = cmbCategory.Text;
+            listBox1.Items.Clear();
+
+            // Dùng hàm Search của BUS
+            DataTable dt = foodBUS.SearchFood(keyword);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                // Chỉ hiển thị nếu đúng category đang chọn
+                if (row["Category"].ToString() == category)
+                {
+                    listBox1.Items.Add(row["FoodName"].ToString());
+                }
+            }
+        }
+
+        // 3. Khi chọn món trong ListBox -> Điền giá và Tên
+        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem == null) return;
+
+            string foodName = listBox1.SelectedItem.ToString();
+            txtItemName.Text = foodName;
+            nudQuantity.Value = 0;
+            txtTotal.Clear();
+
+            // Tìm thông tin món ăn để lấy giá
+            DataTable dt = foodBUS.SearchFood(foodName);
+            if (dt.Rows.Count > 0)
+            {
+                txtPrice.Text = dt.Rows[0]["Price"].ToString();
+            }
+        }
+
+        // 4. Khi thay đổi số lượng -> Tính tổng tiền
+        private void nudQuantity_ValueChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtPrice.Text))
+                {
+                    float price = float.Parse(txtPrice.Text);
+                    float qty = (float)nudQuantity.Value;
+                    txtTotal.Text = (price * qty).ToString();
+                }
+            }
+            catch { }
+        }
+
+        // 5. Khi click vào lưới -> Lấy số tiền (để xử lý logic xóa nếu cần)
+        private void dgvPlaceOrder_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && dgvPlaceOrder.Rows[e.RowIndex].Cells[3].Value != null)
+                {
+                    amount = int.Parse(dgvPlaceOrder.Rows[e.RowIndex].Cells[3].Value.ToString());
+                }
+            }
+            catch { }
+        }
+
+        // --- CÁC HÀM HỖ TRỢ KHÁC (IN ẤN, CLEAR...) ---
+
+        private void btnClear_Click_1(object sender, EventArgs e)
+        {
+            this.ClearContent();
         }
 
         private void btnPrint_Click_1(object sender, EventArgs e)
@@ -348,67 +266,77 @@ namespace BTL_QLNH
             PrintPDF();
         }
 
-        private void cmbCategory_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void PrintPDF()
         {
-            string selectedCategory = cmbCategory.SelectedItem.ToString();
-
-            try
-            {
-                string connectionString = @"Data Source=(local);Initial Catalog=RestaurantManagement;User ID=sa;Password=123;Encrypt=True;TrustServerCertificate=True";
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    string query = "SELECT FoodDetails.FoodName FROM FoodDetails " +
-                                  "INNER JOIN FoodPrices ON FoodDetails.FoodId = FoodPrices.FoodId " +
-                                  "WHERE FoodPrices.Category = @Category";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Category", selectedCategory);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        listBox1.Items.Clear();
-                        while (reader.Read())
-                        {
-                            listBox1.Items.Add(reader["FoodName"].ToString());
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi lấy tên món ăn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+            previewDialog.Document = printDocument;
+            previewDialog.ShowDialog();
         }
 
-        private void dgvPlaceOrder_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            try
-            {
-                amount = int.Parse(dgvPlaceOrder.Rows[e.RowIndex].Cells[3].Value.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
-            }
-        }
+            Font fontTitle = new Font("Arial", 16, FontStyle.Bold);
+            Font font = new Font("Arial", 12);
+            float y = 50;
+            float x = 50;
 
-        private void nudQuantity_ValueChanged_1(object sender, EventArgs e)
-        {
-            try
+            e.Graphics.DrawString("HÓA ĐƠN THANH TOÁN", fontTitle, Brushes.Red, x + 200, y);
+            y += 40;
+            e.Graphics.DrawString("Ngày: " + dtpOrderDate.Value.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, x, y);
+            y += 25;
+            e.Graphics.DrawString("Khách hàng: " + txtCustomerName.Text, font, Brushes.Black, x, y);
+            y += 30;
+            e.Graphics.DrawString("----------------------------------------------------------------", font, Brushes.Black, x, y);
+            y += 20;
+
+            e.Graphics.DrawString("Món ăn", font, Brushes.Black, x, y);
+            e.Graphics.DrawString("SL", font, Brushes.Black, x + 250, y);
+            e.Graphics.DrawString("Giá", font, Brushes.Black, x + 300, y);
+            e.Graphics.DrawString("Tổng", font, Brushes.Black, x + 400, y);
+            y += 20;
+
+            foreach (DataGridViewRow row in dgvPlaceOrder.Rows)
             {
-                if (listBox1.SelectedItems.Count > 0)
+                if (row.IsNewRow) continue;
+                string itemName = row.Cells[0].Value?.ToString() ?? "";
+                string quantity = row.Cells[2].Value?.ToString() ?? "";
+                string price = row.Cells[1].Value?.ToString() ?? "";
+                string totalItem = row.Cells[3].Value?.ToString() ?? "";
+
+                if (!string.IsNullOrEmpty(itemName))
                 {
-                    Int64 quantity = Int64.Parse(nudQuantity.Value.ToString());
-                    Int64 price = Int64.Parse(txtPrice.Text);
-
-                    txtTotal.Text = (quantity * price).ToString();
+                    e.Graphics.DrawString(itemName, font, Brushes.Black, x, y);
+                    e.Graphics.DrawString(quantity, font, Brushes.Black, x + 250, y);
+                    e.Graphics.DrawString(price, font, Brushes.Black, x + 300, y);
+                    e.Graphics.DrawString(totalItem, font, Brushes.Black, x + 400, y);
+                    y += 20;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
-            }
+
+            e.Graphics.DrawString("----------------------------------------------------------------", font, Brushes.Black, x, y);
+            y += 20;
+            e.Graphics.DrawString("TỔNG CỘNG: " + lblTK.Text + " VNĐ", new Font("Arial", 14, FontStyle.Bold), Brushes.Blue, x + 250, y);
+        }
+
+        void StyleDataGridView(DataGridView dgv)
+        {
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.SeaGreen;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dgv.BackgroundColor = Color.White;
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+            dgv.ColumnHeadersHeight = 40;
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv.RowTemplate.Height = 30;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }
 }
