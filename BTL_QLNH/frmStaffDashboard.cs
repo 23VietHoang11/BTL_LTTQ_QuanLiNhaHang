@@ -55,5 +55,10 @@ namespace BTL_QLNH
             frmUcPlaceOrder f = new frmUcPlaceOrder();
             addUserControl(f);
         }
+
+        private void frmStaffDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
