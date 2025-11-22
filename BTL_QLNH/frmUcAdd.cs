@@ -17,6 +17,7 @@ namespace BTL_QLNH
             cmbCategory.Items.Clear();
             cmbCategory.Items.AddRange(new string[] { "Burger", "Đồ Uống", "Tráng Miệng", "Cà Phê", "Pizza", "Mì Ý" });
             cmbCategory.SelectedIndex = 0;
+            
 
             LoadData();
             RefreshID();

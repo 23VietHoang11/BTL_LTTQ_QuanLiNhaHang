@@ -173,7 +173,7 @@ namespace BTL_QLNH
                 // Tốt nhất là tìm đúng cột tiền, nhưng thường báo cáo doanh thu chỉ có 2 cột: Ngày và Tiền
                 // Nếu dtReport có nhiều cột, logic này cần chỉnh lại index cột.
                 // Ở đây ta lấy giá trị từ Label đã tính sẵn cho chính xác:
-                tongCongValue.Value = lblTK.Text;
+                tongCongValue.Value = decimal.Parse(lblTK.Text);
                 tongCongValue.Font.Bold = true;
                 tongCongValue.NumberFormat = "#,##0";
 
@@ -205,6 +205,16 @@ namespace BTL_QLNH
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(exBook);
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(exApp);
             }
+        }
+
+        private void lblTK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTotalSales_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

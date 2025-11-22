@@ -172,6 +172,7 @@
             this.lblTotalSales.Size = new System.Drawing.Size(162, 25);
             this.lblTotalSales.TabIndex = 76;
             this.lblTotalSales.Text = "Tổng Bán Hàng";
+            this.lblTotalSales.Click += new System.EventHandler(this.lblTotalSales_Click);
             // 
             // lblTK
             // 
@@ -184,6 +185,7 @@
             this.lblTK.Size = new System.Drawing.Size(45, 29);
             this.lblTK.TabIndex = 75;
             this.lblTK.Text = "0.0";
+            this.lblTK.Click += new System.EventHandler(this.lblTK_Click);
             // 
             // lblEndDate
             // 
